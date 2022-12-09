@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Menu : Node2D
+public class Next : TextureButton
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -12,17 +12,9 @@ public class Menu : Node2D
     {
         
     }
-    public void _on_Play_pressed()
+    public void _on_Next_pressed()
     {
-        GetTree().ChangeScene("res://scenes/Garage.tscn");
-    }
-    public void _on_Options_pressed() 
-    { 
-        GetTree().ChangeScene("res://scenes/Options.tscn");
-    }
-    public void _on_Exit_pressed()
-    {
-        GetTree().Quit();
+        GetTree().ChangeScene("res://scenes/Game.tscn");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
