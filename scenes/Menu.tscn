@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Play" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Exit" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Options" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
