@@ -1,15 +1,53 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://scenes/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/car.png" type="Texture" id=3]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=["car"]]
+[sub_resource type="CSharpScript" id=1]
+resource_name = "Car"
+script/source = "using Godot;
+using System;
 
-[node name="WheelHolder" type="PinJoint2D" parent="."]
+public class Car : RigidBody2D
+{
+    // Declare member variables here. Examples:
+    // private int a = 2;
+    // private string b = \"text\";
 
-[node name="WheelHolder2" type="PinJoint2D" parent="."]
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        
+    }
+
+//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+//  public override void _Process(float delta)
+//  {
+//      
+//  }
+}
+"
+
+[node name="Car" type="RigidBody2D" groups=["car"]]
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 40, -32, 173, -26, 174, 5, -122, 16, -126, -27 )
+
+[node name="WheelHolder" type="PinJoint2D" parent="."]
+position = Vector2( 7, -2 )
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="WheelHolder" instance=ExtResource( 1 )]
+position = Vector2( -97, 26 )
+
+[node name="WheelHolder2" type="PinJoint2D" parent="."]
+position = Vector2( 122, 31 )
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="WheelHolder2" instance=ExtResource( 1 )]
