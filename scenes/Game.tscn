@@ -39,3 +39,11 @@ margin_top = 5.0
 margin_right = 44.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="Car"]
+current = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 23, 326, 555, 600, 1247, 543, 1699, 337, 2020, 69, 2284, -20, 2460, 226, 2904, 399, 3422, 431, 3759, 46, 3730, -164, 3248, -323, 2752, -492, 2223, -435, 2399, -761, 3096, -694, 3921, -376, 4062, -61, 4057, 411, 3452, 1172, 995, 833, -127, 473, -170, 6, 23, -8 )

@@ -13,8 +13,8 @@ public class Car : RigidBody2D
     public override void _PhysicsProcess(float delta)
     {
         if(Input.IsActionPressed("forward")){
-            wheel1.ApplyTorqueImpulse(delta * 1000 * 60);
-            wheel2.ApplyTorqueImpulse(delta * 1000 * 60);
+            wheel1.ApplyTorqueImpulse(delta * 10000);
+            wheel2.ApplyTorqueImpulse(delta * 10000);
         }
     }
 }

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/images/icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/wheel.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 30.0
+radius = 37.054
 
-[node name="Wheel" type="RigidBody2D" groups=["wheel"]]
+[node name="Wheel" type="RigidBody2D" groups=["car", "wheel"]]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
