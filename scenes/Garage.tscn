@@ -1,17 +1,49 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/images/nitrous.jpg" type="Texture" id=1]
 [ext_resource path="res://assets/images/icon.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Next.cs" type="Script" id=3]
+[ext_resource path="res://assets/images/car-full.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/motor-full.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/school-bus-full.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/Swat-Van-full.png" type="Texture" id=7]
 
 [node name="Garage" type="Node2D"]
 
-[node name="FirstCar" type="TextureButton" parent="."]
-margin_left = 158.0
-margin_top = 129.0
-margin_right = 222.0
-margin_bottom = 193.0
-texture_normal = ExtResource( 2 )
+[node name="Car" type="TextureButton" parent="."]
+margin_left = 310.0
+margin_top = 115.0
+margin_right = 1001.0
+margin_bottom = 372.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 1 )
+
+[node name="Car2" type="TextureButton" parent="."]
+margin_left = 617.0
+margin_top = 74.0
+margin_right = 2408.0
+margin_bottom = 1013.0
+rect_scale = Vector2( 0.15, 0.15 )
+texture_normal = ExtResource( 7 )
+texture_focused = ExtResource( 1 )
+
+[node name="Car3" type="TextureButton" parent="."]
+margin_left = 534.0
+margin_top = 224.0
+margin_right = 2325.0
+margin_bottom = 1163.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture_normal = ExtResource( 5 )
+texture_focused = ExtResource( 1 )
+
+[node name="Car4" type="TextureButton" parent="."]
+margin_left = 533.0
+margin_top = 352.0
+margin_right = 2324.0
+margin_bottom = 1291.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 6 )
 texture_focused = ExtResource( 1 )
 
 [node name="Petrol" type="TextureButton" parent="."]
