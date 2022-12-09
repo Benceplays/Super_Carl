@@ -3,21 +3,18 @@ using System;
 
 public class Game : Node2D
 {
-    private int speed;
-    private KinematicBody2D car;
+    [Export] public int speed;
+    [Export] public int money;
+    private Label moneylabel;
 
     public override void _Ready()
     {
-        car = GetNode("/root/Game/Car/KinematicBody2D") as KinematicBody2D;
+        moneylabel = GetNode("/root/Game/Car/HUD/Money") as Label;
         speed = 100;
     }
 
     public override void _Process(float delta)
-    {
-      if (Input.IsActionPressed("forward"))
-        {
-            car.MoveAndSlide(new Vector2(speed, 0));
-            GD.Print("Move");
-        }    
+    {  
+        moneylabel.Text = $"Money: {money}";
     }
 }
