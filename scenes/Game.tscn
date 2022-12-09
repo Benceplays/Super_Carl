@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 21
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
 font_data = ExtResource( 3 )
 
 [node name="Game" type="Node2D"]
@@ -18,15 +22,20 @@ position = Vector2( 512, 300 )
 
 [node name="Money" type="Label" parent="Car/HUD"]
 margin_left = 876.0
-margin_top = 9.0
+margin_top = 10.0
 margin_right = 946.0
-margin_bottom = 32.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 1 )
 
 [node name="Petrol" type="TextureProgress" parent="Car/HUD"]
-margin_left = -500.0
-margin_top = 265.0
-margin_right = -295.0
-margin_bottom = 287.0
+margin_left = 9.0
+margin_top = 568.0
+margin_right = 214.0
+margin_bottom = 590.0
 
-[node name="Camera2D" type="Camera2D" parent="Car"]
+[node name="Fps" type="Label" parent="Car/HUD"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 44.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 2 )
