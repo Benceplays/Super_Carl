@@ -53,3 +53,6 @@ node_a = NodePath("..")
 node_b = NodePath("Wheel")
 
 [node name="Wheel" parent="WheelHolder2" instance=ExtResource( 1 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
