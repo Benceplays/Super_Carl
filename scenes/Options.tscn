@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/images/icon.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Options.cs" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -30,6 +32,7 @@ size = 20
 font_data = ExtResource( 2 )
 
 [node name="Options" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Audio" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.427451 )
@@ -120,9 +123,9 @@ custom_fonts/font = SubResource( 1 )
 text = "DISPLAY"
 
 [node name="FPS_ON" type="CheckBox" parent="Display"]
-margin_left = 252.0
+margin_left = 251.0
 margin_top = 74.0
-margin_right = 315.0
+margin_right = 314.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 4 )
 text = "OFF"
@@ -135,7 +138,7 @@ margin_bottom = 24.0
 custom_fonts/font = SubResource( 3 )
 text = "FPS:"
 
-[node name="CheckBox" type="CheckBox" parent="Display"]
+[node name="Vsync" type="CheckBox" parent="Display"]
 margin_left = 251.0
 margin_top = 105.0
 margin_right = 314.0
@@ -143,7 +146,7 @@ margin_bottom = 131.0
 custom_fonts/font = SubResource( 5 )
 text = "OFF"
 
-[node name="VSYNC" type="Label" parent="Display/CheckBox"]
+[node name="VSYNC" type="Label" parent="Display/Vsync"]
 margin_left = -85.0
 margin_top = 1.0
 margin_right = -8.0
@@ -178,3 +181,13 @@ margin_right = -12.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 7 )
 text = "Display Mode:"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 820.0
+margin_top = 500.0
+margin_right = 921.0
+margin_bottom = 540.0
+texture_normal = ExtResource( 3 )
+expand = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

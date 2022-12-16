@@ -13,4 +13,14 @@ public class ConfigBody
         get { return moneyvalue; }
         set { moneyvalue = value; }
     }
+    
+    //Options//
+    public int musicvolume { get; set; }
+    public int soundeffectvolume { get; set; }
+    public int uivolume { get ; set; }
+    public bool fpsison { get; set; }
+    public int fps{ get; set; }
+    public bool vsync { get; set; }
+    public int displaymode { get; set; }
+    //Options END//
 }
