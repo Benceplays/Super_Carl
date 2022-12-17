@@ -14,8 +14,10 @@ public class Options : Node2D
     public CheckBox vsyncbutton;
     public OptionButton fpsselect;
     public OptionButton displayselect;
-    
-    
+    public int displayindex;
+    public int fpstarget;
+
+
     public override void _Ready()
     {
         musicvolume = GetNode("/root/Options/Audio/MusicVolume") as HSlider;
@@ -25,6 +27,77 @@ public class Options : Node2D
         vsyncbutton = GetNode("/root/Options/Display/Vsync") as CheckBox;
         fpsselect = GetNode("/root/Options/Display/FPSTarget") as OptionButton;
         displayselect = GetNode("/root/Options/Display/DisplayMode") as OptionButton;
+        
+        string text = File.ReadAllText(@"scripts/Options.json");
+        var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+        
+        musicvolume.Value = get_options.musicvolume;
+        soundeffectvolume.Value = get_options.soundeffectvolume;
+        uivolume.Value = get_options.uivolume;
+        fpsbutton.Pressed = get_options.fpsison;
+        vsyncbutton.Pressed = get_options.vsync;
+        
+        fpsselect.AddItem("30");
+        fpsselect.AddItem("60");
+        fpsselect.AddItem("120");
+        fpsselect.AddItem("240");
+        fpsselect.AddItem("360");
+        fpsselect.AddItem("Unlimited");
+        
+        displayselect.AddItem("Bordless");
+        displayselect.AddItem("Fullscreen");
+        displayselect.AddItem("Bordless Fulscreen");
+        
+        fpsselect.Selected = get_options.fps;
+        displayselect.Selected = get_options.displaymode;
+        displayindex = get_options.displaymode;
+        fpstarget = get_options.fps;
+    }
+
+    public void _on_FPSTarget_item_selected(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                fpstarget = 0;
+                break;
+                
+            case 1:
+                fpstarget = 1;
+                break;
+                
+            case 2:
+                fpstarget = 2;
+                break;
+                
+            case 3:
+                fpstarget = 3;
+                break;
+                
+            case 4:
+                fpstarget = 4;
+                break;
+                
+            case 5:
+                fpstarget= 5;
+                break;
+        }
+    }
+
+    public void _on_DisplayMode_item_selected(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                displayindex = 0;
+                break;
+            case 1:
+                displayindex = 1;
+                break;
+            case 2:
+                displayindex = 2;
+                break;
+        }
     }
 
     public void _on_TextureButton_pressed()
@@ -39,9 +112,9 @@ public class Options : Node2D
             new JProperty("soundeffectvolume", (int)soundeffectvolume.Value),
             new JProperty("uivolume", (int)uivolume.Value),
             new JProperty("fpsison", (bool)fpsbutton.Pressed),
-            new JProperty("fps", (int)musicvolume.Value),  
+            new JProperty("fps", (int)fpstarget),
             new JProperty("vsync", (bool)vsyncbutton.Pressed),
-            new JProperty("displaymode", (int)musicvolume.Value)
+            new JProperty("displaymode", (int)displayindex)
         );
         File.WriteAllText(@"scripts/Options.json", options.ToString());
         using (StreamWriter file = File.CreateText(@"scripts/Options.json"))
@@ -49,12 +122,16 @@ public class Options : Node2D
         {
             options.WriteTo(writer);
         }
+
+        GetTree().ChangeScene("res://scenes/Menu.tscn");
     }
     
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    public override void _Process(float delta)
+    {
+        if (fpsbutton.Pressed) { fpsbutton.Text = "ON"; }
+        else { fpsbutton.Text = "OFF"; }
+        if (vsyncbutton.Pressed) { vsyncbutton.Text = "ON"; }
+        else { vsyncbutton.Text = "OFF"; }
+    }
 }

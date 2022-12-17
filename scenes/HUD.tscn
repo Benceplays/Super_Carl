@@ -1,4 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/PausePanel.cs" type="Script" id=3]
+[ext_resource path="res://assets/styles/pausebuttons.tres" type="StyleBox" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Super-Comic.otf"
@@ -6,11 +11,55 @@ font_path = "res://assets/fonts/Super-Comic.otf"
 [sub_resource type="DynamicFont" id=2]
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFontData" id=3]
-font_path = "res://assets/fonts/Super-Comic.otf"
-
 [sub_resource type="DynamicFont" id=4]
-font_data = SubResource( 3 )
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 0.721569 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.509804 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0.513726, 0.513726, 0.513726, 0.6 )
+shadow_size = 15
+
+[sub_resource type="DynamicFont" id=6]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.784314 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color( 0.807843, 0.807843, 0.807843, 0.6 )
+shadow_size = 10
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 0.784314 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color( 1, 1, 1, 0.6 )
+shadow_size = 10
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -26,3 +75,59 @@ text = "Money"
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 4 )
+
+[node name="PausePanel" type="Panel" parent="."]
+pause_mode = 2
+visible = false
+self_modulate = Color( 1, 1, 1, 0.431373 )
+margin_left = 320.0
+margin_top = 114.0
+margin_right = 694.0
+margin_bottom = 377.0
+custom_styles/panel = SubResource( 12 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="PausePanel"]
+margin_left = 97.0
+margin_top = 13.0
+margin_right = 284.0
+margin_bottom = 74.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="PauseLabel" type="Label" parent="PausePanel/Panel"]
+margin_left = 25.0
+margin_top = 13.0
+margin_right = 162.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 6 )
+text = "Paused
+"
+
+[node name="ReturnButton" type="Button" parent="PausePanel"]
+margin_left = 82.0
+margin_top = 110.0
+margin_right = 298.0
+margin_bottom = 159.0
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "Return To Game"
+
+[node name="BackToMenuButton" type="Button" parent="PausePanel"]
+margin_left = 82.0
+margin_top = 193.0
+margin_right = 301.0
+margin_bottom = 242.0
+custom_fonts/font = SubResource( 9 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "Back To Menu"
+
+[connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
+[connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]
