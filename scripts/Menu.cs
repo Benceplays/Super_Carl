@@ -7,8 +7,7 @@ using System.IO;
 
 public class Menu : Node2D
 {
-    
-    
+
     public override void _Ready()
     {
         string text = File.ReadAllText(@"scripts/Options.json");
