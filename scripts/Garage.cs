@@ -43,7 +43,14 @@ public class Garage : Node2D
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         JObject options = new JObject(
         new JProperty("CurrentCar", currentcar),
-        new JProperty("Money", config.money)
+        new JProperty("Money", config.money),
+        new JProperty("musicvolume", (int)get_options.musicvolume),
+        new JProperty("soundeffectvolume", (int)get_options.soundeffectvolume),
+        new JProperty("uivolume", (int)get_options.uivolume),
+        new JProperty("fpsison", (bool)get_options.fpsison),
+        new JProperty("fps", (int)get_options.fps),
+        new JProperty("vsync", (bool)get_options.vsync),
+        new JProperty("displaymode", (int)get_options.displaymode)
 	    );
 	    File.WriteAllText(@"scripts/Options.json", options.ToString());
 	    using (StreamWriter file = File.CreateText(@"scripts/Options.json"))

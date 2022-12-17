@@ -23,4 +23,5 @@ public class ConfigBody
     public bool vsync { get; set; }
     public int displaymode { get; set; }
     //Options END//
+    
 }

@@ -1,16 +1,38 @@
 using Godot;
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using File = System.IO.File;
+using System.IO;
 
 public class Menu : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
+    
+    
     public override void _Ready()
     {
-        
+        string text = File.ReadAllText(@"scripts/Options.json");
+        var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+        // set the window mode
+        switch (get_options.displaymode)
+        {
+            case 0:
+                OS.WindowResizable = true;
+                OS.WindowMaximized = false;
+                OS.WindowFullscreen = false;
+                break;
+            case 1:
+                OS.WindowFullscreen = true;
+                OS.WindowMaximized = false;
+                OS.WindowBorderless = false;
+                break;
+            case 2:
+                OS.WindowMaximized = true;
+                OS.WindowFullscreen = false;
+                OS.WindowBorderless = false;
+                break;
+
+        }
     }
     public void _on_Play_pressed()
     {
