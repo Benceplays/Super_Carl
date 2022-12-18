@@ -30,26 +30,6 @@ public class Garage : Node2D
         //Amennyiben ures a json fájl =>
         if (loadDefault)
         {
-            /*
-            var get_playerdata = JsonConvert.DeserializeObject<ConfigBody>(player_json);
-            JObject options = new JObject(
-                new JProperty("CurrentCar", get_options.currentcar),
-                new JProperty("Money", get_options.money),
-                new JProperty("musicvolume", (int)musicvolume.Value),
-                new JProperty("soundeffectvolume", (int)soundeffectvolume.Value),
-                new JProperty("uivolume", (int)uivolume.Value),
-                new JProperty("fpsison", (bool)fpsbutton.Pressed),
-                new JProperty("fps", (int)musicvolume.Value),  
-                new JProperty("vsync", (bool)vsyncbutton.Pressed),
-                new JProperty("displaymode", (int)musicvolume.Value)
-            );
-            File.WriteAllText(@"scripts/Options.json", options.ToString());
-            using (StreamWriter file = File.CreateText(@"scripts/Options.json"))
-            using (JsonTextWriter writer = new JsonTextWriter(file))
-            {
-                options.WriteTo(writer);
-            }
-            */
         }
     }
 }

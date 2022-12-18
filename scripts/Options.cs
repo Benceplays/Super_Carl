@@ -105,8 +105,6 @@ public class Options : Node2D
         string text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         JObject options = new JObject(
-            new JProperty("CurrentCar", get_options.currentcar),
-            new JProperty("Money", get_options.money),
             new JProperty("musicvolume", (int)musicvolume.Value),
             new JProperty("soundeffectvolume", (int)soundeffectvolume.Value),
             new JProperty("uivolume", (int)uivolume.Value),

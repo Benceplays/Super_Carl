@@ -21,7 +21,7 @@ public class Game : Node2D
 
     public override void _Ready()
     {
-		text = File.ReadAllText(@"scripts/Options.json");
+		text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
 		CanvasLayer hud = (CanvasLayer)psHUD.Instance();
@@ -90,7 +90,7 @@ public class Game : Node2D
 
     public override void _Process(float delta)
     {
-		text = File.ReadAllText(@"scripts/Options.json");
+		text = File.ReadAllText(@"scripts/Player.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         money = (int) car.Position.x / 100;
         moneylabel.Text = "Money: " + money;
@@ -100,25 +100,4 @@ public class Game : Node2D
 	        fpslabel.Text = $"{Convert.ToInt32(1 / delta)} FPS";
         }
     }
-     public void Save(){
-		text = File.ReadAllText(@"scripts/Options.json");
-        var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-       JObject options = new JObject(
-       new JProperty("CurrentCar", get_options.currentcar),
-       new JProperty("Money", get_options.money),
-       new JProperty("musicvolume", (int)get_options.musicvolume),
-       new JProperty("soundeffectvolume", (int)get_options.soundeffectvolume),
-       new JProperty("uivolume", (int)get_options.uivolume),
-       new JProperty("fpsison", (bool)get_options.fpsison),
-       new JProperty("fps", (int)get_options.fps),
-       new JProperty("vsync", (bool)get_options.vsync),
-       new JProperty("displaymode", (int)get_options.displaymode)
-	    );
-	    File.WriteAllText(@"scripts/Options.json", options.ToString());
-	    using (StreamWriter file = File.CreateText(@"scripts/Options.json"))
-	    using (JsonTextWriter writer = new JsonTextWriter(file))
-	    {
-	    	options.WriteTo(writer);
-	    }
-	}
 }
