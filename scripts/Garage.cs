@@ -16,7 +16,6 @@ public class Garage : Node2D
             WritePlayerData(true);
         }
         carNode = (Node2D)carTemplate.Instance();
-        carNode.Set("type",1);
         AddChild(carNode);
         //todo:Olyan Car objektum osztályt csinálni amiket belehet olvasni és a property-ket betölteni.
     }
@@ -30,6 +29,7 @@ public class Garage : Node2D
         //Amennyiben ures a json fájl =>
         if (loadDefault)
         {
+            
         }
     }
 }

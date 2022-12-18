@@ -29,7 +29,7 @@ public class Game : Node2D
             case 0:
                 Node2D car = (Node2D)psCar.Instance();
                 car.Position = new Vector2(0, 0);
-                car.Set("enginelvl",2);
+                car.Set("id",0);
                 AddChild(car);
                 car.AddChild(hud);
                 GD.Print();
@@ -37,7 +37,7 @@ public class Game : Node2D
             case 1:
                 Node2D bus = (Node2D)psBus.Instance();
                 bus.Position = new Vector2(0, 0);
-                bus.Set("enginelvl",1);
+                bus.Set("id",1);
                 AddChild(bus);
                 bus.AddChild(hud);
                 break;
@@ -45,7 +45,6 @@ public class Game : Node2D
         
         moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
-        GD.Print(car.Get("enginelvl"));
         //vsync trun
         if(get_options.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
         //fpstarget set

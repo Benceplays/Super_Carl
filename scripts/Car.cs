@@ -4,7 +4,10 @@ using System;
 public class Car : RigidBody2D
 {
 	public int enginelvl;
-	public int wheel;
+	public int wheellvl;
+	public int petrollvl;
+	public int gunlvl;
+	public int id;
 	RigidBody2D wheel1;
 	RigidBody2D wheel2;
 	private int max_speed = 90;
@@ -19,6 +22,7 @@ public class Car : RigidBody2D
 		wheel2.ContactsReported = 1;	
 		ContactMonitor = true;
 		ContactsReported = 1;
+		GD.Print(id);
 	}
 	public override void _PhysicsProcess(float delta)
 	{
