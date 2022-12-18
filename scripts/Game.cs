@@ -42,10 +42,13 @@ public class Game : Node2D
                 bus.AddChild(hud);
                 break;
         }
-        
+        /*foreach(var item in get_options.UnlockedCars){
+            GD.Print(item);
+        }*/
+
         moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
-        GD.Print(car.Get("enginelvl"));
+        //GD.Print(car.Get("enginelvl"));
         //vsync trun
         if(get_options.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
         //fpstarget set
