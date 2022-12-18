@@ -1,15 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/PausePanel.cs" type="Script" id=3]
 [ext_resource path="res://assets/styles/pausebuttons.tres" type="StyleBox" id=4]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://assets/fonts/Super-Comic.otf"
-
-[sub_resource type="DynamicFont" id=2]
-font_data = SubResource( 1 )
+[ext_resource path="res://assets/styles/menubuttons.tres" type="StyleBox" id=5]
+[ext_resource path="res://scripts/OutOfPetrol.cs" type="Script" id=6]
+[ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scripts/ReachDestination.cs" type="Script" id=8]
+[ext_resource path="res://assets/images/Petrol.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
@@ -61,6 +60,18 @@ corner_radius_bottom_left = 15
 shadow_color = Color( 1, 1, 1, 0.6 )
 shadow_size = 10
 
+[sub_resource type="DynamicFont" id=13]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+font_data = ExtResource( 1 )
+
 [node name="HUD" type="CanvasLayer"]
 
 [node name="money" type="Label" parent="."]
@@ -68,7 +79,7 @@ margin_left = 918.0
 margin_top = 9.0
 margin_right = 958.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 7 )
 text = "Money"
 
 [node name="fps" type="Label" parent="."]
@@ -129,5 +140,134 @@ custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 text = "Back To Menu"
 
+[node name="OutOfPetrol" type="Panel" parent="."]
+visible = false
+margin_left = 390.0
+margin_top = 111.0
+margin_right = 642.0
+margin_bottom = 369.0
+script = ExtResource( 6 )
+
+[node name="OutLabel" type="Label" parent="OutOfPetrol"]
+margin_left = 48.0
+margin_top = 26.0
+margin_right = 199.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 13 )
+text = "Out Of Petrol"
+align = 1
+
+[node name="Distance" type="Label" parent="OutOfPetrol"]
+margin_left = 31.0
+margin_top = 70.0
+margin_right = 157.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 14 )
+text = "Zombie Hit: Ł$3030"
+
+[node name="Label" type="Label" parent="OutOfPetrol"]
+margin_left = 31.0
+margin_top = 109.0
+margin_right = 157.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 14 )
+text = "Distance: $250"
+
+[node name="TotalLabel" type="Label" parent="OutOfPetrol"]
+margin_left = 32.0
+margin_top = 147.0
+margin_right = 259.0
+margin_bottom = 179.0
+custom_fonts/font = SubResource( 14 )
+text = "Total Money: $303"
+
+[node name="Garage" type="Button" parent="OutOfPetrol"]
+margin_left = 72.0
+margin_top = 195.0
+margin_right = 172.0
+margin_bottom = 236.0
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+text = "Garage"
+
+[node name="ReachDestination" type="Panel" parent="."]
+visible = false
+margin_left = 398.0
+margin_top = 144.0
+margin_right = 718.0
+margin_bottom = 452.0
+script = ExtResource( 8 )
+
+[node name="Reach" type="Label" parent="ReachDestination"]
+margin_left = 59.0
+margin_top = 12.0
+margin_right = 251.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 7 )
+text = "You have reached
+the checkpoint"
+align = 1
+
+[node name="Bonus" type="Label" parent="ReachDestination"]
+margin_left = 17.0
+margin_top = 66.0
+margin_right = 138.0
+margin_bottom = 84.0
+custom_fonts/font = ExtResource( 7 )
+text = "Bonus: $1200"
+
+[node name="Distance" type="Label" parent="ReachDestination"]
+margin_left = 18.0
+margin_top = 109.0
+margin_right = 156.0
+margin_bottom = 127.0
+custom_fonts/font = ExtResource( 7 )
+text = "Distance: $300"
+
+[node name="Zombie" type="Label" parent="ReachDestination"]
+margin_left = 20.0
+margin_top = 151.0
+margin_right = 194.0
+margin_bottom = 169.0
+custom_fonts/font = ExtResource( 7 )
+text = "Zombies Hits: $400"
+
+[node name="total" type="Label" parent="ReachDestination"]
+margin_left = 21.0
+margin_top = 200.0
+margin_right = 181.0
+margin_bottom = 218.0
+custom_fonts/font = ExtResource( 7 )
+text = "Total Cash: $1900"
+
+[node name="OK" type="Button" parent="ReachDestination"]
+margin_left = 114.0
+margin_top = 254.0
+margin_right = 207.0
+margin_bottom = 289.0
+custom_fonts/font = ExtResource( 7 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+text = "Ok"
+
+[node name="Petrol" type="TextureProgress" parent="."]
+margin_left = 17.0
+margin_top = 283.0
+margin_right = 64.0
+margin_bottom = 581.0
+value = 20.0
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+
 [connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="OutOfPetrol/Garage" to="PausePanel" method="_on_Garage_pressed"]
+[connection signal="pressed" from="OutOfPetrol/Garage" to="OutOfPetrol" method="_on_Garage_pressed"]
+[connection signal="pressed" from="ReachDestination/OK" to="ReachDestination" method="_on_OK_pressed"]

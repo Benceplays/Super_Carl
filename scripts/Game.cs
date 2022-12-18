@@ -98,6 +98,7 @@ public class Game : Node2D
         {
 	        fps_is_on = false;
         }
+        
     }
 
     public override void _Process(float delta)

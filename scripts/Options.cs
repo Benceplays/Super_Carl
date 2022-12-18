@@ -100,7 +100,7 @@ public class Options : Node2D
         }
     }
 
-    public void _on_TextureButton_pressed()
+    public void _on_Save_pressed()
     {
         string text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
