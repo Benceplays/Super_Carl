@@ -102,7 +102,6 @@ public class Options : Node2D
 
     public void _on_TextureButton_pressed()
     {
-        ConfigBody config = new ConfigBody();
         string text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         JObject options = new JObject(

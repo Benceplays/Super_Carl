@@ -21,12 +21,11 @@ public class Game : Node2D
 
     public override void _Ready()
     {
-		config = new ConfigBody();
 		text = File.ReadAllText(@"scripts/Options.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
 		CanvasLayer hud = (CanvasLayer)psHUD.Instance();
-        switch(config.currentcar){
+        switch(get_options.currentcar){
             case 0:
                 Node2D car = (Node2D)psCar.Instance();
                 car.Position = new Vector2(0, 0);
@@ -87,8 +86,6 @@ public class Game : Node2D
 
     public override void _Process(float delta)
     {
-	    
-        config = new ConfigBody();
 		text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         money = (int) car.Position.x / 100;
@@ -100,12 +97,11 @@ public class Game : Node2D
         }
     }
      public void Save(){
-        config = new ConfigBody();
 		text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
        JObject options = new JObject(
-       new JProperty("CurrentCar", config.currentcar),
-       new JProperty("Money", money),
+       new JProperty("CurrentCar", get_options.currentcar),
+       new JProperty("Money", get_options.money),
        new JProperty("musicvolume", (int)get_options.musicvolume),
        new JProperty("soundeffectvolume", (int)get_options.soundeffectvolume),
        new JProperty("uivolume", (int)get_options.uivolume),
