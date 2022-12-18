@@ -39,7 +39,7 @@ public class Garage : Node2D
                 new JProperty("soundeffectvolume", (int)soundeffectvolume.Value),
                 new JProperty("uivolume", (int)uivolume.Value),
                 new JProperty("fpsison", (bool)fpsbutton.Pressed),
-                new JProperty("fps", (int)musicvolume.Value),
+                new JProperty("fps", (int)musicvolume.Value),  
                 new JProperty("vsync", (bool)vsyncbutton.Pressed),
                 new JProperty("displaymode", (int)musicvolume.Value)
             );
