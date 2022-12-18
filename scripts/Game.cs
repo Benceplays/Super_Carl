@@ -1,9 +1,11 @@
 using Godot;
 using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+//using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using File = System.IO.File;
 using System.IO;
+using Newtonsoft.Json;
 
 public class Game : Node2D
 {
@@ -14,6 +16,7 @@ public class Game : Node2D
     private Label fpslabel;
     private ConfigBody config;
     private string text;
+    private string tunings;
     private float time;
     private int money;
     private RigidBody2D car;
@@ -21,8 +24,15 @@ public class Game : Node2D
 
     public override void _Ready()
     {
-		text = File.ReadAllText(@"scripts/Player.json");
+	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+
+		tunings = File.ReadAllText(@"scripts/Tunings.json");
+		var get_tunings = JsonConvert.DeserializeObject<ConfigBody>(tunings);
+		foreach (var tune in get_tunings.tuning1)
+		{
+			GD.Print(tune);
+		}
 
 		CanvasLayer hud = (CanvasLayer)psHUD.Instance();
         switch(get_options.currentcar){

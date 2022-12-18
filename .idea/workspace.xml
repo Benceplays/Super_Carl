@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eabeeaa5-0d57-4049-bd4d-f4c15db24661" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/CarBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Car.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Car.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/CarConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Garage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Garage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Options.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Options.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +21,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

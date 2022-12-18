@@ -2,6 +2,9 @@ using File = System.IO.File;
 using System.IO;
 using Godot;
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 public class Garage : Node2D
 {
     [Export]private PackedScene carTemplate;
@@ -10,7 +13,7 @@ public class Garage : Node2D
 
     public override void _Ready()
     {
-        player_json = File.ReadAllText(@"scripts/Player.json");
+        player_json = File.ReadAllText(@"scripts/Tunings.json");
         if (player_json == "")
         {
             WritePlayerData(true);
@@ -26,10 +29,25 @@ public class Garage : Node2D
 
     public void WritePlayerData(bool loadDefault)
     {
+        string text = File.ReadAllText(@"scripts/Player.json");
+        var get_datas = JsonConvert.DeserializeObject<ConfigBody>(text);
+        
+        string text2 = File.ReadAllText(@"scripts/Tunings.json");
+        var get_tunings = JsonConvert.DeserializeObject<ConfigBody>(text2);
+        
         //Amennyiben ures a json fájl =>
         if (loadDefault)
         {
-            
+            foreach (var car in get_datas.Cars)
+            {
+                Dictionary<string, int> kocsi = new Dictionary<string, int>();
+                kocsi.Add("id",car);
+                kocsi.Add("engine",0);
+                kocsi.Add("gun",0);
+                kocsi.Add("petrol",0);
+                kocsi.Add("wheel", 0);
+                File.AppendAllText(@"scripts/Tunings.json",JsonConvert.SerializeObject(kocsi));
+            }
         }
     }
 }

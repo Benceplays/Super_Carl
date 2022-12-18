@@ -3,10 +3,10 @@ using System;
 
 public class Car : RigidBody2D
 {
-	public int enginelvl;
-	public int wheellvl;
-	public int petrollvl;
-	public int gunlvl;
+	public int engine;
+	public int wheel;
+	public int petrol;
+	public int gun;
 	public int id;
 	RigidBody2D wheel1;
 	RigidBody2D wheel2;
