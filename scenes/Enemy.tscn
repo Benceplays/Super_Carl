@@ -1,19 +1,290 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/images/motor-full.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/Zombie/head.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/Zombie/upperarmleft.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/Zombie/upperarmright.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/Zombie/chest.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/Zombie/forearmleft.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/Zombie/forearmright.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/Zombie/legleft.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/Zombie/footleft.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/Zombie/legright.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/Zombie/leg2right.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/Zombie/leg2left.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/Zombie/handright.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/Zombie/handleft.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/Zombie/footright.png" type="Texture" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
 [node name="Enemy" type="Node2D"]
+position = Vector2( -8, -68 )
 
-[node name="EnemyBody" type="RigidBody2D" parent="."]
+[node name="head" type="RigidBody2D" parent="."]
 mode = 2
+mass = 0.0102041
 physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="EnemyBody"]
+[node name="Sprite" type="Sprite" parent="head"]
+position = Vector2( -2.38419e-07, -2.38419e-07 )
+scale = Vector2( 0.361472, 0.347534 )
 texture = ExtResource( 1 )
-flip_h = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyBody"]
-position = Vector2( 1, 0 )
-polygon = PoolVector2Array( -394, 70, -393, 124, -373, 169, -345, 203, -310, 225, -276, 236, -244, 233, -209, 226, -169, 203, -139, 179, -125, 157, -120, 137, -115, 115, -117, 91, -117, 71, -126, 45, -138, 22, -151, 6, -165, -4, -182, -12, -185, -13, -182, -36, -165, -61, -162, -69, -152, -81, -145, -56, -132, -46, -125, -37, -120, -24, -115, -9, -112, 3, -107, 8, -100, 10, -95, 16, -93, 18, -93, 42, -93, 50, -88, 52, -85, 57, -68, 77, -55, 88, -49, 93, -36, 97, -21, 99, -5, 99, 20, 100, 43, 101, 59, 100, 72, 97, 75, 72, 114, 80, 126, 87, 118, 109, 122, 138, 136, 161, 151, 185, 169, 209, 196, 223, 243, 237, 296, 232, 330, 217, 353, 202, 379, 159, 392, 125, 392, 96, 388, 70, 381, 52, 369, 31, 361, 18, 342, -2, 317, -21, 292, -31, 260, -39, 225, -36, 309, -59, 300, -69, 326, -88, 316, -100, 295, -96, 285, -110, 267, -106, 385, -127, 364, -137, 324, -135, 216, -133, 126, -125, 48, -125, 13, -138, -24, -154, -36, -169, -59, -172, -68, -167, -81, -164, -90, -172, -93, -185, -105, -194, -86, -196, -65, -207, -80, -219, -81, -222, -91, -229, -108, -229, -120, -216, -144, -217, -149, -201, -164, -189, -177, -152, -177, -142, -176, -128, -214, -128, -279, -122, -297, -115, -324, -98, -345, -78, -288, -104, -243, -107, -218, -101, -172, -90, -209, -29, -233, -34, -257, -38, -300, -37, -332, -21, -360, 5, -380, 36 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head"]
+polygon = PoolVector2Array( 9, -26, 12, -24, 18, -26, 19, -23, 23, -21, 31, -15, 34, -11, 29, -12, 31, -8, 32, -2, 32, 4, 33, 11, 32, 16, 27, 21, 20, 23, 10, 25, 3, 26, -5, 28, -12, 26, -15, 23, -20, 19, -23, 15, -25, 16, -28, 7, -31, -2, -26, -11, -22, -17, -15, -23, -7, -26, 2, -27 )
+
+[node name="chest" type="RigidBody2D" parent="."]
+position = Vector2( -12, -7 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="chest"]
+position = Vector2( 18, 70 )
+scale = Vector2( 0.49422, 0.446237 )
+z_index = -36
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="chest"]
+polygon = PoolVector2Array( 36, 47, 43, 56, 48, 61, 53, 69, 55, 79, 55, 89, 51, 97, 45, 105, 37, 108, 25, 110, 12, 107, 2, 101, -6, 96, -14, 96, -18, 88, -20, 75, -17, 56, -12, 42, -2, 33, 11, 29, 22, 30, 31, 35, 34, 40 )
+
+[node name="upperarmleft" type="RigidBody2D" parent="."]
+position = Vector2( -26, 0 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="upperarmleft"]
+position = Vector2( 68, 52 )
+rotation = -0.436332
+scale = Vector2( 0.488752, 0.577947 )
+z_index = -62
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upperarmleft"]
+polygon = PoolVector2Array( 44, 32, 44, 40, 47, 48, 54, 57, 60, 64, 70, 76, 75, 74, 80, 74, 78, 67, 84, 65, 82, 60, 84, 58, 87, 56, 69, 38, 56, 32, 49, 30 )
+
+[node name="upperarmright" type="RigidBody2D" parent="."]
+position = Vector2( -70, 91 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="upperarmright"]
+position = Vector2( 25.5, -31.75 )
+scale = Vector2( 0.536364, 0.515267 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upperarmright"]
+position = Vector2( 30, -33 )
+polygon = PoolVector2Array( -20, 19, -19, 9, -16, 0, -11, -8, -4, -16, 3, -20, 12, -22, 17, -20, 19, -15, 18, -10, 15, -3, 13, 5, 10, 14, 7, 20, 5, 24, 3, 25, 2, 23, -1, 25, -4, 21, -7, 19, -13, 21, -14, 18 )
+
+[node name="forearmleft" type="RigidBody2D" parent="."]
+position = Vector2( -16, -17 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="forearmleft"]
+position = Vector2( 76, 97 )
+rotation = -0.436332
+scale = Vector2( 0.526925, 0.554885 )
+z_index = -86
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="forearmleft"]
+polygon = PoolVector2Array( 63, 93, 67, 100, 75, 106, 82, 112, 87, 115, 93, 111, 95, 105, 92, 99, 88, 92, 83, 85, 78, 79, 72, 74, 66, 75, 62, 81, 61, 88 )
+
+[node name="forearmright" type="RigidBody2D" parent="."]
+position = Vector2( 30, -1 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="forearmright"]
+position = Vector2( -90, 89 )
+rotation = 0.345575
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -31
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="forearmright"]
+position = Vector2( 25, 36 )
+rotation = 0.350811
+polygon = PoolVector2Array( -91, 111, -93, 102, -95, 92, -94, 83, -92, 75, -87, 72, -81, 70, -76, 69, -73, 72, -71, 77, -72, 82, -72, 90, -74, 97, -75, 103, -77, 110, -79, 115, -84, 116, -88, 115 )
+
+[node name="handleft" type="RigidBody2D" parent="."]
+position = Vector2( -12, 22 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="handleft"]
+position = Vector2( -55, 103 )
+rotation = 0.698132
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -31
+texture = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="handleft"]
+polygon = PoolVector2Array( -63, 96, -60, 93, -56, 90, -52, 90, -48, 91, -46, 94, -47, 98, -48, 104, -49, 110, -49, 113, -51, 111, -51, 109, -53, 109, -54, 110, -55, 114, -57, 115, -57, 113, -56, 110, -58, 108, -60, 111, -62, 114, -64, 114, -62, 110, -61, 107, -64, 109, -67, 112, -69, 111, -67, 108, -65, 106, -63, 102, -62, 100, -66, 101, -68, 101, -69, 99, -67, 97 )
+
+[node name="handright" type="RigidBody2D" parent="."]
+position = Vector2( 155, 23 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="handright"]
+position = Vector2( -76, 79 )
+rotation = -0.785398
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -31
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="handright"]
+polygon = PoolVector2Array( -85, 77, -83, 82, -81, 87, -79, 91, -78, 92, -77, 92, -77, 91, -78, 89, -78, 87, -77, 87, -75, 88, -73, 90, -72, 92, -70, 92, -69, 91, -70, 89, -72, 87, -73, 86, -72, 85, -71, 86, -69, 87, -67, 88, -65, 88, -65, 87, -67, 85, -69, 83, -70, 82, -69, 81, -66, 83, -63, 84, -62, 83, -62, 81, -64, 80, -67, 79, -69, 77, -71, 76, -70, 75, -68, 75, -66, 75, -65, 73, -66, 71, -68, 71, -70, 71, -73, 69, -76, 67, -80, 67, -83, 68, -85, 70, -86, 73, -86, 76 )
+
+[node name="leg2right" type="RigidBody2D" parent="."]
+position = Vector2( 79, 34 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="leg2right"]
+position = Vector2( -90, 89 )
+rotation = 0.345575
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -77
+texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="leg2right"]
+polygon = PoolVector2Array( -106, 80, -110, 89, -112, 98, -111, 112, -111, 113, -105, 113, -103, 118, -100, 118, -96, 114, -91, 116, -87, 116, -84, 111, -78, 101, -75, 91, -73, 81, -73, 72, -74, 63, -81, 61, -87, 62, -94, 66, -99, 71, -104, 77 )
+
+[node name="leg2left" type="RigidBody2D" parent="."]
+position = Vector2( 75, 3 )
+rotation = -0.445059
+z_index = -16
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="leg2left"]
+position = Vector2( -90, 89 )
+rotation = 0.345575
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -31
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="leg2left"]
+polygon = PoolVector2Array( -100.692, 69.4129, -107.191, 80.716, -109.261, 89.7003, -109.955, 100.448, -110.692, 108.96, -112.844, 113.473, -109.706, 113.862, -105.276, 111.543, -104.721, 117.348, -97.6249, 114.085, -97.5003, 120.792, -94.7925, 122.084, -91.2653, 119.334, -87.1829, 122.389, -83.6972, 117.404, -76.809, 102.963, -73.0176, 90.3683, -73.6559, 80.0925, -75.5857, 72.5245, -79.7928, 62.7623, -86.1109, 59.7487, -91.0128, 60.7344, -94.9706, 64.3863 )
+
+[node name="legleft" type="RigidBody2D" parent="."]
+position = Vector2( 122, 67 )
+z_index = -55
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legleft"]
+position = Vector2( -87.3243, 94.7974 )
+rotation = 0.0593412
+scale = Vector2( 0.767077, 0.782744 )
+z_index = -64
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legleft"]
+polygon = PoolVector2Array( -96, 108, -99, 96, -98, 86, -92, 78, -86, 75, -81, 78, -77, 84, -77, 93, -77, 103, -79, 109, -85, 114, -91, 114 )
+
+[node name="legright" type="RigidBody2D" parent="."]
+position = Vector2( 62, 77 )
+z_index = -50
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legright"]
+position = Vector2( -84.1941, 83.9432 )
+rotation = 0.0750492
+scale = Vector2( 0.441666, 0.464926 )
+z_index = -31
+texture = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legright"]
+polygon = PoolVector2Array( -95, 97, -93, 102, -89, 104, -84, 103, -79, 100, -76, 96, -75, 89, -74, 80, -73, 72, -76, 67, -79, 65, -84, 65, -89, 67, -94, 74, -97, 81, -97, 89 )
+
+[node name="footleft" type="RigidBody2D" parent="."]
+position = Vector2( 128, 97 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="footleft"]
+position = Vector2( -90, 89 )
+rotation = 0.0453786
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -120
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footleft"]
+position = Vector2( -26, -21 )
+rotation = -0.26529
+polygon = PoolVector2Array( -102, 89, -94, 92, -87, 94, -85, 97, -82, 96, -79, 97, -78, 96, -89, 82, -92, 80, -94, 79, -97, 81, -100, 83, -102, 87 )
+
+[node name="footright" type="RigidBody2D" parent="."]
+position = Vector2( 81, 105 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="footright"]
+position = Vector2( -101.223, 78.1341 )
+rotation = -0.00523599
+scale = Vector2( 0.298264, 0.350314 )
+z_index = -90
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footright"]
+polygon = PoolVector2Array( -114, 79, -112, 74, -109, 71, -106, 71, -102, 74, -95, 78, -90, 80, -89, 82, -89, 83, -91, 83, -92, 83, -95, 83, -105, 83, -110, 83, -113, 82 )

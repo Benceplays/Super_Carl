@@ -20,3 +20,4 @@ polygon = PoolVector2Array( 23, 326, 555, 600, 1247, 543, 1699, 337, 2020, 69, 2
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 6070, 444 )
+scale = Vector2( 0.4, 0.4 )
