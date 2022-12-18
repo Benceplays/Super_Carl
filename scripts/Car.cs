@@ -3,10 +3,12 @@ using System;
 
 public class Car : RigidBody2D
 {
+	public int enginelvl;
+	public int wheel;
 	RigidBody2D wheel1;
 	RigidBody2D wheel2;
 	private int max_speed = 90;
-	private Vector2 checkPoint;
+	private Vector2 checkPoint;	
 	public override void _Ready()
 	{
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;

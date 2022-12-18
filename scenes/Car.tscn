@@ -32,3 +32,4 @@ node_b = NodePath("Wheel")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 5, 5 )
