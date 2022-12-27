@@ -38,15 +38,24 @@ public class Garage : Node2D
         //Amennyiben ures a json fájl =>
         if (loadDefault)
         {
+            int index = -1;
             foreach (var car in get_datas.Cars)
             {
+                index++;
                 Dictionary<string, int> kocsi = new Dictionary<string, int>();
                 kocsi.Add("id",car);
                 kocsi.Add("engine",0);
                 kocsi.Add("gun",0);
                 kocsi.Add("petrol",0);
                 kocsi.Add("wheel", 0);
-                File.AppendAllText(@"scripts/Tunings.json",JsonConvert.SerializeObject(kocsi));
+                if (index != 0)
+                {
+                    File.AppendAllText(@"scripts/Tunings.json","\n" + JsonConvert.SerializeObject(kocsi));
+                }
+                else
+                {
+                    File.AppendAllText(@"scripts/Tunings.json", JsonConvert.SerializeObject(kocsi));
+                }
             }
         }
     }

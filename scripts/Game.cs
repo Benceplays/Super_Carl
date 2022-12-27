@@ -26,14 +26,8 @@ public class Game : Node2D
     {
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-
-		tunings = File.ReadAllText(@"scripts/Tunings.json");
-		var get_tunings = JsonConvert.DeserializeObject<ConfigBody>(tunings);
-		foreach (var tune in get_tunings.tuning1)
-		{
-			GD.Print(tune);
-		}
-
+		// Tunings json beolvasása és annak használata
+		
 		CanvasLayer hud = (CanvasLayer)psHUD.Instance();
         switch(get_options.currentcar){
             case 0:
@@ -42,7 +36,6 @@ public class Game : Node2D
                 car.Set("id",0);
                 AddChild(car);
                 car.AddChild(hud);
-                GD.Print();
                 break;
             case 1:
                 Node2D bus = (Node2D)psBus.Instance();
