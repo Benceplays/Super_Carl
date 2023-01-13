@@ -1,21 +1,40 @@
+using File = System.IO.File;
+using System.IO;
 using Godot;
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class OutOfPetrol : Panel
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
+    private string text;
     public override void _Ready()
     {
-
+        text = File.ReadAllText(@"scripts/Player.json");
     }
-
+    public override void _Process(float delta)
+    {
+        if(Visible == true){
+            var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+            JObject options = new JObject(
+                new JProperty("CurrentCar", get_options.currentcar),
+                new JProperty("Money", get_options.money),
+                new JProperty("UnlockedCars", get_options.UnlockedCars),
+                new JProperty("Cars", get_options.Cars),
+                new JProperty("Days", (get_options.Days + 1)));
+            File.WriteAllText(@"scripts/Player.json", options.ToString());
+            using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                options.WriteTo(writer);
+            }
+        }
+    }
     public void _on_Garage_pressed()
     {
         GetTree().ChangeScene("res://scenes/Garage.tscn");
+        GetTree().Paused = false; 
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

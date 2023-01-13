@@ -141,6 +141,7 @@ custom_styles/normal = ExtResource( 4 )
 text = "Back To Menu"
 
 [node name="OutOfPetrol" type="Panel" parent="."]
+pause_mode = 2
 visible = false
 margin_left = 390.0
 margin_top = 111.0
@@ -182,6 +183,7 @@ custom_fonts/font = SubResource( 14 )
 text = "Total Money: $303"
 
 [node name="Garage" type="Button" parent="OutOfPetrol"]
+pause_mode = 2
 margin_left = 72.0
 margin_top = 195.0
 margin_right = 172.0
@@ -268,6 +270,5 @@ fill_mode = 3
 
 [connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]
-[connection signal="pressed" from="OutOfPetrol/Garage" to="PausePanel" method="_on_Garage_pressed"]
 [connection signal="pressed" from="OutOfPetrol/Garage" to="OutOfPetrol" method="_on_Garage_pressed"]
 [connection signal="pressed" from="ReachDestination/OK" to="ReachDestination" method="_on_OK_pressed"]

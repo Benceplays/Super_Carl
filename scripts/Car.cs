@@ -4,6 +4,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 public class Car : RigidBody2D
@@ -19,10 +20,9 @@ public class Car : RigidBody2D
 	private int max_speed = 90;
 	private Vector2 checkPoint;	
 	private int longestdistance;
-	private Timer riptimer;
+	private float riptimer = 5;
 	public override void _Ready()
 	{
-		riptimer = GetNode("../RIPTimer") as Timer;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
 		wheel2 = GetNode("WheelHolder2/Wheel") as RigidBody2D;
 		wheel1.ContactMonitor = true;
@@ -71,12 +71,9 @@ public class Car : RigidBody2D
 	}
 	public override void _PhysicsProcess(float delta)
 	{
-		if(this.Position.x > longestdistance){
+		/*if(this.Position.x > longestdistance){
 			longestdistance = (int) this.Position.x;
-		}
-		/*if(this.Position.x < longestdistance){
-			riptimer.Start();
-		}*/ // Ha nem mozog az auto vagy kifogy a benzin akkor induljon el a timer, majd ha a timer lejár akkor legyen vége
+		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
 
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
@@ -86,6 +83,19 @@ public class Car : RigidBody2D
 				gas -= 1 * delta;
 				}	
 			}
+		}
+		GD.Print(riptimer);
+		if (this.LinearVelocity.x < 25)
+		{
+    		riptimer -= delta;
+		}
+		else{
+			riptimer = 5;
+		}
+		if(riptimer <= 0){
+			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
+			endmenu.Visible = true;
+			GetTree().Paused = true;
 		}
 		if(Input.IsActionPressed("ui_right")){
 			if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
@@ -102,8 +112,5 @@ public class Car : RigidBody2D
 			wheel2.ApplyTorqueImpulse(delta * -10000); 
 			}
 		}
-	}
-	public void _on_RIPTimer_timeout(){
-		GD.Print("asd");
 	}
 }

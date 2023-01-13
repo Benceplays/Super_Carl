@@ -16,11 +16,9 @@ psHUD = ExtResource( 3 )
 position = Vector2( -600, 16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 23, 326, 555, 600, 1247, 543, 1699, 337, 2020, 69, 2284, -20, 2460, 226, 2904, 399, 3422, 431, 4295, 859, 5466, 807, 6137, 883, 7101, 735, 11611, -13, 11295, 447, 7526, 1079, 6358, 1459, 5371, 1459, 4443, 1395, 3452, 1172, 995, 833, -127, 473, -170, 6, 23, -8 )
+position = Vector2( -265, -470 )
+polygon = PoolVector2Array( 23, 326, 550, 545, 1247, 543, 1699, 337, 2020, 69, 2284, -20, 2460, 226, 2904, 399, 3422, 431, 4295, 859, 5466, 807, 6137, 883, 7101, 735, 11611, -13, 11295, 447, 7526, 1079, 6358, 1459, 5371, 1459, 4443, 1395, 3452, 1172, 2334.23, 1017.78, 995, 833, -127, 473, -170, 6, 23, -8 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 6070, 444 )
+position = Vector2( 2992, 93 )
 scale = Vector2( 0.4, 0.4 )
-
-[node name="RIPTimer" type="Timer" parent="."]
-wait_time = 5.0
