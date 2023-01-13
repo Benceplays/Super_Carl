@@ -21,9 +21,11 @@ public class Game : Node2D
     private int money;
     private RigidBody2D car;
     public bool fps_is_on = false;
+    private Timer riptimer;
 
     public override void _Ready()
     {
+        riptimer = GetNode("RIPTimer") as Timer;
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 		// Tunings json beolvasása és annak használata
@@ -51,6 +53,7 @@ public class Game : Node2D
 
         moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
+        riptimer.Connect("timeout", car,"_on_RIPTimer_timeout");
         //vsync trun
         if(get_options.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
         //fpstarget set
