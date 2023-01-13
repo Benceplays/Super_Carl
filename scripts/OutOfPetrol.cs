@@ -33,8 +33,8 @@ public class OutOfPetrol : Panel
     }
     public void _on_Garage_pressed()
     {
+        GetTree().Paused = false;
         GetTree().ChangeScene("res://scenes/Garage.tscn");
-        GetTree().Paused = false; 
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

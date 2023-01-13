@@ -10,12 +10,14 @@ public class Garage : Node2D
     public string tuningjson;
     public string player_json;
     public Label money_label;
+    public Label days_label;
     public Sprite car0;
     public Sprite car1;
     public Sprite car2;
     public Sprite[] car_sprites;
     public override void _Ready()
     {
+        GetTree().Paused = false;
         tuningjson = File.ReadAllText(@"scripts/Tunings.json");
         if (tuningjson == "")
         {
@@ -23,8 +25,10 @@ public class Garage : Node2D
         }
         player_json = File.ReadAllText(@"scripts/Player.json");
         money_label = (Label)GetNode("top_Hud/money");
+        days_label = (Label)GetNode("top_Hud/days");
         var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
         money_label.Text = get_datas.money + "$";
+        days_label.Text = "Days " + get_datas.Days;
 
         car0 = (Sprite)GetNode("mid_hud/car0");
         car1 = (Sprite)GetNode("mid_hud/car1");
