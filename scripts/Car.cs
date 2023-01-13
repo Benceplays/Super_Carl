@@ -41,7 +41,7 @@ public class Car : RigidBody2D
 			if (id == currentDic["id"])
 			{
 				engine = currentDic["engine"]; // 0, 1, 2
-				wheel = currentDic["wheel"]; // 0, 1
+				wheel = currentDic["wheel"]; // 0, 1 // Ebből majd nitro lesz talán
 				gun = currentDic["gun"]; // 0, 1 
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}
