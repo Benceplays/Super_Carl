@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/garagebackground.jpg-2f8823b9fb2314d8ba572696cb39ffc2.stex"
+path="res://.import/garagebackground.jpg-1f4eeaa034712aac3e1652b4cb725aa6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/garagebackground.jpg"
-dest_files=[ "res://.import/garagebackground.jpg-2f8823b9fb2314d8ba572696cb39ffc2.stex" ]
+source_file="res://assets/images/garagebackground.jpg"
+dest_files=[ "res://.import/garagebackground.jpg-1f4eeaa034712aac3e1652b4cb725aa6.stex" ]
 
 [params]
 
