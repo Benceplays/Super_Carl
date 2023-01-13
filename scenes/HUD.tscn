@@ -83,8 +83,8 @@ custom_fonts/font = ExtResource( 7 )
 text = "Money"
 
 [node name="fps" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_right = 90.0
+margin_bottom = 35.0
 custom_fonts/font = SubResource( 4 )
 
 [node name="PausePanel" type="Panel" parent="."]

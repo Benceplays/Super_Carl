@@ -16,6 +16,7 @@ public class Game : Node2D
     private Label fpslabel;
     private ConfigBody config;
     private string text;
+    private string OptionsText;
     private string tunings;
     private float time;
     private int money;
@@ -26,7 +27,13 @@ public class Game : Node2D
     {
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+        
+	    OptionsText = File.ReadAllText(@"scripts/Options.json");
+		var OptionsOption = JsonConvert.DeserializeObject<ConfigBody>(OptionsText);
 		// Tunings json beolvasása és annak használata
+
+        GD.Print(OptionsOption.fpsison);
+
 		
 		CanvasLayer hud = (CanvasLayer)psHUD.Instance();
         switch(get_options.currentcar){
@@ -52,14 +59,14 @@ public class Game : Node2D
         moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
         //vsync trun
-        if(get_options.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
+        if(OptionsOption.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
         //fpstarget set
-        if (get_options.fpsison)
+        if (OptionsOption.fpsison)
         {
 	        fps_is_on = true;
 	        fpslabel = GetNode("Car/HUD/fps") as Label;
 
-	        switch (get_options.fps)
+	        switch (OptionsOption.fps)
 	        {
 		        case 0:
 			        Engine.TargetFps = 30;
