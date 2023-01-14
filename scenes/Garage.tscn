@@ -163,3 +163,4 @@ texture_normal = ExtResource( 2 )
 [connection signal="pressed" from="right_arrow" to="." method="_on_right_arrow_pressed"]
 [connection signal="pressed" from="top_Hud/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="top_Hud/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="select" to="." method="_on_select_pressed"]

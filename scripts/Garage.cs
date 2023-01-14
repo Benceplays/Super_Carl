@@ -126,9 +126,11 @@ public class Garage : Node2D
 
 	public void _on_select_pressed()
 	{
+		GD.Print("anyad finom");
 		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
 		if (get_datas.UnlockedCars.Contains(current_view_car))
 		{
+			GD.Print("buzi sanya");
 			string textplayer = File.ReadAllText(@"scripts/Player.json");
 			var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
             JObject options = new JObject(
