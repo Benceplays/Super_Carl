@@ -144,7 +144,7 @@ public class Garage : Node2D
 				kocsi.Add("engine",0);
 				kocsi.Add("gun",0);
 				kocsi.Add("petrol",0);
-				kocsi.Add("wheel", 0);
+				kocsi.Add("nitro", 0);
 				if (index != 0)
 				{
 					File.AppendAllText(@"scripts/Tunings.json","\n" + JsonConvert.SerializeObject(kocsi));
