@@ -21,9 +21,10 @@ script = ExtResource( 8 )
 
 [node name="mid_hud" type="PanelContainer" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 89.0
-margin_right = 1024.0
-margin_bottom = 492.0
+margin_left = 12.0
+margin_top = 121.0
+margin_right = 144.0
+margin_bottom = 220.0
 
 [node name="car0" type="Sprite" parent="mid_hud"]
 position = Vector2( 506, 192 )
@@ -36,7 +37,23 @@ texture = ExtResource( 5 )
 
 [node name="car2" type="Sprite" parent="mid_hud"]
 position = Vector2( 2506, 192 )
+scale = Vector2( 0.65, 0.65 )
 texture = ExtResource( 6 )
+
+[node name="left_arrow" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 243.0
+margin_right = 141.0
+margin_bottom = 328.0
+text = "<="
+
+[node name="right_arrow" type="Button" parent="."]
+anchor_right = 1.0
+margin_left = 880.0
+margin_top = 243.0
+margin_right = 998.0
+margin_bottom = 328.0
+text = "=>"
 
 [node name="top_Hud" type="Panel" parent="."]
 margin_right = 1024.0
@@ -104,5 +121,7 @@ margin_top = 470.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
+[connection signal="pressed" from="left_arrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="right_arrow" to="." method="_on_right_arrow_pressed"]
 [connection signal="pressed" from="top_Hud/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="top_Hud/Back" to="." method="_on_Back_pressed"]
