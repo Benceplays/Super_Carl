@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 public class Car : RigidBody2D
 {
 	public int engine;
-	public int wheel;
+	public int nitro;
 	public int petrol;
 	public float gas;
 	public int gun;
@@ -41,14 +41,14 @@ public class Car : RigidBody2D
 			if (id == currentDic["id"])
 			{
 				engine = currentDic["engine"]; // 0, 1, 2
-				wheel = currentDic["nitro"]; // 0, 1 // Ebből majd nitro lesz talán
+				nitro = currentDic["nitro"]; // 0, 1 // Ebből majd nitro lesz talán
 				gun = currentDic["gun"]; // 0, 1 
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}
 			//GD.Print(tunings_split[i]);
 			GD.Print(); //key alapján való lekérdezés
 		}
-		GD.Print(engine,gun,petrol,wheel);
+		GD.Print(engine,gun,petrol,nitro);
 		switch(petrol){
 			case 0:
 				gas = 15;
@@ -75,6 +75,10 @@ public class Car : RigidBody2D
 			longestdistance = (int) this.Position.x;
 		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
 
+		if(Input.IsActionPressed("space") && nitro == 1){
+			/*wheel1.ApplyTorqueImpulse(delta * 50000);
+			wheel2.ApplyTorqueImpulse(delta * 50000);*/
+		}
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
 				if(wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed){
