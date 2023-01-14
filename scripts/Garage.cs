@@ -19,6 +19,7 @@ public class Garage : Node2D
 	public int current_view_car;
 	public Button left_arrow;
 	public Button right_arrow;
+	public PanelContainer locked;
 	public override void _Ready()
 	{
 		GetTree().Paused = false;
@@ -36,6 +37,8 @@ public class Garage : Node2D
 
 		left_arrow = (Button)GetNode("left_arrow");
 		right_arrow = (Button)GetNode("right_arrow");
+
+		locked = (PanelContainer)GetNode("Locked");
 
 
 		car0 = (Sprite)GetNode("mid_hud/car0");
@@ -65,6 +68,7 @@ public class Garage : Node2D
 	
 	public void _on_left_arrow_pressed()
 	{
+		locked.Visible = false;
 		//Tween tween = new Tween();  ezzel lehet majd megcsinálni,hogy animáltan mozogjon ami azért valljuk be elég menő lenne! Ötletgazda:Korall, megvalósító:Korall
 		right_arrow.Visible = true;
 		for (int i = 0; i < car_sprites.Length; i++)
@@ -73,6 +77,11 @@ public class Garage : Node2D
 		}
 		current_view_car -= 1;
 		checkArrows();
+		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+		if (!get_datas.UnlockedCars.Contains(current_view_car))
+		{
+			locked.Visible = true;
+		}
 
 	}
 	
@@ -85,6 +94,11 @@ public class Garage : Node2D
 		}
 		current_view_car += 1;
 		checkArrows();
+		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+		if (!get_datas.UnlockedCars.Contains(current_view_car))
+		{
+			locked.Visible = true;
+		}
 
 	}
 
@@ -99,21 +113,6 @@ public class Garage : Node2D
 			right_arrow.Visible = false;
 		}
 	}
-	public void _on_HSlider_value_changed(float value)
-{
-	//Kocsik közötti görgetés
-	//1012 => mert 506ot kivonunk belőle, hogy ne a képernyő bal oldalán legyen hanem középen
-	for (int i = 0; i < car_sprites.Length; i++)
-	{
-		car_sprites[i].SetPosition(new Vector2((i*2000) + 1012 - value, car_sprites[i].Position.y));
-		if (car_sprites[i].Position.x == 506) //ha ez a középen lévő autó akkor legyen ez a current
-		{
-			//todo megnézni birtokolja e a járművet
-			//todo elmenteni json-ba a currentcart és azt lekérdezni nem pedig i értéket adni neki.
-			current_car = i;
-		}
-	}
-}
 
 	public void _on_Next_pressed(){
 		GetTree().ChangeScene("res://scenes/Game.tscn");
@@ -122,6 +121,15 @@ public class Garage : Node2D
 	public void _on_Back_pressed()
 	{
 		
+	}
+
+	public void _on_select_pressed()
+	{
+		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+		if (get_datas.UnlockedCars.Contains(current_view_car))
+		{
+			current_car = current_view_car; // irja jsonba ezelott!!!?!?!?!!?
+		}
 	}
 
 	public void WritePlayerData(bool loadDefault)
