@@ -4,6 +4,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class Garage : Node2D
 {
@@ -128,7 +129,20 @@ public class Garage : Node2D
 		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
 		if (get_datas.UnlockedCars.Contains(current_view_car))
 		{
-			current_car = current_view_car; // irja jsonba ezelott!!!?!?!?!!?
+			string textplayer = File.ReadAllText(@"scripts/Player.json");
+			var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+            JObject options = new JObject(
+                new JProperty("CurrentCar", current_view_car),
+                new JProperty("Money", get_optionsplayer.money),
+                new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+                new JProperty("Cars", get_optionsplayer.Cars),
+                new JProperty("Days", get_optionsplayer.Days));
+            File.WriteAllText(@"scripts/Player.json", options.ToString());
+            using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                options.WriteTo(writer);
+            }
 		}
 	}
 
