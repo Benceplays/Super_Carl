@@ -152,11 +152,19 @@ text = "Locked."
 align = 1
 
 [node name="select" type="TextureButton" parent="."]
+visible = false
 margin_left = 460.0
 margin_top = 100.0
 margin_right = 524.0
 margin_bottom = 164.0
 rect_scale = Vector2( 2, 1 )
+texture_normal = ExtResource( 2 )
+
+[node name="selected" type="TextureButton" parent="."]
+margin_left = 476.0
+margin_top = 262.0
+margin_right = 540.0
+margin_bottom = 326.0
 texture_normal = ExtResource( 2 )
 
 [connection signal="pressed" from="left_arrow" to="." method="_on_left_arrow_pressed"]

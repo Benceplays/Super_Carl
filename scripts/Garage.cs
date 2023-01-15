@@ -21,6 +21,8 @@ public class Garage : Node2D
 	public Button left_arrow;
 	public Button right_arrow;
 	public PanelContainer locked;
+	public TextureButton select;
+	public TextureButton selected;
 	public override void _Ready()
 	{
 		GetTree().Paused = false;
@@ -41,6 +43,8 @@ public class Garage : Node2D
 
 		locked = (PanelContainer)GetNode("Locked");
 
+		select = (TextureButton)GetNode("select");
+		selected = (TextureButton)GetNode("selected");
 
 		car0 = (Sprite)GetNode("mid_hud/car0");
 		car1 = (Sprite)GetNode("mid_hud/car1");
@@ -69,6 +73,8 @@ public class Garage : Node2D
 	
 	public void _on_left_arrow_pressed()
 	{
+		select.Visible = false;
+		selected.Visible = false;
 		locked.Visible = false;
 		//Tween tween = new Tween();  ezzel lehet majd megcsinálni,hogy animáltan mozogjon ami azért valljuk be elég menő lenne! Ötletgazda:Korall, megvalósító:Korall
 		right_arrow.Visible = true;
@@ -83,11 +89,24 @@ public class Garage : Node2D
 		{
 			locked.Visible = true;
 		}
+		else
+		{
+			if (current_view_car != current_car)
+			{
+				select.Visible = true;
+			}
+			else
+			{
+				selected.Visible = true;
+			}
+		}
 
 	}
 	
 	public void _on_right_arrow_pressed()
 	{
+		select.Visible = false;
+		selected.Visible = false;
 		left_arrow.Visible = true;
 		for (int i = 0; i < car_sprites.Length; i++)
 		{
@@ -99,6 +118,16 @@ public class Garage : Node2D
 		if (!get_datas.UnlockedCars.Contains(current_view_car))
 		{
 			locked.Visible = true;
+		}else
+		{
+			if (current_view_car != current_car)
+			{
+				select.Visible = true;
+			}
+			else
+			{
+				selected.Visible = true;
+			}
 		}
 
 	}
@@ -126,11 +155,12 @@ public class Garage : Node2D
 
 	public void _on_select_pressed()
 	{
-		GD.Print("anyad finom");
 		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
 		if (get_datas.UnlockedCars.Contains(current_view_car))
 		{
-			GD.Print("buzi sanya");
+			current_car = current_view_car;
+			select.Visible = false;
+			selected.Visible = true;
 			string textplayer = File.ReadAllText(@"scripts/Player.json");
 			var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
             JObject options = new JObject(
@@ -146,6 +176,10 @@ public class Garage : Node2D
                 options.WriteTo(writer);
             }
 		}
+		
+		//Currentcar update
+		
+
 	}
 
 	public void WritePlayerData(bool loadDefault)
