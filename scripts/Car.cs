@@ -12,7 +12,7 @@ public class Car : RigidBody2D
 	public int engine;
 	public int nitro;
 	public int petrol;
-	public float gas;
+	public float gas = 15;
 	public int gun;
 	public int id;
 	RigidBody2D wheel1;
@@ -21,8 +21,11 @@ public class Car : RigidBody2D
 	private Vector2 checkPoint;	
 	private int longestdistance;
 	private float riptimer = 5;
+	private Sprite kocsi;
+	private float nitrosupply;
 	public override void _Ready()
 	{
+		kocsi = GetNode("Sprite") as Sprite;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
 		wheel2 = GetNode("WheelHolder2/Wheel") as RigidBody2D;
 		wheel1.ContactMonitor = true;
@@ -41,33 +44,16 @@ public class Car : RigidBody2D
 			if (id == currentDic["id"])
 			{
 				engine = currentDic["engine"]; // 0, 1, 2
-				nitro = currentDic["nitro"]; // 0, 1 // Ebből majd nitro lesz talán
-				gun = currentDic["gun"]; // 0, 1 
+				nitro = currentDic["nitro"]; // 0, 1, 2, 3, 4
+				gun = currentDic["gun"]; // 0, 1
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}
 			//GD.Print(tunings_split[i]);
 			GD.Print(); //key alapján való lekérdezés
 		}
 		GD.Print(engine,gun,petrol,nitro);
-		switch(petrol){
-			case 0:
-				gas = 15;
-				break;
-			case 1:
-				gas = 20;
-				break;
-			case 2:
-				gas = 25;
-				break;
-			case 3:
-				gas = 30;
-				break;
-			case 4:
-				gas = 35;
-				break;
-			default:
-				break;
-		}
+		gas += petrol * 5;
+		nitrosupply = nitro * 5;
 	}
 	public override void _PhysicsProcess(float delta)
 	{
@@ -75,10 +61,17 @@ public class Car : RigidBody2D
 			longestdistance = (int) this.Position.x;
 		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
 
-		if(Input.IsActionPressed("space") && nitro == 1){
-			/*wheel1.ApplyTorqueImpulse(delta * 50000);
-			wheel2.ApplyTorqueImpulse(delta * 50000);*/
+		if(Input.IsActionPressed("space") && nitrosupply > 0){
+			nitrosupply -= 1 * delta;
+			if(AppliedForce <= new Vector2(750, 0))
+			{
+				AddForce(new Vector2(0, kocsi.Texture.GetHeight()/4), new Vector2(25, 0));
+			}
 		}
+		else{
+			AppliedForce = new Vector2(0, 0);
+		}
+		GD.Print(nitrosupply);
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
 				if(wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed){
