@@ -54,6 +54,31 @@ texture = ExtResource( 4 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="chest"]
 polygon = PoolVector2Array( 36, 47, 43, 56, 48, 61, 53, 69, 55, 79, 55, 89, 51, 97, 45, 105, 37, 108, 25, 110, 12, 107, 2, 101, -6, 96, -14, 96, -18, 88, -20, 75, -17, 56, -12, 42, -2, 33, 11, 29, 22, 30, 31, 35, 34, 40 )
 
+[node name="HeadChest" type="PinJoint2D" parent="chest"]
+position = Vector2( 12, 7 )
+node_a = NodePath("../../head")
+node_b = NodePath("..")
+
+[node name="RightHandChest" type="PinJoint2D" parent="chest"]
+position = Vector2( -18, 49 )
+node_a = NodePath("../../upperarmright")
+node_b = NodePath("..")
+
+[node name="LeftHandChest" type="PinJoint2D" parent="chest"]
+position = Vector2( 37, 45 )
+node_a = NodePath("../../upperarmleft")
+node_b = NodePath("..")
+
+[node name="LeftLegChest" type="PinJoint2D" parent="chest"]
+position = Vector2( 40, 112 )
+node_a = NodePath("../../leg2left")
+node_b = NodePath("..")
+
+[node name="RightLegChest" type="PinJoint2D" parent="chest"]
+position = Vector2( 9, 112 )
+node_a = NodePath("../../leg2right")
+node_b = NodePath("..")
+
 [node name="upperarmleft" type="RigidBody2D" parent="."]
 position = Vector2( -26, 0 )
 mode = 2
@@ -91,6 +116,32 @@ texture = ExtResource( 3 )
 position = Vector2( 30, -33 )
 polygon = PoolVector2Array( -20, 19, -19, 9, -16, 0, -11, -8, -4, -16, 3, -20, 12, -22, 17, -20, 19, -15, 18, -10, 15, -3, 13, 5, 10, 14, 7, 20, 5, 24, 3, 25, 2, 23, -1, 25, -4, 21, -7, 19, -13, 21, -14, 18 )
 
+[node name="footleft" type="RigidBody2D" parent="upperarmright"]
+position = Vector2( 198, 6 )
+mode = 2
+mass = 0.0102041
+physics_material_override = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="upperarmright/footleft"]
+position = Vector2( -90, 89 )
+rotation = 0.0453786
+scale = Vector2( 0.543011, 0.611111 )
+z_index = -120
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upperarmright/footleft"]
+position = Vector2( -26, -21 )
+rotation = -0.26529
+polygon = PoolVector2Array( -102, 89, -94, 92, -87, 94, -85, 97, -82, 96, -79, 97, -78, 96, -89, 82, -92, 80, -94, 79, -97, 81, -100, 83, -102, 87 )
+
+[node name="RightHand" type="PinJoint2D" parent="upperarmright/footleft"]
+position = Vector2( -179, -14 )
+node_a = NodePath("../..")
+node_b = NodePath("../../../forearmright")
+
 [node name="forearmleft" type="RigidBody2D" parent="."]
 position = Vector2( -16, -17 )
 mode = 2
@@ -109,6 +160,11 @@ texture = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="forearmleft"]
 polygon = PoolVector2Array( 63, 93, 67, 100, 75, 106, 82, 112, 87, 115, 93, 111, 95, 105, 92, 99, 88, 92, 83, 85, 78, 79, 72, 74, 66, 75, 62, 81, 61, 88 )
+
+[node name="LeftHand" type="PinJoint2D" parent="forearmleft"]
+position = Vector2( 72, 86 )
+node_a = NodePath("../../upperarmleft")
+node_b = NodePath("..")
 
 [node name="forearmright" type="RigidBody2D" parent="."]
 position = Vector2( 30, -1 )
@@ -131,6 +187,11 @@ position = Vector2( 25, 36 )
 rotation = 0.350811
 polygon = PoolVector2Array( -91, 111, -93, 102, -95, 92, -94, 83, -92, 75, -87, 72, -81, 70, -76, 69, -73, 72, -71, 77, -72, 82, -72, 90, -74, 97, -75, 103, -77, 110, -79, 115, -84, 116, -88, 115 )
 
+[node name="RightHandHead" type="PinJoint2D" parent="forearmright"]
+position = Vector2( -92, 111 )
+node_a = NodePath("..")
+node_b = NodePath("../../handright")
+
 [node name="handleft" type="RigidBody2D" parent="."]
 position = Vector2( -12, 22 )
 mode = 2
@@ -149,6 +210,11 @@ texture = ExtResource( 13 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="handleft"]
 polygon = PoolVector2Array( -63, 96, -60, 93, -56, 90, -52, 90, -48, 91, -46, 94, -47, 98, -48, 104, -49, 110, -49, 113, -51, 111, -51, 109, -53, 109, -54, 110, -55, 114, -57, 115, -57, 113, -56, 110, -58, 108, -60, 111, -62, 114, -64, 114, -62, 110, -61, 107, -64, 109, -67, 112, -69, 111, -67, 108, -65, 106, -63, 102, -62, 100, -66, 101, -68, 101, -69, 99, -67, 97 )
+
+[node name="LeftHandHead" type="PinJoint2D" parent="handleft"]
+position = Vector2( 82, 66 )
+node_a = NodePath("..")
+node_b = NodePath("../../forearmleft")
 
 [node name="handright" type="RigidBody2D" parent="."]
 position = Vector2( 155, 23 )
@@ -170,7 +236,7 @@ texture = ExtResource( 12 )
 polygon = PoolVector2Array( -85, 77, -83, 82, -81, 87, -79, 91, -78, 92, -77, 92, -77, 91, -78, 89, -78, 87, -77, 87, -75, 88, -73, 90, -72, 92, -70, 92, -69, 91, -70, 89, -72, 87, -73, 86, -72, 85, -71, 86, -69, 87, -67, 88, -65, 88, -65, 87, -67, 85, -69, 83, -70, 82, -69, 81, -66, 83, -63, 84, -62, 83, -62, 81, -64, 80, -67, 79, -69, 77, -71, 76, -70, 75, -68, 75, -66, 75, -65, 73, -66, 71, -68, 71, -70, 71, -73, 69, -76, 67, -80, 67, -83, 68, -85, 70, -86, 73, -86, 76 )
 
 [node name="leg2right" type="RigidBody2D" parent="."]
-position = Vector2( 79, 34 )
+position = Vector2( 79, 32 )
 mode = 2
 mass = 0.0102041
 physics_material_override = SubResource( 1 )
@@ -229,6 +295,16 @@ texture = ExtResource( 7 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legleft"]
 polygon = PoolVector2Array( -96, 108, -99, 96, -98, 86, -92, 78, -86, 75, -81, 78, -77, 84, -77, 93, -77, 103, -79, 109, -85, 114, -91, 114 )
 
+[node name="LeftFoot" type="PinJoint2D" parent="legleft"]
+position = Vector2( -88, 118 )
+node_a = NodePath("../../upperarmright/footleft")
+node_b = NodePath("../../upperarmright/footleft")
+
+[node name="LeftLeg" type="PinJoint2D" parent="legleft"]
+position = Vector2( -87, 88 )
+node_a = NodePath("..")
+node_b = NodePath("../../leg2left")
+
 [node name="legright" type="RigidBody2D" parent="."]
 position = Vector2( 62, 77 )
 z_index = -50
@@ -249,26 +325,10 @@ texture = ExtResource( 9 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legright"]
 polygon = PoolVector2Array( -95, 97, -93, 102, -89, 104, -84, 103, -79, 100, -76, 96, -75, 89, -74, 80, -73, 72, -76, 67, -79, 65, -84, 65, -89, 67, -94, 74, -97, 81, -97, 89 )
 
-[node name="footleft" type="RigidBody2D" parent="."]
-position = Vector2( 128, 97 )
-mode = 2
-mass = 0.0102041
-physics_material_override = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="footleft"]
-position = Vector2( -90, 89 )
-rotation = 0.0453786
-scale = Vector2( 0.543011, 0.611111 )
-z_index = -120
-texture = ExtResource( 8 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footleft"]
-position = Vector2( -26, -21 )
-rotation = -0.26529
-polygon = PoolVector2Array( -102, 89, -94, 92, -87, 94, -85, 97, -82, 96, -79, 97, -78, 96, -89, 82, -92, 80, -94, 79, -97, 81, -100, 83, -102, 87 )
+[node name="RightLeg" type="PinJoint2D" parent="legright"]
+position = Vector2( -84, 78 )
+node_a = NodePath("../../leg2right")
+node_b = NodePath("..")
 
 [node name="footright" type="RigidBody2D" parent="."]
 position = Vector2( 81, 105 )
@@ -288,3 +348,8 @@ texture = ExtResource( 14 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footright"]
 polygon = PoolVector2Array( -114, 79, -112, 74, -109, 71, -106, 71, -102, 74, -95, 78, -90, 80, -89, 82, -89, 83, -91, 83, -92, 83, -95, 83, -105, 83, -110, 83, -113, 82 )
+
+[node name="RightFoot" type="PinJoint2D" parent="footright"]
+position = Vector2( -107, 78 )
+node_a = NodePath("../../legright")
+node_b = NodePath("..")
