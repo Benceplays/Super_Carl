@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/images/nitrous.jpg" type="Texture" id=1]
 [ext_resource path="res://assets/images/icon.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://assets/images/school-bus-full.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/5aa78e207603fc558cffbf19.png" type="Texture" id=7]
 [ext_resource path="res://scripts/Garage.cs" type="Script" id=8]
+[ext_resource path="res://assets/images/buttons/go.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/buttons/go_pressed.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/buttons/back.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/buttons/back_pressed.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/buttons/select.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/buttons/select_pressed.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/locked.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=2]
 size = 38
@@ -86,7 +93,8 @@ margin_left = 867.0
 margin_top = 20.0
 margin_right = 995.0
 margin_bottom = 73.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
 expand = true
 
 [node name="Back" type="TextureButton" parent="top_Hud"]
@@ -94,7 +102,8 @@ margin_left = 19.0
 margin_top = 20.0
 margin_right = 147.0
 margin_bottom = 73.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
 expand = true
 
 [node name="Petrol" type="TextureButton" parent="."]
@@ -137,7 +146,7 @@ custom_styles/panel = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Locked"]
 position = Vector2( 59, 45 )
-texture = ExtResource( 2 )
+texture = ExtResource( 15 )
 
 [node name="buy" type="Sprite" parent="Locked"]
 position = Vector2( 59, 110 )
@@ -154,12 +163,13 @@ align = 1
 
 [node name="select" type="TextureButton" parent="."]
 visible = false
-margin_left = 460.0
-margin_top = 100.0
-margin_right = 524.0
-margin_bottom = 164.0
-rect_scale = Vector2( 2, 1 )
-texture_normal = ExtResource( 2 )
+margin_left = 413.0
+margin_top = 98.0
+margin_right = 813.0
+margin_bottom = 258.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
 
 [node name="selected" type="TextureButton" parent="."]
 margin_left = 434.0
