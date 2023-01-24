@@ -23,8 +23,12 @@ public class Car : RigidBody2D
 	private float riptimer = 5;
 	private Sprite kocsi;
 	private float nitrosupply;
+	
+    private TextureProgress petrolprogress;
 	public override void _Ready()
 	{
+		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
+        petrolprogress.Value = 100;
 		kocsi = GetNode("Sprite") as Sprite;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
 		wheel2 = GetNode("WheelHolder2/Wheel") as RigidBody2D;
@@ -44,7 +48,7 @@ public class Car : RigidBody2D
 			if (id == currentDic["id"])
 			{
 				engine = currentDic["engine"]; // 0, 1, 2
-				nitro = currentDic["nitro"]; // 0, 1, 2, 3, 4
+				nitro = currentDic["nitro"]; // 0, 1, 2, 3, 
 				gun = currentDic["gun"]; // 0, 1
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}

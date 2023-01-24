@@ -53,7 +53,6 @@ public class Game : Node2D
         /*foreach(var item in get_options.UnlockedCars){
             GD.Print(item);
         }*/
-
         moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
         //vsync trun
