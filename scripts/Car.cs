@@ -27,8 +27,8 @@ public class Car : RigidBody2D
     private TextureProgress petrolprogress;
 	public override void _Ready()
 	{
-		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
-        petrolprogress.Value = 100;
+		//petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
+        //petrolprogress.Value = 100;
 		kocsi = GetNode("Sprite") as Sprite;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
 		wheel2 = GetNode("WheelHolder2/Wheel") as RigidBody2D;
