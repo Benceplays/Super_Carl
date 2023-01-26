@@ -67,10 +67,11 @@ public class Car : RigidBody2D
 	public void End(){
         string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+		int plusmoney = get_optionsplayer.money + money;
 
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
-            new JProperty("Money", money),
+            new JProperty("Money", plusmoney),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
