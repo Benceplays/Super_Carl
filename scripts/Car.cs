@@ -23,8 +23,12 @@ public class Car : RigidBody2D
 	private float riptimer = 5;
 	private Sprite kocsi;
 	private float nitrosupply;
+	private RigidBody2D car;
 	
     private TextureProgress petrolprogress;
+    private Label moneylabel;
+	private int money;
+
 	public override void _Ready()
 	{
 		kocsi = GetNode("Sprite") as Sprite;
@@ -37,6 +41,9 @@ public class Car : RigidBody2D
 		ContactMonitor = true;
 		ContactsReported = 1;
 		
+		string text = File.ReadAllText(@"scripts/Player.json");
+		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+
 		string tunings = File.ReadAllText(@"scripts/Tunings.json");
 		string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
 		for (int i = 0; i < tunings_split.Length; i++)
@@ -57,8 +64,30 @@ public class Car : RigidBody2D
 		gas += petrol * 5;
 		nitrosupply = nitro * 5;
 	}
+	public void End(){
+        string textplayer = File.ReadAllText(@"scripts/Player.json");
+		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+
+        JObject options = new JObject(
+            new JProperty("CurrentCar", get_optionsplayer.currentcar),
+            new JProperty("Money", money),
+            new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+            new JProperty("Cars", get_optionsplayer.Cars),
+            new JProperty("Days", get_optionsplayer.Days));
+        File.WriteAllText(@"scripts/Player.json", options.ToString());
+        using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+        using (JsonTextWriter writer = new JsonTextWriter(file))
+        {
+            options.WriteTo(writer);
+        }
+	}
+
 	public override void _PhysicsProcess(float delta)
 	{
+        moneylabel = GetNode("HUD/money") as Label;
+		car = GetNode("/root/Game/Car") as RigidBody2D;
+		money = (int) car.Position.x / 100;
+        moneylabel.Text = "Money: " + money;
 		/*if(this.Position.x > longestdistance){
 			longestdistance = (int) this.Position.x;
 		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
@@ -97,6 +126,7 @@ public class Car : RigidBody2D
 			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
 			endmenu.Visible = true;
 			GetTree().Paused = true;
+			End();
 		}
 		if(Input.IsActionPressed("ui_right")){
 			if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
