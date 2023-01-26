@@ -23,8 +23,10 @@ public class Car : RigidBody2D
 	private float riptimer = 5;
 	private Sprite kocsi;
 	private float nitrosupply;
+	private float speed = 1;
+	private float rotationcar;
+	private bool onfloor;
 	private RigidBody2D car;
-	
     private TextureProgress petrolprogress;
     private Label moneylabel;
 	private int money;
@@ -63,6 +65,7 @@ public class Car : RigidBody2D
 		GD.Print(engine,gun,petrol,nitro);
 		gas += petrol * 5;
 		nitrosupply = nitro * 5;
+		speed = engine + 1;
 	}
 	public void End(){
         string textplayer = File.ReadAllText(@"scripts/Player.json");
@@ -93,22 +96,22 @@ public class Car : RigidBody2D
 			longestdistance = (int) this.Position.x;
 		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
 
-		if(Input.IsActionPressed("space") && nitrosupply > 0){
+		/*if(Input.IsActionPressed("space") && nitrosupply > 0){
 			nitrosupply -= 1 * delta;
-			if(AppliedForce <= new Vector2(750, 0))
+			if(AppliedForce <= new Vector2(1500, 0))
 			{
-				AddForce(new Vector2(0, kocsi.Texture.GetHeight()/4), new Vector2(25, 0));
+				AddForce(-new Vector2(kocsi.Texture.GetWidth()/4, -kocsi.Texture.GetHeight()/4), new Vector2(100, 0));
 			}
 		}
 		else{
 			AppliedForce = new Vector2(0, 0);
-		}
-		GD.Print(nitrosupply);
+		}*/
+		
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
-				if(wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed){
-				wheel1.ApplyTorqueImpulse(delta * 10000);
-				wheel2.ApplyTorqueImpulse(delta * 10000);	
+				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true){
+				wheel1.ApplyTorqueImpulse(delta * 5000 * speed);
+				wheel2.ApplyTorqueImpulse(delta * 5000 * speed);	
 				gas -= 1 * delta;
 				}	
 			}
@@ -129,20 +132,24 @@ public class Car : RigidBody2D
 			GetTree().Paused = true;
 			End();
 		}
-		if(Input.IsActionPressed("ui_right")){
-			if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
+		if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
+			onfloor = false;
+			GD.Print(rotationcar);
+			if(Input.IsActionPressed("ui_right")){
 				RotationDegrees += 1; 
 			}
-		}
-		if(Input.IsActionPressed("ui_left")){
-			if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
+			if(Input.IsActionPressed("ui_left")){
 				RotationDegrees -= 1; 
 			}
 		}
-		if(Input.IsActionPressed("ui_down")){
+		else{
+			onfloor = true;
+			rotationcar = Rotation;
+		}
+		/*if(Input.IsActionPressed("ui_down")){
 			if(wheel1.AngularVelocity < -max_speed || wheel2.AngularVelocity < -max_speed){
 			wheel2.ApplyTorqueImpulse(delta * -10000); 
 			}
-		}
+		}*/ 
 	}
 }

@@ -5,6 +5,7 @@
 [ext_resource path="res://scripts/Car.cs" type="Script" id=3]
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
+position = Vector2( 2, 1 )
 gravity_scale = 4.0
 script = ExtResource( 3 )
 
@@ -23,6 +24,7 @@ node_a = NodePath("..")
 node_b = NodePath("Wheel")
 
 [node name="Wheel" parent="WheelHolder" instance=ExtResource( 1 )]
+gravity_scale = 4.0
 
 [node name="WheelHolder2" type="PinJoint2D" parent="."]
 position = Vector2( 111, 49 )
@@ -30,6 +32,7 @@ node_a = NodePath("..")
 node_b = NodePath("Wheel")
 
 [node name="Wheel" parent="WheelHolder2" instance=ExtResource( 1 )]
+gravity_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
