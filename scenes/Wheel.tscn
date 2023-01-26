@@ -2,6 +2,7 @@
 
 [ext_resource path="res://assets/images/car-wheel.png" type="Texture" id=1]
 
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 29.1548
 
