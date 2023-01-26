@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Zombie.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,6 +17,3 @@ position = Vector2( -600, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( -265, -470 )
 polygon = PoolVector2Array( 23, 326, 550, 545, 1247, 543, 1699, 337, 2020, 69, 2284, -20, 2460, 226, 2904, 399, 3422, 431, 4295, 859, 5466, 807, 6137, 883, 7101, 735, 11611, -13, 11295, 447, 7526, 1079, 6358, 1459, 5371, 1459, 4443, 1395, 3452, 1172, 2334.23, 1017.78, 995, 833, -127, 473, -170, 6, 23, -8 )
-
-[node name="Zombie" parent="." instance=ExtResource( 5 )]
-position = Vector2( 538, -400 )
