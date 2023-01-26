@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/images/Zombie/upperarmright.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/Zombie/legright.png" type="Texture" id=15]
 
-[node name="Zombie" type="Node2D"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 [node name="Polygons" type="Node2D" parent="."]
 rotation = -0.00160857
@@ -27,6 +27,7 @@ __meta__ = {
 [node name="Ass" type="Polygon2D" parent="Polygons"]
 position = Vector2( 9, 84 )
 rotation = -0.00240389
+antialiased = true
 texture = ExtResource( 1 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 36.8497, 11.6444, 54.8392, 13.2317, 79.7069, 11.6444, 98.7545, 10.0571, 113.04, 18.5228, 127.855, 31.2212, 132.088, 58.7344, 124.68, 78.8402, 113.569, 92.5968, 88.7016, 96.3005, 74.4159, 92.0677, 63.3048, 96.3005, 36.8497, 98.4169, 20.4476, 73.5492, 13.5693, 39.1577 )
@@ -178,7 +179,6 @@ rest = Transform2D( 1, 0, 0, 1, 0, -47 )
 [node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( -12, -71 )
 rotation = -1.8534
-scale = Vector2( 1, 1 )
 rest = Transform2D( -0.278861, -0.960332, 0.960332, -0.278861, -12, -71 )
 default_length = 10.0
 
@@ -187,6 +187,12 @@ position = Vector2( 33.3955, -3.83963 )
 rotation = 1.29828
 rest = Transform2D( 0.269152, 0.963098, -0.963098, 0.269152, 33.3955, -3.83963 )
 default_length = 60.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/Head/Jaw"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/Head"]
+remote_path = NodePath("..")
 
 [node name="ArmL" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( 45, -61 )
@@ -197,10 +203,19 @@ position = Vector2( 34, 61 )
 rest = Transform2D( 1, 0, 0, 1, 34, 61 )
 
 [node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Chest/ArmL/ForearmL"]
-position = Vector2( 9, 49 )
-rotation = 1.33865
+position = Vector2( 8, 50 )
+rotation = 1.25581
 rest = Transform2D( 0.230067, 0.973175, -0.973175, 0.230067, 9, 49 )
 default_length = 30.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmL/ForearmL/HandL"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmL/ForearmL"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmL"]
+remote_path = NodePath("..")
 
 [node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( -82, -65 )
@@ -219,6 +234,18 @@ scale = Vector2( 0.804163, 2.50747 )
 rest = Transform2D( -0.293632, 0.748637, -2.33434, -0.915579, -3, 58 )
 default_length = 30.0
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmR/ForearmR/HandL"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmR/ForearmR"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest/ArmR"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/Chest"]
+remote_path = NodePath("..")
+
 [node name="ThighL" type="Bone2D" parent="Skeleton2D/Hip"]
 position = Vector2( 39, 1 )
 rotation = 1.53717
@@ -235,6 +262,15 @@ rest = Transform2D( 0.0115907, -1.07314, 185.764, 2.00639, 16.5691, 3.89915 )
 position = Vector2( -5.96954, 0.084284 )
 scale = Vector2( 3.00912, 1 )
 rest = Transform2D( 3.00912, 0, 0, 1, -5.96954, 0.084284 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighL/LegL/FootL"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighL/LegL"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighL"]
+remote_path = NodePath("..")
 
 [node name="ThighR2" type="Bone2D" parent="Skeleton2D/Hip"]
 position = Vector2( -43, 4 )
@@ -253,3 +289,15 @@ position = Vector2( 11.4053, 14.3013 )
 rotation = -0.998305
 scale = Vector2( 2.95138, 1 )
 rest = Transform2D( 1.59884, -2.48079, 0.840554, 0.541728, 11.4053, 14.3013 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighR2/LegR/FootR"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighR2/LegR"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip/ThighR2"]
+remote_path = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/Hip"]
+remote_path = NodePath("..")
