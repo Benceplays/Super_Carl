@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://assets/images/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/styles/BuyButtonStyles.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/images/car-full.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/images/Swat-Van-full.png" type="Texture" id=5]
@@ -15,7 +16,6 @@
 [ext_resource path="res://assets/images/buttons/select_pressed.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/locked.png" type="Texture" id=15]
 
-
 [sub_resource type="DynamicFont" id=2]
 size = 38
 font_data = ExtResource( 4 )
@@ -25,6 +25,13 @@ size = 34
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0.92549 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 4 )
@@ -111,7 +118,36 @@ margin_top = 470.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
+[node name="Engine" type="Panel" parent="bot_hud"]
+self_modulate = Color( 0.396078, 0.372549, 0.305882, 1 )
+margin_left = 252.0
+margin_top = -13.0
+margin_right = 350.0
+margin_bottom = 129.0
+
+[node name="Nitro" type="Panel" parent="bot_hud"]
+self_modulate = Color( 0.396078, 0.372549, 0.305882, 1 )
+margin_left = 384.0
+margin_top = -13.0
+margin_right = 482.0
+margin_bottom = 129.0
+
+[node name="Gun" type="Panel" parent="bot_hud"]
+self_modulate = Color( 0.396078, 0.372549, 0.305882, 1 )
+margin_left = 508.0
+margin_top = -13.0
+margin_right = 606.0
+margin_bottom = 129.0
+
+[node name="Petrol" type="Panel" parent="bot_hud"]
+self_modulate = Color( 0.396078, 0.372549, 0.305882, 1 )
+margin_left = 632.0
+margin_top = -13.0
+margin_right = 730.0
+margin_bottom = 129.0
+
 [node name="Locked" type="PanelContainer" parent="."]
+visible = false
 margin_left = 461.0
 margin_top = 207.0
 margin_right = 581.0
@@ -119,21 +155,33 @@ margin_bottom = 377.0
 custom_styles/panel = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Locked"]
-position = Vector2( 59, 45 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 59, 37 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 15 )
 
-[node name="buy" type="Sprite" parent="Locked"]
-position = Vector2( 59, 110 )
-scale = Vector2( 1, 0.3 )
-texture = ExtResource( 2 )
+[node name="BuyButton" type="Button" parent="."]
+visible = false
+margin_left = 481.0
+margin_top = 339.0
+margin_right = 561.0
+margin_bottom = 379.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/disabled = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+text = "Buy"
 
-[node name="Label" type="Label" parent="Locked"]
-margin_top = 76.0
-margin_right = 120.0
-margin_bottom = 94.0
+[node name="LockedLabel" type="Label" parent="."]
+visible = false
+margin_left = 462.0
+margin_top = 296.0
+margin_right = 582.0
+margin_bottom = 314.0
 custom_fonts/font = SubResource( 5 )
-text = "Locked."
+text = "Locked.
+$2000"
 align = 1
 
 [node name="select" type="TextureButton" parent="."]

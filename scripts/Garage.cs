@@ -23,6 +23,8 @@ public class Garage : Node2D
 	public PanelContainer locked;
 	public TextureButton select;
 	public TextureButton selected;
+	private Button buyButton;
+	private Label lockedLabel;
 	public override void _Ready()
 	{
 		GetTree().Paused = false;
@@ -42,6 +44,9 @@ public class Garage : Node2D
 		right_arrow = (Button)GetNode("right_arrow");
 
 		locked = (PanelContainer)GetNode("Locked");
+		buyButton = GetNode("BuyButton") as Button;
+		lockedLabel = GetNode("LockedLabel") as Label;
+
 
 		select = (TextureButton)GetNode("select");
 		selected = (TextureButton)GetNode("selected");
@@ -76,6 +81,8 @@ public class Garage : Node2D
 		select.Visible = false;
 		selected.Visible = false;
 		locked.Visible = false;
+		lockedLabel.Visible = false;
+		buyButton.Visible = false;
 		//Tween tween = new Tween();  ezzel lehet majd megcsinálni,hogy animáltan mozogjon ami azért valljuk be elég menő lenne! Ötletgazda:Korall, megvalósító:Korall
 		right_arrow.Visible = true;
 		for (int i = 0; i < car_sprites.Length; i++)
@@ -88,6 +95,8 @@ public class Garage : Node2D
 		if (!get_datas.UnlockedCars.Contains(current_view_car))
 		{
 			locked.Visible = true;
+			lockedLabel.Visible = true;
+			buyButton.Visible = true;
 		}
 		else
 		{
@@ -118,6 +127,8 @@ public class Garage : Node2D
 		if (!get_datas.UnlockedCars.Contains(current_view_car))
 		{
 			locked.Visible = true;
+			lockedLabel.Visible = true;
+			buyButton.Visible = true;
 		}else
 		{
 			if (current_view_car != current_car)

@@ -11,14 +11,12 @@ public class Game : Node2D
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
-    private Label moneylabel;
     private Label fpslabel;
     private ConfigBody config;
     private string text;
     private string OptionsText;
     private string tunings;
     private float time;
-    private int money;
     private RigidBody2D car;
     public bool fps_is_on = false;
     public override void _Ready()
@@ -53,7 +51,6 @@ public class Game : Node2D
         /*foreach(var item in get_options.UnlockedCars){
             GD.Print(item);
         }*/
-        moneylabel = GetNode("Car/HUD/money") as Label;
         car = GetNode("Car") as RigidBody2D;
         //vsync trun
         if(OptionsOption.vsync == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
@@ -102,8 +99,6 @@ public class Game : Node2D
     {
 		text = File.ReadAllText(@"scripts/Player.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-        money = (int) car.Position.x / 100;
-        moneylabel.Text = "Money: " + money;
         //fps to screen
         if (fps_is_on)
         {
