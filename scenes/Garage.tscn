@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/images/buttons/select_pressed.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/locked.png" type="Texture" id=15]
 
+
 [sub_resource type="DynamicFont" id=2]
 size = 38
 font_data = ExtResource( 4 )
