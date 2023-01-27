@@ -69,6 +69,8 @@ public class Garage : Node2D
 		{
 			car_sprites[i].SetPosition(new Vector2((car_sprites[i].Position.x - current_car*2000), car_sprites[i].Position.y));
 		}
+
+		// Amikor legelőször be mész a garageba (amikor elindítod a játékot) akkor nem jelzi a pipát a kocsin csak ha jobra vagy balra mész
 	}
 
 	public override void _Process(float delta)
