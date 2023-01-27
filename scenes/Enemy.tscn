@@ -15,7 +15,6 @@
 [ext_resource path="res://assets/images/Zombie/handleft.png" type="Texture" id=13]
 [ext_resource path="res://assets/images/Zombie/footright.png" type="Texture" id=14]
 
-
 [sub_resource type="PhysicsMaterial" id=1]
 
 [node name="Enemy" type="Node2D"]

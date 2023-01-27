@@ -30,7 +30,6 @@ public class Car : RigidBody2D
     private TextureProgress petrolprogress;
     private Label moneylabel;
 	private int money;
-
 	public override void _Ready()
 	{
 		kocsi = GetNode("Sprite") as Sprite;
@@ -100,18 +99,18 @@ public class Car : RigidBody2D
 			nitrosupply -= 1 * delta;
 			if(AppliedForce <= new Vector2(1500, 0))
 			{
-				AddForce(-new Vector2(kocsi.Texture.GetWidth()/4, -kocsi.Texture.GetHeight()/4), new Vector2(100, 0));
+				ApplyImpulse(new Vector2(kocsi.Texture.GetWidth()/4, kocsi.Texture.GetHeight()/4), new Vector2(50, 0));
 			}
 		}
 		else{
-			AppliedForce = new Vector2(0, 0);
+			//impulse = new Vector2(0, 0);
 		}*/
 		
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
 				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true){
-				wheel1.ApplyTorqueImpulse(delta * 5000 * speed);
-				wheel2.ApplyTorqueImpulse(delta * 5000 * speed);	
+				wheel1.ApplyTorqueImpulse(delta * 10000 * speed);
+				wheel2.ApplyTorqueImpulse(delta * 10000 * speed);	
 				gas -= 1 * delta;
 				}	
 			}
@@ -134,7 +133,6 @@ public class Car : RigidBody2D
 		}
 		if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
 			onfloor = false;
-			GD.Print(rotationcar);
 			if(Input.IsActionPressed("ui_right")){
 				RotationDegrees += 1; 
 			}
