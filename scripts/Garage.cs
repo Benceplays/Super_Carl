@@ -3,6 +3,7 @@ using System.IO;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -25,6 +26,7 @@ public class Garage : Node2D
 	public TextureButton selected;
 	private Button buyButton;
 	private Label lockedLabel;
+	[Export] private PackedScene tune_component;
 	public override void _Ready()
 	{
 		GetTree().Paused = false;
@@ -63,6 +65,7 @@ public class Garage : Node2D
 		current_car = get_datas.currentcar; //jelenlegi kocsi lekérdezés
 		current_view_car = current_car;
 		checkArrows();
+		loadTuneComponents();
 
 		//Jelenlegi autó berakása középre
 		for (int i = 0; i < car_sprites.Length; i++)
@@ -225,6 +228,34 @@ public class Garage : Node2D
 					File.AppendAllText(@"scripts/Tunings.json", JsonConvert.SerializeObject(kocsi));
 				}
 			}
+		}
+	}
+
+	public void loadTuneComponents()
+	{
+		string tunings = File.ReadAllText(@"scripts/Tunings.json");
+		string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
+		for (int i = 0; i < tunings_split.Length; i++)
+		{
+			Dictionary<string, int> currentDic =
+				JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+			if (current_view_car == currentDic["id"])
+			{
+				for (int j = 0; j < currentDic.Count; j++)
+				{
+					if (currentDic.ElementAt(j).Key != "id")
+					{
+						Node2D tune_card = (Node2D)tune_component.Instance();
+						tune_card.Set("car_id",currentDic["id"]);
+						tune_card.Set("component",currentDic.ElementAt(j).Key);
+						tune_card.Set("currentLvl",currentDic.ElementAt(j).Value);
+						tune_card.Position = new Vector2( j*160 + 45,445);
+						AddChild(tune_card);
+					}
+				}
+			}
+			//GD.Print(tunings_split[i]);
+			GD.Print(); //key alapján való lekérdezés
 		}
 	}
 }
