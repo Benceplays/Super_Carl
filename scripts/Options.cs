@@ -16,6 +16,7 @@ public class Options : Node2D
     public OptionButton displayselect;
     public int displayindex;
     public int fpstarget;
+	public AudioStreamPlayer2D music;
 
 
     public override void _Ready()
@@ -104,6 +105,10 @@ public class Options : Node2D
     {
         string text = File.ReadAllText(@"scripts/Options.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+
+        music = GetNode("/root/SoundController/Music") as AudioStreamPlayer2D;
+        music.VolumeDb = (float)musicvolume.Value;
+
         JObject options = new JObject(
             new JProperty("musicvolume", (int)musicvolume.Value),
             new JProperty("soundeffectvolume", (int)soundeffectvolume.Value),
@@ -123,6 +128,10 @@ public class Options : Node2D
         GetTree().ChangeScene("res://scenes/Menu.tscn");
     }
     
+    public void _on_BackButton_pressed()
+    {
+        GetTree().ChangeScene("res://scenes/Menu.tscn");
+    }
 
     public override void _Process(float delta)
     {

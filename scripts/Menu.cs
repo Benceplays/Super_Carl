@@ -7,11 +7,11 @@ using System.IO;
 
 public class Menu : Node2D
 {
-
 	public override void _Ready()
 	{
 		string text = File.ReadAllText(@"scripts/Options.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+
 		// set the window mode
 		switch (get_options.displaymode)
 		{

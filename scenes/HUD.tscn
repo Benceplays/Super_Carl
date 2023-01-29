@@ -10,7 +10,6 @@
 [ext_resource path="res://scripts/ReachDestination.cs" type="Script" id=8]
 [ext_resource path="res://assets/images/Petrol.png" type="Texture" id=9]
 
-
 [sub_resource type="DynamicFont" id=4]
 size = 20
 font_data = ExtResource( 1 )
@@ -151,44 +150,45 @@ margin_bottom = 369.0
 script = ExtResource( 6 )
 
 [node name="OutLabel" type="Label" parent="OutOfPetrol"]
-margin_left = 48.0
-margin_top = 26.0
-margin_right = 199.0
-margin_bottom = 57.0
+margin_left = 50.0
+margin_top = 8.0
+margin_right = 201.0
+margin_bottom = 55.0
 custom_fonts/font = SubResource( 13 )
-text = "Out Of Petrol"
+text = "I'll do better
+next time"
 align = 1
 
-[node name="Distance" type="Label" parent="OutOfPetrol"]
-margin_left = 31.0
-margin_top = 70.0
-margin_right = 157.0
-margin_bottom = 102.0
+[node name="Zombie" type="Label" parent="OutOfPetrol"]
+margin_left = 37.0
+margin_top = 81.0
+margin_right = 222.0
+margin_bottom = 113.0
 custom_fonts/font = SubResource( 14 )
-text = "Zombie Hit: Ł$3030"
+text = "Zombie Hit:"
 
-[node name="Label" type="Label" parent="OutOfPetrol"]
-margin_left = 31.0
-margin_top = 109.0
-margin_right = 157.0
-margin_bottom = 141.0
+[node name="Distance" type="Label" parent="OutOfPetrol"]
+margin_left = 37.0
+margin_top = 120.0
+margin_right = 190.0
+margin_bottom = 152.0
 custom_fonts/font = SubResource( 14 )
-text = "Distance: $250"
+text = "Distance:"
 
 [node name="TotalLabel" type="Label" parent="OutOfPetrol"]
-margin_left = 32.0
-margin_top = 147.0
-margin_right = 259.0
-margin_bottom = 179.0
+margin_left = 38.0
+margin_top = 158.0
+margin_right = 265.0
+margin_bottom = 190.0
 custom_fonts/font = SubResource( 14 )
-text = "Total Money: $303"
+text = "Total Money:"
 
 [node name="Garage" type="Button" parent="OutOfPetrol"]
 pause_mode = 2
-margin_left = 72.0
-margin_top = 195.0
-margin_right = 172.0
-margin_bottom = 236.0
+margin_left = 78.0
+margin_top = 206.0
+margin_right = 178.0
+margin_bottom = 247.0
 custom_fonts/font = SubResource( 15 )
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 5 )

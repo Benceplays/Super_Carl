@@ -15,7 +15,7 @@ public class SoundController : Node2D
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
         music = GetNode("Music") as AudioStreamPlayer2D;
-        music.VolumeDb = -get_options.musicvolume;
+        music.VolumeDb = get_options.musicvolume;
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -30,6 +30,10 @@ public class Car : RigidBody2D
     private TextureProgress petrolprogress;
     private Label moneylabel;
 	private int money;
+	private int zombiemoney;
+	private Label zombielabel;
+	private Label distancelabel;
+	private Label totallabel;
 	public override void _Ready()
 	{
 		kocsi = GetNode("Sprite") as Sprite;
@@ -83,6 +87,15 @@ public class Car : RigidBody2D
         {
             options.WriteTo(writer);
         }
+		
+        zombielabel = GetNode("HUD/OutOfPetrol/Zombie") as Label;
+        distancelabel = GetNode("HUD/OutOfPetrol/Distance") as Label;
+        totallabel = GetNode("HUD/OutOfPetrol/TotalLabel") as Label;
+
+		zombielabel.Text = $"Zombie Hit: ${zombiemoney}";
+		distancelabel.Text = $"Distance: ${money}";
+		totallabel.Text = $"Total Money: ${money + zombiemoney}";
+
 	}
 
 	public override void _PhysicsProcess(float delta)
