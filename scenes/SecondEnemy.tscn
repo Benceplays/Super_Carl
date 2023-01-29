@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/SecondEnemy.cs" type="Script" id=1]
+[ext_resource path="res://assets/images/zombie.png" type="Texture" id=2]
+
+[node name="SecondEnemy" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PoolVector2Array( 30, 122, 64, 109, 59, 100, 50, 92, 44, 75, 52, 67, 55, 69, 46, 5, 42, 5, 42, 1, 51, -5, 52, -17, 60, -25, 57, -29, 52, -26, 54, -44, 65, -37, 69, -42, 71, -42, 75, -45, 74, -49, 77, -57, 73, -64, 67, -66, 61, -64, 56, -60, 68, -88, 68, -95, 65, -97, 64, -102, 58, -105, 31, -114, 46, -120, 33, -123, 25, -118, 13, -122, 6, -119, 21, -114, -8, -109, -11, -85, -13, -71, -20, -66, -17, -61, -16, -58, -23, -54, -12, -44, -15, -38, -7, -33, -5, -38, 7, -35, 5, -29, 17, -26, 19, -32, 29, -34, 29, -30, 34, -30, 30, -18, 17, -19, 9, -11, 2, -15, -1, -11, -9, 2, 7, 6, 19, 8, 27, 6, 26, 11, -34, 10, -32, 13, -40, 13, -48, 16, -53, 7, -62, 12, -57, 19, -72, 18, -75, 28, -68, 32, -64, 24, -61, 24, -63, 33, -62, 41, -52, 43, -55, 31, -51, 29, -49, 43, -46, 45, -58, 48, -61, 58, -52, 58, -50, 52, -46, 50, -48, 56, -43, 67, -35, 65, -40, 54, -36, 50, -32, 61, -22, 64, -15, 60, -25, 56, -26, 50, -23, 39, -20, 36, -3, 51, 10, 41, 6, 63, 18, 75, 7, 100, 14, 96, 10, 109, 1, 105, -5, 99, -9, 97, -15, 103, -14, 108, -10, 109, -7, 108, -2, 110, 8, 115, 18, 117, 16, 108, 19, 100, 21, 107, 28, 78, 32, 78, 45, 104, 42, 106, 32, 108, 27, 114 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 1238, -368 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+position = Vector2( 22, 0 )
+polygon = PoolVector2Array( 63, -102, 32, -115, 46, -120, 34, -123, 24, -117, 15, -122, 6, -120, 20, -113, -8, -109, -13, -73, -22, -51, -66, -3, -103, 60, -5, 128, 69, 130, 63, 72, 57, -4, 87, -52 )
