@@ -291,8 +291,7 @@ public class Garage : Node2D
 		string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
 		for (int i = 0; i < tunings_split.Length; i++)
 		{
-			Dictionary<string, int> currentDic =
-				JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+			Dictionary<string, int> currentDic = JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
 			if (current_view_car == currentDic["id"])
 			{
 				for (int j = 0; j < currentDic.Count; j++)
@@ -300,7 +299,6 @@ public class Garage : Node2D
 					int index = j-1;
 					if (currentDic.ElementAt(j).Key != "id")
 					{
-						GD.Print(index);
 
 						tune_cards[index] = (Node2D)tune_component.Instance();
 						tune_cards[index].Set("car_id",currentDic["id"]);
