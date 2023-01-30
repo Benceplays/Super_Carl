@@ -1,5 +1,11 @@
 using Godot;
 using System;
+using File = System.IO.File;
+using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 public class TuneComponent : Node2D
 {
@@ -49,6 +55,34 @@ public class TuneComponent : Node2D
     public void refreshProgressBar()
     {
         lvlProgress.Value = currentLvl;
+    }
+
+    public override void _Process(float delta)
+    {
+        refreshProgressBar();
+    }
+
+    public void writeToJSON()
+    {
+        string tunings = File.ReadAllText(@"scripts/Tunings.json");
+        string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
+        /*
+        for (int i = 0; i < tunings_split.Length; i++)
+        {
+            Dictionary<string, int> currentDic =
+                JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+            if (car_id == currentDic["id"])
+            {
+                engine = currentDic["engine"]; // 0, 1, 2
+                nitro = currentDic["nitro"]; // 0, 1, 2, 3, 
+                gun = currentDic["gun"]; // 0, 1
+                petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
+            }
+            //GD.Print(tunings_split[i]);
+            GD.Print(); //key alapján való lekérdezés
+        }
+        */ //IRAS JSONBA AMIKOR A JATEKOS MEGVESZ EGY TUNING KOMPONENSET!?!!?!?!!?
+
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
