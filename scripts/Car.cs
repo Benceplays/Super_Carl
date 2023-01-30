@@ -34,6 +34,7 @@ public class Car : RigidBody2D
 	private Label zombielabel;
 	private Label distancelabel;
 	private Label totallabel;
+	private int positionx;
 	public override void _Ready()
 	{
 		kocsi = GetNode("Sprite") as Sprite;
@@ -102,8 +103,15 @@ public class Car : RigidBody2D
 	{
         moneylabel = GetNode("HUD/money") as Label;
 		car = GetNode("/root/Game/Car") as RigidBody2D;
-		money = (int) car.Position.x / 100;
-        moneylabel.Text = "Money: " + money;
+		if(money < positionx){
+			money = positionx;
+       		moneylabel.Text = "Money: " + money;
+		}else{
+			money = (int) car.Position.x / 100;
+        	moneylabel.Text = "Money: " + money;
+		}
+		// buggos a kiíratása a moneynak
+		
 		/*if(this.Position.x > longestdistance){
 			longestdistance = (int) this.Position.x;
 		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
@@ -134,6 +142,9 @@ public class Car : RigidBody2D
 		if (this.LinearVelocity.x < 25)
 		{
     		riptimer -= delta;
+			if(positionx <= (int) car.Position.x / 100){
+				positionx = (int) car.Position.x / 100;
+			}
 		}
 		else{
 			riptimer = 5;
@@ -142,6 +153,7 @@ public class Car : RigidBody2D
 			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
 			endmenu.Visible = true;
 			GetTree().Paused = true;
+			money = positionx;
 			End();
 		}
 		if(wheel1.GetCollidingBodies().Count == 0 && wheel2.GetCollidingBodies().Count == 0 && GetCollidingBodies().Count == 0){
