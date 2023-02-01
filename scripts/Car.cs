@@ -35,8 +35,10 @@ public class Car : RigidBody2D
 	private Label distancelabel;
 	private Label totallabel;
 	private int positionx;
+	private StaticBody2D weapon;
 	public override void _Ready()
 	{
+		weapon = GetNode("Weapon") as StaticBody2D;
 		kocsi = GetNode("Sprite") as Sprite;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
 		wheel2 = GetNode("WheelHolder2/Wheel") as RigidBody2D;
@@ -63,13 +65,13 @@ public class Car : RigidBody2D
 				gun = currentDic["gun"]; // 0, 1
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}
-			//GD.Print(tunings_split[i]);
-			GD.Print(); //key alapján való lekérdezés
 		}
-		GD.Print(engine,gun,petrol,nitro);
 		gas += petrol * 5;
 		nitrosupply = nitro * 5;
 		speed = engine + 1;
+		if(gun == 1){
+			weapon.Visible = true;
+		}
 	}
 	public void End(){
         string textplayer = File.ReadAllText(@"scripts/Player.json");
@@ -169,10 +171,17 @@ public class Car : RigidBody2D
 			onfloor = true;
 			rotationcar = Rotation;
 		}
+		
 		/*if(Input.IsActionPressed("ui_down")){
 			if(wheel1.AngularVelocity < -max_speed || wheel2.AngularVelocity < -max_speed){
 			wheel2.ApplyTorqueImpulse(delta * -10000); 
 			}
 		}*/ 
+	}
+
+	private void _on_AreaWeapon_body_entered(KinematicBody2D enemy){
+		if(enemy.IsInGroup("zombie")){
+			GD.Print("ZOMBIEEEE");
+		}
 	}
 }
