@@ -3,10 +3,11 @@ using System;
 
 public class Enemy : KinematicBody2D
 {
-	private KinematicBody2D car;
+	private KinematicBody2D enemy;
+	private float deltaplus;
 	public override void _Ready()
 	{
-		car = GetNode("/root/Game/Car") as KinematicBody2D;
+		//enemy = GetNode("Enemy") as KinematicBody2D;
 	}
 	public override void _Process(float delta)
 	{
@@ -17,11 +18,14 @@ public class Enemy : KinematicBody2D
 		Vector2 moveVector = new Vector2(0, 0);
 		moveVector.x -= 20;
 		Position += moveVector*10*delta;
+		deltaplus = delta;
 	}
-	private void _on_ZombieHitbox_body_entered(object body)
+	private void _on_ZombieHitbox_body_entered(KinematicBody2D body)
 	{
-		if (body == car){
-			GD.Print("asd");
+		if (body.IsInGroup("car")){
+		GD.Print("idiota milan lefut");
+		Vector2 velocity = new Vector2(50000000, 0);
+		MoveAndSlide(velocity * deltaplus);
 		}
 	}
 

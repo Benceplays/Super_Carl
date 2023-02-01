@@ -2,6 +2,8 @@
 # Godot-specific ignores
 .import/
 ./scripts/Tunings.json
+./scripts/Player.json
+./scripts/Options.json
 export.cfg
 export_presets.cfg
 
