@@ -138,7 +138,7 @@ public class Car : RigidBody2D
 		}
 		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
         petrolprogress.Value = gas;
-		GD.Print(riptimer);
+		//GD.Print(riptimer);
 		if (this.LinearVelocity.x < 25)
 		{
     		riptimer -= delta;
