@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 
 public class TuneComponent : Node2D
@@ -12,44 +13,100 @@ public class TuneComponent : Node2D
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
+    public string player_json;
     public int car_id;
     public string component;
     public ProgressBar lvlProgress;
     public Label name;
     public int currentLvl;
     public int maxLvl; //itt a maxlvl számolása nem nullától van, tehát ha 0;1;2-es szintek vannak akkor a maximalis szint 3
-    // Called when the node enters the scene tree for the first time.
+    public int upgrade_price;
     public override void _Ready()
     {
         lvlProgress = (ProgressBar)GetNode("Panel/lvlProgress");
         lvlProgress.Value = currentLvl;
         name = (Label)GetNode("Panel/name");
-        name.Text = component.ToUpper();
         switch (component)
         {
             case "engine":
                 maxLvl = 2;
+                upgrade_price = 250;
                 break;
             case "nitro":
                 maxLvl = 3;
+                upgrade_price = 500;
                 break;
             case "gun":
                 maxLvl = 1;
+                upgrade_price = 1000;
                 break;
             case "petrol":
                 maxLvl = 4;
+                upgrade_price = 50;
                 break;
         }
         lvlProgress.MaxValue = maxLvl;
+        upgrade_price *= currentLvl + 1;
+        name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
+
     }
 
     public void _on_buyButton_pressed()
     {
         if (currentLvl < maxLvl)
         {
-            currentLvl++;
-            refreshProgressBar();
+            player_json = File.ReadAllText(@"scripts/Player.json");
+            var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+            if (get_datas.money >= upgrade_price)
+            {
+                currentLvl++;
+                refreshProgressBar();
+                writeToJSON();
+                name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
+
+                //Elmentése
+                JObject options = new JObject(
+                new JProperty("CurrentCar", get_datas.currentcar),
+                new JProperty("Money", get_datas.money - upgrade_price),
+                new JProperty("UnlockedCars", get_datas.UnlockedCars),
+                new JProperty("Cars", get_datas.Cars),
+                new JProperty("Days", get_datas.Days));
+                File.WriteAllText(@"scripts/Player.json", options.ToString());
+                using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+                using (JsonTextWriter writer = new JsonTextWriter(file))
+                {
+                    options.WriteTo(writer);
+                }
+                upgrade_price *= currentLvl + 1;
+
+
+            }
         }
+    }
+
+    public void refreshStats()
+    {
+        switch (component)
+        {
+            case "engine":
+                maxLvl = 2;
+                upgrade_price = 250;
+                break;
+            case "nitro":
+                maxLvl = 3;
+                upgrade_price = 500;
+                break;
+            case "gun":
+                maxLvl = 1;
+                upgrade_price = 1000;
+                break;
+            case "petrol":
+                maxLvl = 4;
+                upgrade_price = 50;
+                break;
+        }
+        upgrade_price *= currentLvl + 1;
+        name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
     }
 
     public void refreshProgressBar()
@@ -60,28 +117,42 @@ public class TuneComponent : Node2D
     public override void _Process(float delta)
     {
         refreshProgressBar();
+        refreshStats();
     }
 
     public void writeToJSON()
     {
         string tunings = File.ReadAllText(@"scripts/Tunings.json");
         string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
-        /*
         for (int i = 0; i < tunings_split.Length; i++)
         {
             Dictionary<string, int> currentDic =
                 JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+            Dictionary<string, int> kocsi = new Dictionary<string, int>();
             if (car_id == currentDic["id"])
             {
-                engine = currentDic["engine"]; // 0, 1, 2
-                nitro = currentDic["nitro"]; // 0, 1, 2, 3, 
-                gun = currentDic["gun"]; // 0, 1
-                petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
+                kocsi.Add("id", car_id);
+                kocsi.Add("engine", currentDic["engine"]);
+                kocsi.Add("gun", currentDic["gun"]);
+                kocsi.Add("petrol", currentDic["petrol"]);
+                kocsi.Add("nitro", currentDic["nitro"]);
+                //A rövidítés érdekében beállítunk mindent alap értékre és utána csak a bizonyos tuningkomponenset írjuk át a currentLvlre.
+                kocsi[component] = currentLvl;
+            }
+            else
+            {
+                kocsi = currentDic;
+            }
+            if (i != 0)
+            {
+                File.AppendAllText(@"scripts/Tunings.json", "\n" + JsonConvert.SerializeObject(kocsi));
+            }
+            else
+            {
+                File.WriteAllText(@"scripts/Tunings.json", JsonConvert.SerializeObject(kocsi));
             }
             //GD.Print(tunings_split[i]);
-            GD.Print(); //key alapján való lekérdezés
         }
-        */ //IRAS JSONBA AMIKOR A JATEKOS MEGVESZ EGY TUNING KOMPONENSET!?!!?!?!!?
 
     }
 

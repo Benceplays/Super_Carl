@@ -80,6 +80,10 @@ public class Garage : Node2D
 
 	public override void _Process(float delta)
 	{
+		player_json = File.ReadAllText(@"scripts/Player.json");
+		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+		money_label.Text = get_datas.money + "$";
+		GD.Print(get_datas.money);
 	}
 	
 	
@@ -107,29 +111,7 @@ public class Garage : Node2D
 		}
 		else
 		{
-			string tunings = File.ReadAllText(@"scripts/Tunings.json");
-			string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
-			for (int i = 0; i < tunings_split.Length; i++)
-			{
-				Dictionary<string, int> currentDic =
-					JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
-				if (current_view_car == currentDic["id"])
-				{
-					for (int j = 0; j < currentDic.Count; j++)
-					{
-						int index = j - 1;
-						if (currentDic.ElementAt(j).Key != "id")
-						{
-							tune_cards[index].Set("car_id", currentDic["id"]);
-							tune_cards[index].Set("component", currentDic.ElementAt(j).Key);
-							tune_cards[index].Set("currentLvl", currentDic.ElementAt(j).Value);
-							tune_cards[index].Position = new Vector2(j * 160 + 45, 445);
-						}
-					}
-				}
-				//GD.Print(tunings_split[i]);
-				GD.Print(); //key alapján való lekérdezés
-			}
+			
 
 			if (current_view_car != current_car)
 			{
@@ -139,6 +121,29 @@ public class Garage : Node2D
 			{
 				selected.Visible = true;
 			}
+		}
+		string tunings = File.ReadAllText(@"scripts/Tunings.json");
+		string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
+		for (int i = 0; i < tunings_split.Length; i++)
+		{
+			Dictionary<string, int> currentDic =
+				JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+			if (current_view_car == currentDic["id"])
+			{
+				for (int j = 0; j < currentDic.Count; j++)
+				{
+					int index = j - 1;
+					if (currentDic.ElementAt(j).Key != "id")
+					{
+						tune_cards[index].Set("car_id", currentDic["id"]);
+						tune_cards[index].Set("component", currentDic.ElementAt(j).Key);
+						tune_cards[index].Set("currentLvl", currentDic.ElementAt(j).Value);
+						tune_cards[index].Position = new Vector2(j * 160 + 45, 445);
+					}
+				}
+			}
+			//GD.Print(tunings_split[i]);
+			GD.Print(); //key alapján való lekérdezés
 		}
 
 	}
@@ -162,29 +167,6 @@ public class Garage : Node2D
 			buyButton.Visible = true;
 		}else
 		{
-			string tunings = File.ReadAllText(@"scripts/Tunings.json");
-			string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
-			for (int i = 0; i < tunings_split.Length; i++)
-			{
-				Dictionary<string, int> currentDic =
-					JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
-				if (current_view_car == currentDic["id"])
-				{
-					for (int j = 0; j < currentDic.Count; j++)
-					{
-						int index = j - 1;
-						if (currentDic.ElementAt(j).Key != "id")
-						{
-							tune_cards[index].Set("car_id", currentDic["id"]);
-							tune_cards[index].Set("component", currentDic.ElementAt(j).Key);
-							tune_cards[index].Set("currentLvl", currentDic.ElementAt(j).Value);
-							tune_cards[index].Position = new Vector2(j * 160 + 45, 445);
-						}
-					}
-				}
-				//GD.Print(tunings_split[i]);
-				GD.Print(); //key alapján való lekérdezés
-			}
 
 			if (current_view_car != current_car)
 			{
@@ -194,6 +176,29 @@ public class Garage : Node2D
 			{
 				selected.Visible = true;
 			}
+		}
+		string tunings = File.ReadAllText(@"scripts/Tunings.json");
+		string[] tunings_split = tunings.Split("\n"); //Sorokra való felosztása
+		for (int i = 0; i < tunings_split.Length; i++)
+		{
+			Dictionary<string, int> currentDic =
+				JsonConvert.DeserializeObject<Dictionary<string, int>>(tunings_split[i]);
+			if (current_view_car == currentDic["id"])
+			{
+				for (int j = 0; j < currentDic.Count; j++)
+				{
+					int index = j - 1;
+					if (currentDic.ElementAt(j).Key != "id")
+					{
+						tune_cards[index].Set("car_id", currentDic["id"]);
+						tune_cards[index].Set("component", currentDic.ElementAt(j).Key);
+						tune_cards[index].Set("currentLvl", currentDic.ElementAt(j).Value);
+						tune_cards[index].Position = new Vector2(j * 160 + 45, 445);
+					}
+				}
+			}
+			//GD.Print(tunings_split[i]);
+			GD.Print(); //key alapján való lekérdezés
 		}
 
 
