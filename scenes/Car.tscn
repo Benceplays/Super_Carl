@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/car-body.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Car.cs" type="Script" id=3]
 [ext_resource path="res://assets/images/weapon.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 154.0
+height = 356.0
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 position = Vector2( 2, 1 )
@@ -40,7 +44,6 @@ current = true
 zoom = Vector2( 10, 10 )
 
 [node name="Weapon" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="Sprite" type="Sprite" parent="Weapon"]
 position = Vector2( 2, -60 )
@@ -50,3 +53,12 @@ texture = ExtResource( 4 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon"]
 position = Vector2( -24, -1 )
 polygon = PoolVector2Array( -10, -56, -10, -66, 77, -65, 77, -58, 29, -57, 26, -47, 26, -43, 19, -42, 18, -48, 1, -45, -1, -53 )
+
+[node name="AreaWeapon" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaWeapon"]
+position = Vector2( 325, 0 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="AreaWeapon" to="." method="_on_AreaWeapon_body_entered"]
