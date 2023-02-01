@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/car-body.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Car.cs" type="Script" id=3]
+[ext_resource path="res://assets/images/weapon.png" type="Texture" id=4]
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 position = Vector2( 2, 1 )
@@ -36,3 +37,15 @@ gravity_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Weapon" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="Weapon"]
+position = Vector2( 2, -60 )
+scale = Vector2( 0.389992, 0.48553 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon"]
+position = Vector2( -24, -1 )
+polygon = PoolVector2Array( -10, -56, -10, -66, 77, -65, 77, -58, 29, -57, 26, -47, 26, -43, 19, -42, 18, -48, 1, -45, -1, -53 )
