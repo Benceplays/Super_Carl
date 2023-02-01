@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 public class Car : RigidBody2D
 {
+	[Export] public PackedScene psBullet;
 	public int engine;
 	public int nitro;
 	public int petrol;
@@ -181,7 +182,11 @@ public class Car : RigidBody2D
 
 	private void _on_AreaWeapon_body_entered(KinematicBody2D enemy){
 		if(enemy.IsInGroup("zombie")){
-			GD.Print("ZOMBIEEEE");
+			// Buggos még
+            var gamenode = GetTree().Root.GetNode("Game") as Node2D;
+            KinematicBody2D bullet = (KinematicBody2D)psBullet.Instance();
+            bullet.Position = Position;
+		    gamenode.AddChild(bullet);
 		}
 	}
 }
