@@ -32,8 +32,8 @@ public class Enemy : KinematicBody2D
 		if (body.IsInGroup("car")){
 			timer.Start();
 			this.Rotate(1);
-			zombiecollision.Disabled = false;
-			ZombieHitbox.Monitoring = false;
+			//zombiecollision.Disabled = false;
+			//ZombieHitbox.Monitoring = false;
 			Vector2 velocity = new Vector2(800, 0);
 			MoveAndSlide(velocity * force * deltaplus);
 		}
