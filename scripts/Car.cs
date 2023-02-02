@@ -181,11 +181,12 @@ public class Car : RigidBody2D
 	}
 
 	private void _on_AreaWeapon_body_entered(KinematicBody2D enemy){
-		if(enemy.IsInGroup("zombie")){
+		if(enemy.IsInGroup("zombie") && weapon.Visible == true){
 			// Buggos még
+			GD.Print("asd");
             var gamenode = GetTree().Root.GetNode("Game") as Node2D;
-            KinematicBody2D bullet = (KinematicBody2D)psBullet.Instance();
-            bullet.Position = Position;
+            Node2D bullet = (Node2D)psBullet.Instance();
+            bullet.Position = new Vector2(0, 0);
 		    gamenode.AddChild(bullet);
 		}
 	}
