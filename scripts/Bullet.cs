@@ -10,6 +10,7 @@ public class Bullet : KinematicBody2D
     public override void _Ready()
     {
         speed = 2000;
+        // az enemy felé nézzen
         irany = GlobalPosition.DirectionTo(enemyposition) * speed;
     }
     public override void _Process(float delta)
