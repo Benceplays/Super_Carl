@@ -14,6 +14,8 @@ public class TuneComponent : Node2D
     // private int a = 2;
     // private string b = "text";
     public string player_json;
+    public Sprite image;
+    public string image_path;
     public int car_id;
     public string component;
     public ProgressBar lvlProgress;
@@ -23,6 +25,7 @@ public class TuneComponent : Node2D
     public int upgrade_price;
     public override void _Ready()
     {
+        image = (Sprite)GetNode("Panel/icon");
         lvlProgress = (ProgressBar)GetNode("Panel/lvlProgress");
         lvlProgress.Value = currentLvl;
         name = (Label)GetNode("Panel/name");
@@ -31,6 +34,7 @@ public class TuneComponent : Node2D
             case "engine":
                 maxLvl = 2;
                 upgrade_price = 250;
+                
                 break;
             case "nitro":
                 maxLvl = 3;
@@ -45,6 +49,7 @@ public class TuneComponent : Node2D
                 upgrade_price = 50;
                 break;
         }
+        image.Texture = (Texture)ResourceLoader.Load("res://assets/images/tune_components/" + component + ".png");
         lvlProgress.MaxValue = maxLvl;
         upgrade_price *= currentLvl + 1;
         name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
