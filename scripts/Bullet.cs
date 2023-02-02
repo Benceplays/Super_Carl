@@ -3,28 +3,24 @@ using System;
 
 public class Bullet : KinematicBody2D
 {
-    public float speed;
-    public Vector2 irany;
+    private float speed;
+    private Vector2 enemyposition;
+    private Vector2 irany;
     private float livetime;
-    private Area2D bulletarea;
     public override void _Ready()
     {
-       // var target = Vector2.Zero;
-        bulletarea = GetNode("Area2D") as Area2D;
-        speed = 5;
-        /*target = GetGlobalMousePosition();
-        bulletarea.Rotation = GetAngleTo(target);
-        irany = GlobalPosition.DirectionTo(target) * speed;*/
+        speed = 2000;
+        irany = GlobalPosition.DirectionTo(enemyposition) * speed;
     }
     public override void _Process(float delta)
     {
-        livetime += delta;
-        //bulletarea.Position += irany;
+        /*livetime += delta;
         if(livetime >= 5){
             QueueFree();
-        }
+        }*/
+        MoveAndSlide(irany);
     }
-    public void _on_Area2D_body_entered(KinematicBody2D enemy){
+    /*public void _on_Area2D_body_entered(KinematicBody2D enemy){
         if(enemy.IsInGroup("car") == false){
             QueueFree();
         }
@@ -32,5 +28,5 @@ public class Bullet : KinematicBody2D
             enemy.QueueFree();
             QueueFree();
         }
-    }
+    }*/
 }
