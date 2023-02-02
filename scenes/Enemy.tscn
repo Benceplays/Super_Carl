@@ -22,4 +22,7 @@ polygon = PoolVector2Array( -20, -230, -48, -102, -11, -46, 27, -46, 4, -28, -22
 position = Vector2( 19, 1 )
 shape = SubResource( 1 )
 
+[node name="ZombieNyek" type="Timer" parent="."]
+
 [connection signal="body_entered" from="ZombieHitbox" to="." method="_on_ZombieHitbox_body_entered"]
+[connection signal="timeout" from="ZombieNyek" to="." method="_on_ZombieNyek_timeout"]
