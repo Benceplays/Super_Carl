@@ -83,7 +83,6 @@ public class Garage : Node2D
 		player_json = File.ReadAllText(@"scripts/Player.json");
 		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
 		money_label.Text = get_datas.money + "$";
-		GD.Print(get_datas.money);
 	}
 	
 	
@@ -143,7 +142,6 @@ public class Garage : Node2D
 				}
 			}
 			//GD.Print(tunings_split[i]);
-			GD.Print(); //key alapján való lekérdezés
 		}
 
 	}
@@ -198,7 +196,6 @@ public class Garage : Node2D
 				}
 			}
 			//GD.Print(tunings_split[i]);
-			GD.Print(); //key alapján való lekérdezés
 		}
 
 
@@ -212,7 +209,6 @@ public class Garage : Node2D
 			left_arrow.Visible = false;
 		}else if (current_view_car == 2)
 		{
-			GD.PrintRaw("gecikolar");
 			right_arrow.Visible = false;
 		}
 	}
@@ -314,7 +310,6 @@ public class Garage : Node2D
 				}
 			}
 			//GD.Print(tunings_split[i]);
-			GD.Print(); //key alapján való lekérdezés
 		}
 	}
 }
