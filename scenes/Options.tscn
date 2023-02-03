@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/styles/menubuttons.tres" type="StyleBox" id=3]
 [ext_resource path="res://scripts/Options.cs" type="Script" id=4]
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/images/valley.jpg" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -214,6 +215,12 @@ custom_styles/focus = ExtResource( 3 )
 custom_styles/disabled = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )
 text = "Back"
+
+[node name="Valley" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.266667, 0.277778 )
+z_index = -632
+texture = ExtResource( 6 )
 
 [connection signal="item_selected" from="Display/FPSTarget" to="." method="_on_FPSTarget_item_selected"]
 [connection signal="item_selected" from="Display/DisplayMode" to="." method="_on_DisplayMode_item_selected"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/styles/BuyButtonStyles.tres" type="StyleBox" id=1]
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/images/buttons/select_pressed.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/locked.png" type="Texture" id=15]
 [ext_resource path="res://scenes/TuneComponent.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/images/valley.jpg" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=2]
 size = 38
@@ -175,6 +176,12 @@ margin_right = 1202.0
 margin_bottom = 988.0
 rect_scale = Vector2( 0.2, 0.2 )
 texture_normal = ExtResource( 7 )
+
+[node name="Valley" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.266667, 0.277778 )
+z_index = -396
+texture = ExtResource( 17 )
 
 [connection signal="pressed" from="left_arrow" to="." method="_on_left_arrow_pressed"]
 [connection signal="pressed" from="right_arrow" to="." method="_on_right_arrow_pressed"]

@@ -11,6 +11,7 @@ public class Game : Node2D
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
+    [Export] public PackedScene psEnemy;
     private Label fpslabel;
     private ConfigBody config;
     private string text;
@@ -21,6 +22,16 @@ public class Game : Node2D
     public bool fps_is_on = false;
     public override void _Ready()
     {
+        Random rnd = new Random();
+        for (int i = 0; i < 15; i++)
+        {
+            Node2D enemy = (Node2D)psEnemy.Instance();
+            enemy.Position = new Vector2(rnd.Next(10000, 100000),-rnd.Next(10000, 15000));
+            AddChild(enemy);
+        }
+        
+
+
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         
