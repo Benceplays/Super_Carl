@@ -19,3 +19,10 @@ position = Vector2( -2, 0.5 )
 rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -75, 20, -75, -20, 60, -15, 75, -5, 75, 0, 70, 10, 60, 20, -50, 20 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

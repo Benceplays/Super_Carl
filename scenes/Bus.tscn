@@ -11,6 +11,7 @@ radius = 154.0
 height = 356.0
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
+position = Vector2( 1, 0 )
 gravity_scale = 4.0
 script = ExtResource( 3 )
 psBullet = ExtResource( 5 )
@@ -42,9 +43,11 @@ gravity_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 10, 10 )
+zoom = Vector2( 2, 2 )
+offset_h = 1.0
 
 [node name="Weapon" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2( 2, -24 )
 
 [node name="Sprite" type="Sprite" parent="Weapon"]

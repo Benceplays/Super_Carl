@@ -10,18 +10,18 @@ public class Bullet : KinematicBody2D
     public override void _Ready()
     {
         speed = 2000;
-        // az enemy felé nézzen
+        Rotation = GetAngleTo(enemyposition);
         irany = GlobalPosition.DirectionTo(enemyposition) * speed;
     }
     public override void _Process(float delta)
     {
-        /*livetime += delta;
+        livetime += delta;
         if(livetime >= 5){
             QueueFree();
-        }*/
+        }
         MoveAndSlide(irany);
     }
-    /*public void _on_Area2D_body_entered(KinematicBody2D enemy){
+    public void _on_Area2D_body_entered(KinematicBody2D enemy){
         if(enemy.IsInGroup("car") == false){
             QueueFree();
         }
@@ -29,5 +29,5 @@ public class Bullet : KinematicBody2D
             enemy.QueueFree();
             QueueFree();
         }
-    }*/
+    }
 }
