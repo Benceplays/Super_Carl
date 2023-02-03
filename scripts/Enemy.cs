@@ -7,14 +7,13 @@ public class Enemy : KinematicBody2D
 	private float deltaplus;
 	private int force = 100000;
 	private Timer timer;
-	private Area2D ZombieHitbox;
-	private CollisionPolygon2D zombiecollision;
+	private AnimatedSprite zombie;
 	public override void _Ready()
 	{
 		//enemy = GetNode("Enemy") as KinematicBody2D;
 		timer = GetNode("ZombieNyek") as Timer;
-		zombiecollision = GetNode("CollisionPolygon2D") as CollisionPolygon2D;
-		ZombieHitbox = GetNode("ZombieHitbox") as Area2D;
+		zombie = GetNode("Zombie") as AnimatedSprite;
+		zombie.Play("Zombie-run");
 	}
 	public override void _Process(float delta)
 	{
@@ -32,10 +31,9 @@ public class Enemy : KinematicBody2D
 		if (body.IsInGroup("car")){
 			timer.Start();
 			this.Rotate(1);
-			//zombiecollision.Disabled = false;
-			//ZombieHitbox.Monitoring = false;
-			Vector2 velocity = new Vector2(800, 0);
+			Vector2 velocity = new Vector2(800, 500);
 			MoveAndSlide(velocity * force * deltaplus);
+			zombie.Stop();
 		}
 	}
 	public void _on_ZombieNyek_timeout()

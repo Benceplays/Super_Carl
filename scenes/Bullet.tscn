@@ -8,6 +8,7 @@ radius = 20.5
 height = 113.0
 
 [node name="Bullet" type="KinematicBody2D" groups=["bullet"]]
+scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
