@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/leg2left.png-70887352291733a8e9315e9a1e5cb509.stex"
+path="res://.import/Zombie-2.png-14f7306641e4f7cf58409da3a7453e2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Zombie/leg2left.png"
-dest_files=[ "res://.import/leg2left.png-70887352291733a8e9315e9a1e5cb509.stex" ]
+source_file="res://assets/images/Zombie/Zombie-2.png"
+dest_files=[ "res://.import/Zombie-2.png-14f7306641e4f7cf58409da3a7453e2c.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
