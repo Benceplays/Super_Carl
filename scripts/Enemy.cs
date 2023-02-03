@@ -19,8 +19,6 @@ public class Enemy : KinematicBody2D
 	{
 		Vector2 velocity = new Vector2(0, 500);
 		var collision = MoveAndCollide(velocity * delta);
-		if (collision == null){
-		}
 		Vector2 moveVector = new Vector2(0, 0);
 		moveVector.x -= 20;
 		Position += moveVector*10*delta;

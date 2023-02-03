@@ -35,7 +35,6 @@ animation = "Zombie-run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -25, -5 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="ZombieHitbox" type="Area2D" parent="."]

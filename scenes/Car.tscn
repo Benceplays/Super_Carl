@@ -43,8 +43,7 @@ gravity_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 5, 5 )
-offset_h = 1.0
+zoom = Vector2( 2, 2 )
 
 [node name="Weapon" type="StaticBody2D" parent="."]
 visible = false
