@@ -182,6 +182,7 @@ public class Car : RigidBody2D
 
 	private void _on_AreaWeapon_body_entered(KinematicBody2D enemy){
 		if(enemy.IsInGroup("zombie") && weapon.Visible == true){
+			
 			var gamenode = GetNode("../") as Node2D;
             KinematicBody2D bullet = (KinematicBody2D)psBullet.Instance();
 			bullet.Set("enemyposition", enemy.Position);
