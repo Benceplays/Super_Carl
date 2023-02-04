@@ -147,7 +147,7 @@ point_in = Vector2( 350.725, -362.039 )
 point_out = Vector2( -350.725, 362.039 )
 properties = SubResource( 53 )
 
-[sub_resource type="Resource" id=104]
+[sub_resource type="Resource" id=55]
 script = ExtResource( 10 )
 texture_idx = 5
 flip = false
@@ -158,7 +158,7 @@ script = ExtResource( 9 )
 position = Vector2( 2076.04, -2308.6 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 104 )
+properties = SubResource( 55 )
 
 [sub_resource type="Resource" id=57]
 script = ExtResource( 10 )
@@ -186,7 +186,7 @@ point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 59 )
 
-[sub_resource type="Resource" id=105]
+[sub_resource type="Resource" id=61]
 script = ExtResource( 10 )
 texture_idx = 1
 flip = false
@@ -197,7 +197,7 @@ script = ExtResource( 9 )
 position = Vector2( 9420.68, -2898.33 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 105 )
+properties = SubResource( 61 )
 
 [sub_resource type="Resource" id=63]
 script = ExtResource( 10 )
@@ -300,7 +300,15 @@ psHUD = ExtResource( 3 )
 psEnemy = ExtResource( 15 )
 
 [node name="Valley" type="Sprite" parent="."]
-position = Vector2( 1870, 429 )
+position = Vector2( 3918, -509 )
+scale = Vector2( 3.82865, 3.87407 )
+z_index = -3
+texture = ExtResource( 16 )
+
+[node name="Valley2" type="Sprite" parent="."]
+position = Vector2( 16332.7, -1749.3 )
+rotation = -0.354302
+scale = Vector2( 3.01044, 5.45239 )
 z_index = -3
 texture = ExtResource( 16 )
 

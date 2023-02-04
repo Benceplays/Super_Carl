@@ -73,6 +73,7 @@ public class TuneComponent : Node2D
                 JObject options = new JObject(
                 new JProperty("CurrentCar", get_datas.currentcar),
                 new JProperty("Money", get_datas.money - upgrade_price),
+                new JProperty("Zombie", get_datas.zombie),
                 new JProperty("UnlockedCars", get_datas.UnlockedCars),
                 new JProperty("Cars", get_datas.Cars),
                 new JProperty("Days", get_datas.Days));

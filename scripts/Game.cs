@@ -30,7 +30,21 @@ public class Game : Node2D
             AddChild(enemy);
         }
         
-
+        string textplayer = File.ReadAllText(@"scripts/Player.json");
+		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+        JObject options = new JObject(
+            new JProperty("CurrentCar", get_optionsplayer.currentcar),
+            new JProperty("Money", get_optionsplayer.money),
+			new JProperty("Zombie", 0),
+            new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+            new JProperty("Cars", get_optionsplayer.Cars),
+            new JProperty("Days", get_optionsplayer.Days));
+        File.WriteAllText(@"scripts/Player.json", options.ToString());
+        using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+        using (JsonTextWriter writer = new JsonTextWriter(file))
+        {
+            options.WriteTo(writer);
+        }
 
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);

@@ -37,6 +37,7 @@ public class Car : RigidBody2D
 	private Label totallabel;
 	private int positionx;
 	private StaticBody2D weapon;
+	private int zombie_money = 50;
 	public override void _Ready()
 	{
 		weapon = GetNode("Weapon") as StaticBody2D;
@@ -77,11 +78,13 @@ public class Car : RigidBody2D
 	public void End(){
         string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
-		int plusmoney = get_optionsplayer.money + money;
+		zombiemoney = zombie_money * get_optionsplayer.zombie;
+		int plusmoney = money + zombiemoney;
 
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
-            new JProperty("Money", plusmoney),
+            new JProperty("Money", get_optionsplayer.money + plusmoney),
+			new JProperty("Zombie", get_optionsplayer.zombie),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -98,7 +101,7 @@ public class Car : RigidBody2D
 
 		zombielabel.Text = $"Zombie Hit: ${zombiemoney}";
 		distancelabel.Text = $"Distance: ${money}";
-		totallabel.Text = $"Total Money: ${money + zombiemoney}";
+		totallabel.Text = $"Total Money: ${plusmoney}";
 
 	}
 

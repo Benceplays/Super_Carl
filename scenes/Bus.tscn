@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 154.0
-height = 356.0
+height = 458.0
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 position = Vector2( 1, 0 )
@@ -62,7 +62,7 @@ polygon = PoolVector2Array( -10, -56, -10, -66, 77, -65, 77, -58, 29, -57, 26, -
 [node name="AreaWeapon" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaWeapon"]
-position = Vector2( 325, 0 )
+position = Vector2( 379, 0 )
 rotation = 1.5708
 shape = SubResource( 1 )
 

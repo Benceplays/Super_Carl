@@ -1,5 +1,9 @@
 using Godot;
+using Newtonsoft.Json;
 using System;
+using File = System.IO.File;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 public class Bullet : KinematicBody2D
 {
@@ -27,7 +31,26 @@ public class Bullet : KinematicBody2D
         }
         if(enemy.IsInGroup("zombie")){
             enemy.QueueFree();
+            File_write();
             QueueFree();
         }
     }
+    public void File_write()
+	{
+		string textplayer = File.ReadAllText(@"scripts/Player.json");
+		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+        JObject options = new JObject(
+            new JProperty("CurrentCar", get_optionsplayer.currentcar),
+            new JProperty("Money", get_optionsplayer.money),
+            new JProperty("Zombie", get_optionsplayer.zombie + 1),
+            new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+            new JProperty("Cars", get_optionsplayer.Cars),
+            new JProperty("Days", get_optionsplayer.Days));
+        File.WriteAllText(@"scripts/Player.json", options.ToString());
+        using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+    	using (JsonTextWriter writer = new JsonTextWriter(file))
+        {
+            options.WriteTo(writer);
+        }
+	}
 }

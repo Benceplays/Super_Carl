@@ -21,8 +21,8 @@ radius = 150.0
 height = 300.0
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 150.0
-height = 300.0
+radius = 305.0
+height = 190.0
 
 [node name="Enemy" type="KinematicBody2D" groups=["zombie"]]
 scale = Vector2( 0.2, 0.2 )
@@ -42,6 +42,7 @@ shape = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieHitbox"]
 position = Vector2( -25, -5 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="ZombieNyek" type="Timer" parent="."]

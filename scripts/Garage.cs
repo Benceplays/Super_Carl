@@ -19,8 +19,8 @@ public class Garage : Node2D
 	public Sprite[] car_sprites;
 	public int current_car;
 	public int current_view_car;
-	public Button left_arrow;
-	public Button right_arrow;
+	public TextureButton left_arrow;
+	public TextureButton right_arrow;
 	public PanelContainer locked;
 	public TextureButton select;
 	public TextureButton selected;
@@ -44,8 +44,8 @@ public class Garage : Node2D
 		money_label.Text = get_datas.money + "$";
 		days_label.Text = "Days " + get_datas.Days;
 
-		left_arrow = (Button)GetNode("left_arrow");
-		right_arrow = (Button)GetNode("right_arrow");
+		left_arrow = (TextureButton)GetNode("left_arrow");
+		right_arrow = (TextureButton)GetNode("right_arrow");
 
 		locked = (PanelContainer)GetNode("Locked");
 		buyButton = GetNode("BuyButton") as Button;
@@ -145,6 +145,14 @@ public class Garage : Node2D
 		}
 
 	}
+
+	public void _on_BuyButton_pressed()
+	{
+		var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
+		if(get_datas.money >= 2000){
+			GD.Print("meg tudod venni");
+		}
+	}
 	
 	public void _on_right_arrow_pressed()
 	{
@@ -235,6 +243,7 @@ public class Garage : Node2D
             JObject options = new JObject(
                 new JProperty("CurrentCar", current_view_car),
                 new JProperty("Money", get_optionsplayer.money),
+				new JProperty("Zombie", get_optionsplayer.zombie),
                 new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
                 new JProperty("Cars", get_optionsplayer.Cars),
                 new JProperty("Days", get_optionsplayer.Days));

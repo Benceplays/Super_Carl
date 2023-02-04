@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/styles/BuyButtonStyles.tres" type="StyleBox" id=1]
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/images/locked.png" type="Texture" id=15]
 [ext_resource path="res://scenes/TuneComponent.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/images/valley.jpg" type="Texture" id=17]
+[ext_resource path="res://assets/images/LeftArrow-RB.png" type="Texture" id=18]
+[ext_resource path="res://assets/images/RightArrow-RB.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFont" id=2]
 size = 38
@@ -63,20 +65,23 @@ position = Vector2( 2506, 192 )
 scale = Vector2( 0.65, 0.65 )
 texture = ExtResource( 6 )
 
-[node name="left_arrow" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 243.0
-margin_right = 141.0
-margin_bottom = 328.0
-text = "<="
+[node name="left_arrow" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 0.490196 )
+margin_left = 20.0
+margin_top = 260.0
+margin_right = 145.0
+margin_bottom = 360.0
+texture_normal = ExtResource( 18 )
+expand = true
 
-[node name="right_arrow" type="Button" parent="."]
-anchor_right = 1.0
-margin_left = 880.0
-margin_top = 243.0
-margin_right = 998.0
-margin_bottom = 328.0
-text = "=>"
+[node name="right_arrow" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 0.490196 )
+margin_left = 881.0
+margin_top = 260.0
+margin_right = 1006.0
+margin_bottom = 360.0
+texture_normal = ExtResource( 19 )
+expand = true
 
 [node name="top_Hud" type="Panel" parent="."]
 margin_right = 1024.0
@@ -170,6 +175,7 @@ texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
 
 [node name="selected" type="TextureButton" parent="."]
+visible = false
 margin_left = 434.0
 margin_top = 220.0
 margin_right = 1202.0
@@ -187,4 +193,5 @@ texture = ExtResource( 17 )
 [connection signal="pressed" from="right_arrow" to="." method="_on_right_arrow_pressed"]
 [connection signal="pressed" from="top_Hud/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="top_Hud/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_BuyButton_pressed"]
 [connection signal="pressed" from="select" to="." method="_on_select_pressed"]
