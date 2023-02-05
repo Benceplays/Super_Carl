@@ -43,6 +43,9 @@ public class Bullet : KinematicBody2D
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money),
             new JProperty("Zombie", get_optionsplayer.zombie + 1),
+            new JProperty("CarHP", get_optionsplayer.carhp),
+			new JProperty("Repairkit", get_optionsplayer.repairkit),
+            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));

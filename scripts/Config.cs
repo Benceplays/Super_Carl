@@ -8,6 +8,7 @@ public class ConfigBody
     public int zombie{ get; set; }
     public int carhp{ get; set; }
     public int repairkit{ get; set; }
+    public bool is_on_lift { get; set; }
     public List<int> UnlockedCars { get; set; }
     public List<int> Cars { get; set; }
     public int Days { get; set; }

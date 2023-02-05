@@ -38,6 +38,7 @@ public class Game : Node2D
 			new JProperty("Zombie", 0),
 			new JProperty("CarHP", 100),
 			new JProperty("Repairkit", 0),
+            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));

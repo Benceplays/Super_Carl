@@ -89,6 +89,7 @@ public class Car : RigidBody2D
 			new JProperty("Zombie", get_optionsplayer.zombie),
 			new JProperty("CarHP", get_optionsplayer.carhp),
 			new JProperty("Repairkit", get_optionsplayer.repairkit),
+            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -137,6 +138,7 @@ public class Car : RigidBody2D
 			new JProperty("Zombie", get_optionsplayer.zombie),
 			new JProperty("CarHP", 100),
 			new JProperty("Repairkit", get_optionsplayer.repairkit - 1),
+            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -176,24 +178,34 @@ public class Car : RigidBody2D
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
 				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true){
-				wheel1.ApplyTorqueImpulse(delta * 10000 * speed);
-				wheel2.ApplyTorqueImpulse(delta * 10000 * speed);	
-				gas -= 1 * delta;
+					wheel1.ApplyTorqueImpulse(delta * 10000 * speed);
+					wheel2.ApplyTorqueImpulse(delta * 10000 * speed);	
+					gas -= 1 * delta;
+				}	
+			}
+		}
+		if(Input.IsActionPressed("backward")){
+			if(gas > 0){
+				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true){
+					wheel1.ApplyTorqueImpulse(-(delta * 10000 * speed));
+					wheel2.ApplyTorqueImpulse(-(delta * 10000 * speed));	
 				}	
 			}
 		}
 		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
         petrolprogress.Value = gas;
 		//GD.Print(riptimer);
-		if (this.LinearVelocity.x < 25)
-		{
-    		riptimer -= delta;
-			if(positionx <= (int) car.Position.x / 100){
-				positionx = (int) car.Position.x / 100;
+		if(!get_optionsplayer.is_on_lift){
+			if (this.LinearVelocity.x < 25)
+			{
+				riptimer -= delta;
+				if(positionx <= (int) car.Position.x / 100){
+					positionx = (int) car.Position.x / 100;
+				}
 			}
-		}
-		else{
-			riptimer = 5;
+			else{
+				riptimer = 5;
+			}
 		}
 		if(riptimer <= 0){
 			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;

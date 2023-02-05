@@ -31,6 +31,7 @@ public class Repairkit : RigidBody2D
 				new JProperty("Zombie", get_options.zombie),
 				new JProperty("CarHP", get_options.carhp),
 				new JProperty("Repairkit", get_options.repairkit + 1),
+            	new JProperty("Is_On_Lift", get_options.is_on_lift),
 				new JProperty("UnlockedCars", get_options.UnlockedCars),
 				new JProperty("Cars", get_options.Cars),
 				new JProperty("Days", get_options.Days));
