@@ -6,6 +6,8 @@ public class ConfigBody
     public int currentcar { get; set; }
     public int money { get; set; }
     public int zombie{ get; set; }
+    public int carhp{ get; set; }
+    public int repairkit{ get; set; }
     public List<int> UnlockedCars { get; set; }
     public List<int> Cars { get; set; }
     public int Days { get; set; }

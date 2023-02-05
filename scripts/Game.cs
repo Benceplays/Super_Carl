@@ -36,6 +36,8 @@ public class Game : Node2D
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money),
 			new JProperty("Zombie", 0),
+			new JProperty("CarHP", 100),
+			new JProperty("Repairkit", 0),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));

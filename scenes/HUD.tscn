@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://scripts/ReachDestination.cs" type="Script" id=8]
 [ext_resource path="res://assets/images/Petrol.png" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=4]
-size = 20
+[sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=12]
@@ -72,20 +71,39 @@ font_data = ExtResource( 1 )
 size = 20
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0, 0, 0, 0.513726 )
+
 [node name="HUD" type="CanvasLayer"]
 
-[node name="money" type="Label" parent="."]
-margin_left = 918.0
-margin_top = 9.0
-margin_right = 958.0
-margin_bottom = 23.0
+[node name="InfoPanel" type="Panel" parent="."]
+margin_left = 871.0
+margin_top = 5.0
+margin_right = 1020.0
+margin_bottom = 72.0
+
+[node name="money" type="Label" parent="InfoPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 62.0
+margin_bottom = 25.0
 custom_fonts/font = ExtResource( 7 )
 text = "Money"
 
-[node name="fps" type="Label" parent="."]
-margin_right = 90.0
-margin_bottom = 35.0
-custom_fonts/font = SubResource( 4 )
+[node name="RepairkitLabel" type="Label" parent="InfoPanel"]
+margin_left = 7.0
+margin_top = 34.0
+margin_right = 47.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 16 )
+text = "Repairkit"
 
 [node name="PausePanel" type="Panel" parent="."]
 pause_mode = 2
@@ -268,6 +286,20 @@ margin_bottom = 581.0
 value = 20.0
 texture_progress = ExtResource( 9 )
 fill_mode = 3
+
+[node name="fps" type="Label" parent="."]
+margin_right = 90.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 4 )
+
+[node name="CarHP" type="ProgressBar" parent="."]
+margin_left = 388.0
+margin_top = 576.0
+margin_right = 643.0
+margin_bottom = 590.0
+custom_styles/fg = SubResource( 17 )
+custom_styles/bg = SubResource( 18 )
+percent_visible = false
 
 [connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]

@@ -244,6 +244,8 @@ public class Garage : Node2D
                 new JProperty("CurrentCar", current_view_car),
                 new JProperty("Money", get_optionsplayer.money),
 				new JProperty("Zombie", get_optionsplayer.zombie),
+				new JProperty("CarHP", get_optionsplayer.carhp),
+				new JProperty("Repairkit", get_optionsplayer.repairkit),
                 new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
                 new JProperty("Cars", get_optionsplayer.Cars),
                 new JProperty("Days", get_optionsplayer.Days));

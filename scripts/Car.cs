@@ -35,8 +35,10 @@ public class Car : RigidBody2D
 	private Label zombielabel;
 	private Label distancelabel;
 	private Label totallabel;
+	private Label repairkitlabel;
 	private int positionx;
 	private StaticBody2D weapon;
+	private ProgressBar carhp;
 	private int zombie_money = 50;
 	public override void _Ready()
 	{
@@ -85,6 +87,8 @@ public class Car : RigidBody2D
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money + plusmoney),
 			new JProperty("Zombie", get_optionsplayer.zombie),
+			new JProperty("CarHP", get_optionsplayer.carhp),
+			new JProperty("Repairkit", get_optionsplayer.repairkit),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -107,7 +111,13 @@ public class Car : RigidBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-        moneylabel = GetNode("HUD/money") as Label;
+		string textplayer = File.ReadAllText(@"scripts/Player.json");
+		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+        moneylabel = GetNode("HUD/InfoPanel/money") as Label;
+		repairkitlabel = GetNode("HUD/InfoPanel/RepairkitLabel") as Label;
+		carhp = GetNode("HUD/CarHP") as ProgressBar;
+		carhp.Value = get_optionsplayer.carhp;
+		repairkitlabel.Text = $"Repairkit: {get_optionsplayer.repairkit}";
 		car = GetNode("/root/Game/Car") as RigidBody2D;
 		if(money < positionx){
 			money = positionx;
@@ -116,6 +126,36 @@ public class Car : RigidBody2D
 			money = (int) car.Position.x / 100;
         	moneylabel.Text = "Money: " + money;
 		}
+
+		if(Input.IsActionJustPressed("Repairkit"))
+		{
+			if(get_optionsplayer.repairkit > 0)
+			{
+				JObject options = new JObject(
+            new JProperty("CurrentCar", get_optionsplayer.currentcar),
+            new JProperty("Money", get_optionsplayer.money),
+			new JProperty("Zombie", get_optionsplayer.zombie),
+			new JProperty("CarHP", 100),
+			new JProperty("Repairkit", get_optionsplayer.repairkit - 1),
+            new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+            new JProperty("Cars", get_optionsplayer.Cars),
+            new JProperty("Days", get_optionsplayer.Days));
+        File.WriteAllText(@"scripts/Player.json", options.ToString());
+        using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+        using (JsonTextWriter writer = new JsonTextWriter(file))
+        {
+            options.WriteTo(writer);
+        }
+			}
+		}
+		if(get_optionsplayer.carhp <= 0)
+		{
+			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
+			endmenu.Visible = true;
+			GetTree().Paused = true;
+			End();
+		}
+
 		// buggos a kiíratása a moneynak
 		
 		/*if(this.Position.x > longestdistance){
