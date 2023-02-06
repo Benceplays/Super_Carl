@@ -20,9 +20,6 @@ public class OutOfPetrol : Panel
             JObject options = new JObject(
                 new JProperty("CurrentCar", get_options.currentcar),
                 new JProperty("Money", get_options.money),
-                new JProperty("Zombie", get_options.zombie),
-			    new JProperty("CarHP", get_options.carhp),
-			    new JProperty("Repairkit", get_options.repairkit),
                 new JProperty("UnlockedCars", get_options.UnlockedCars),
                 new JProperty("Cars", get_options.Cars),
                 new JProperty("Days", (get_options.Days + 1)));

@@ -40,6 +40,8 @@ public class Car : RigidBody2D
 	private StaticBody2D weapon;
 	private ProgressBar carhp;
 	private int zombie_money = 50;
+	private string path;
+	private ConfigFile config;
 	public override void _Ready()
 	{
 		weapon = GetNode("Weapon") as StaticBody2D;
@@ -80,16 +82,12 @@ public class Car : RigidBody2D
 	public void End(){
         string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
-		zombiemoney = zombie_money * get_optionsplayer.zombie;
+		zombiemoney = zombie_money * (int)Convert.ToSingle(config.GetValue("Default", "Zombie", 0));
 		int plusmoney = money + zombiemoney;
 
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money + plusmoney),
-			new JProperty("Zombie", get_optionsplayer.zombie),
-			new JProperty("CarHP", get_optionsplayer.carhp),
-			new JProperty("Repairkit", get_optionsplayer.repairkit),
-            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -112,13 +110,16 @@ public class Car : RigidBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
+		path = "res://save.cfg"; // res vagy user:
+		config = new ConfigFile();
+		config.Load(path);
 		string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
         moneylabel = GetNode("HUD/InfoPanel/money") as Label;
 		repairkitlabel = GetNode("HUD/InfoPanel/RepairkitLabel") as Label;
 		carhp = GetNode("HUD/CarHP") as ProgressBar;
-		carhp.Value = get_optionsplayer.carhp;
-		repairkitlabel.Text = $"Repairkit: {get_optionsplayer.repairkit}";
+		carhp.Value = Convert.ToSingle(config.GetValue("Default", "CarHP", 0));
+		repairkitlabel.Text = $"Repairkit: {Convert.ToSingle(config.GetValue("Default", "Repairkit", 0))}";
 		car = GetNode("/root/Game/Car") as RigidBody2D;
 		if(money < positionx){
 			money = positionx;
@@ -130,27 +131,28 @@ public class Car : RigidBody2D
 
 		if(Input.IsActionJustPressed("Repairkit"))
 		{
-			if(get_optionsplayer.repairkit > 0)
+			if(Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)) > 0)
 			{
 				JObject options = new JObject(
-            new JProperty("CurrentCar", get_optionsplayer.currentcar),
-            new JProperty("Money", get_optionsplayer.money),
-			new JProperty("Zombie", get_optionsplayer.zombie),
-			new JProperty("CarHP", 100),
-			new JProperty("Repairkit", get_optionsplayer.repairkit - 1),
-            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
-            new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
-            new JProperty("Cars", get_optionsplayer.Cars),
-            new JProperty("Days", get_optionsplayer.Days));
-        File.WriteAllText(@"scripts/Player.json", options.ToString());
-        using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
-        using (JsonTextWriter writer = new JsonTextWriter(file))
-        {
-            options.WriteTo(writer);
-        }
+				new JProperty("CurrentCar", get_optionsplayer.currentcar),
+				new JProperty("Money", get_optionsplayer.money),
+				new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
+				new JProperty("Cars", get_optionsplayer.Cars),
+				new JProperty("Days", get_optionsplayer.Days));
+				File.WriteAllText(@"scripts/Player.json", options.ToString());
+				using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
+				using (JsonTextWriter writer = new JsonTextWriter(file))
+				{
+					options.WriteTo(writer);
+				}	
+				config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)));
+				config.SetValue("Default", "CarHP", 100);
+				config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)) - 1);
+				config.SetValue("Default", "Is_On_Lift", Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", false)));
+				config.Save(path);
 			}
 		}
-		if(get_optionsplayer.carhp <= 0)
+		if(Convert.ToSingle(config.GetValue("Default", "CarHP", 0)) <= 0)
 		{
 			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
 			endmenu.Visible = true;
@@ -189,7 +191,8 @@ public class Car : RigidBody2D
 		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
         petrolprogress.Value = gas;
 		//GD.Print(riptimer);
-		if(!get_optionsplayer.is_on_lift){
+		bool is_on_lift_variable = Convert.ToBoolean(Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", 0)));
+		if(!is_on_lift_variable){
 			if (this.LinearVelocity.x < 25)
 			{
 				riptimer -= delta;

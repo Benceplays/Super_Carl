@@ -10,6 +10,8 @@ public class Lift : KinematicBody2D
 {
     private float deltatime;
     private bool lift_is_on;
+    private string path;
+    private ConfigFile config;
     public override void _Ready()
     {
 
@@ -24,10 +26,6 @@ public class Lift : KinematicBody2D
             JObject options = new JObject(
                 new JProperty("CurrentCar", get_optionsplayer.currentcar),
                 new JProperty("Money", get_optionsplayer.money),
-                new JProperty("Zombie", get_optionsplayer.zombie),
-                new JProperty("CarHP", get_optionsplayer.carhp),
-                new JProperty("Repairkit", get_optionsplayer.repairkit),
-                new JProperty("Is_On_Lift", true),
                 new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
                 new JProperty("Cars", get_optionsplayer.Cars),
                 new JProperty("Days", get_optionsplayer.Days));
@@ -37,6 +35,14 @@ public class Lift : KinematicBody2D
             {
                 options.WriteTo(writer);
             }
+            path = "res://save.cfg"; // res vagy user:
+            config = new ConfigFile();
+            config.Load(path);
+            config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)));
+            config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)));
+            config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)));
+            config.SetValue("Default", "Is_On_Lift", true);
+            config.Save(path);
         }
     }
 
@@ -50,10 +56,6 @@ public class Lift : KinematicBody2D
             JObject options = new JObject(
                 new JProperty("CurrentCar", get_optionsplayer.currentcar),
                 new JProperty("Money", get_optionsplayer.money),
-                new JProperty("Zombie", get_optionsplayer.zombie),
-                new JProperty("CarHP", get_optionsplayer.carhp),
-                new JProperty("Repairkit", get_optionsplayer.repairkit),
-                new JProperty("Is_On_Lift", false),
                 new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
                 new JProperty("Cars", get_optionsplayer.Cars),
                 new JProperty("Days", get_optionsplayer.Days));
@@ -63,6 +65,14 @@ public class Lift : KinematicBody2D
             {
                 options.WriteTo(writer);
             } 
+            path = "res://save.cfg"; // res vagy user:
+            config = new ConfigFile();
+            config.Load(path);
+            config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)) + 1);
+            config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)) - 20);
+            config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)));
+            config.SetValue("Default", "Is_On_Lift", false);
+            config.Save(path);
         }
     }
 

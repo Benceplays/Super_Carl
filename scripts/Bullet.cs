@@ -11,6 +11,8 @@ public class Bullet : KinematicBody2D
     private Vector2 enemyposition;
     private Vector2 irany;
     private float livetime;
+    public String path;
+	public ConfigFile config;
     public override void _Ready()
     {
         speed = 2000;
@@ -42,10 +44,6 @@ public class Bullet : KinematicBody2D
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money),
-            new JProperty("Zombie", get_optionsplayer.zombie + 1),
-            new JProperty("CarHP", get_optionsplayer.carhp),
-			new JProperty("Repairkit", get_optionsplayer.repairkit),
-            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -55,5 +53,13 @@ public class Bullet : KinematicBody2D
         {
             options.WriteTo(writer);
         }
+        path = "res://save.cfg"; // res vagy user:
+		config = new ConfigFile();
+		config.Load(path);
+        config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)) + 1);
+        config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)));
+        config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)));
+        config.SetValue("Default", "Is_On_Lift", Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", false)));
+		config.Save(path);
 	}
 }

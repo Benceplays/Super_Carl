@@ -8,11 +8,8 @@ using Newtonsoft.Json;
 
 public class Repairkit : RigidBody2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
+    private string path;
+	private ConfigFile config;
     public override void _Ready()
     {
         
@@ -28,10 +25,6 @@ public class Repairkit : RigidBody2D
 			JObject options = new JObject(
 				new JProperty("CurrentCar", get_options.currentcar),
 				new JProperty("Money", get_options.money),
-				new JProperty("Zombie", get_options.zombie),
-				new JProperty("CarHP", get_options.carhp),
-				new JProperty("Repairkit", get_options.repairkit + 1),
-            	new JProperty("Is_On_Lift", get_options.is_on_lift),
 				new JProperty("UnlockedCars", get_options.UnlockedCars),
 				new JProperty("Cars", get_options.Cars),
 				new JProperty("Days", get_options.Days));
@@ -42,6 +35,14 @@ public class Repairkit : RigidBody2D
 				options.WriteTo(writer);
 			}
 			QueueFree();
+			path = "res://save.cfg"; // res vagy user:
+			config = new ConfigFile();
+			config.Load(path);
+			config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)));
+			config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)));
+			config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)) + 1);
+			config.SetValue("Default", "Is_On_Lift", Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", false)));
+			config.Save(path);
         }
     }
 

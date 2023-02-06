@@ -172,10 +172,6 @@ public class Garage : Node2D
             JObject options = new JObject(
             new JProperty("CurrentCar", get_datas.currentcar),
             new JProperty("Money", curmoney),
-            new JProperty("Zombie", get_datas.zombie),
-            new JProperty("CarHP", get_datas.carhp),
-            new JProperty("Repairkit", get_datas.repairkit),
-            new JProperty("Is_On_Lift", get_datas.is_on_lift),
             new JProperty("UnlockedCars", owned_cars),
             new JProperty("Cars", get_datas.Cars),
             new JProperty("Days", get_datas.Days));
@@ -332,10 +328,6 @@ public class Garage : Node2D
             JObject options = new JObject(
                 new JProperty("CurrentCar", current_view_car),
                 new JProperty("Money", get_datas.money),
-                new JProperty("Zombie", get_datas.zombie),
-                new JProperty("CarHP", get_datas.carhp),
-                new JProperty("Repairkit", get_datas.repairkit),
-                new JProperty("Is_On_Lift", get_datas.is_on_lift),
                 new JProperty("UnlockedCars", get_datas.UnlockedCars),
                 new JProperty("Cars", get_datas.Cars),
                 new JProperty("Days", get_datas.Days));

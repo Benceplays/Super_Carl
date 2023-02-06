@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scripts/ReachDestination.cs" type="Script" id=8]
 [ext_resource path="res://assets/images/Petrol.png" type="Texture" id=9]
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0, 0, 0, 0.380392 )
 
 [sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 1 )
@@ -88,6 +91,7 @@ margin_left = 871.0
 margin_top = 5.0
 margin_right = 1020.0
 margin_bottom = 72.0
+custom_styles/panel = SubResource( 19 )
 
 [node name="money" type="Label" parent="InfoPanel"]
 margin_left = 7.0

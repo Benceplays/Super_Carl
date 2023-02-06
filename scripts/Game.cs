@@ -21,6 +21,8 @@ public class Game : Node2D
     private float time;
     private RigidBody2D car;
     public bool fps_is_on = false;
+    private string path;
+    private ConfigFile configfile;
     public override void _Ready()
     {
         Random rnd = new Random();
@@ -36,10 +38,6 @@ public class Game : Node2D
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
             new JProperty("Money", get_optionsplayer.money),
-			new JProperty("Zombie", 0),
-			new JProperty("CarHP", 100),
-			new JProperty("Repairkit", 0),
-            new JProperty("Is_On_Lift", get_optionsplayer.is_on_lift),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
             new JProperty("Days", get_optionsplayer.Days));
@@ -49,6 +47,15 @@ public class Game : Node2D
         {
             options.WriteTo(writer);
         }
+        
+        path = "res://save.cfg"; // res vagy user:
+		configfile = new ConfigFile();
+		configfile.Load(path);
+        configfile.SetValue("Default", "Zombie", 0);
+        configfile.SetValue("Default", "CarHP", 100);
+        configfile.SetValue("Default", "Repairkit", 0);
+        configfile.SetValue("Default", "Is_On_Lift", Convert.ToSingle(configfile.GetValue("Default", "Is_On_Lift", false)));
+		configfile.Save(path);
 
 	    text = File.ReadAllText(@"scripts/Player.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
