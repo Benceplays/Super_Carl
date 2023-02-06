@@ -158,12 +158,6 @@ public class Car : RigidBody2D
 			End();
 		}
 
-		// buggos a kiíratása a moneynak
-		
-		/*if(this.Position.x > longestdistance){
-			longestdistance = (int) this.Position.x;
-		}*/ //Ezt a Game.cs be kene majd atrakni szerintem de idk
-
 		/*if(Input.IsActionPressed("space") && nitrosupply > 0){
 			nitrosupply -= 1 * delta;
 			if(AppliedForce <= new Vector2(1500, 0))
@@ -186,7 +180,7 @@ public class Car : RigidBody2D
 		}
 		if(Input.IsActionPressed("backward")){
 			if(gas > 0){
-				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true){
+				if((wheel1.AngularVelocity < max_speed || wheel2.AngularVelocity < max_speed) && onfloor == true && riptimer >= 5){
 					wheel1.ApplyTorqueImpulse(-(delta * 10000 * speed));
 					wheel2.ApplyTorqueImpulse(-(delta * 10000 * speed));	
 				}	
@@ -227,12 +221,6 @@ public class Car : RigidBody2D
 			onfloor = true;
 			rotationcar = Rotation;
 		}
-		
-		/*if(Input.IsActionPressed("ui_down")){
-			if(wheel1.AngularVelocity < -max_speed || wheel2.AngularVelocity < -max_speed){
-			wheel2.ApplyTorqueImpulse(delta * -10000); 
-			}
-		}*/ 
 	}
 
 	private void _on_AreaWeapon_body_entered(KinematicBody2D enemy){
