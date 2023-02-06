@@ -11,6 +11,7 @@ public class Game : Node2D
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
+    [Export] public PackedScene psRiot;
     [Export] public PackedScene psEnemy;
     private Label fpslabel;
     private ConfigBody config;
@@ -75,6 +76,7 @@ public class Game : Node2D
                 AddChild(bus);
                 bus.AddChild(hud);
                 break;
+                
         }
         /*foreach(var item in get_options.UnlockedCars){
             GD.Print(item);
