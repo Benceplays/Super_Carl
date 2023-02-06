@@ -26,7 +26,6 @@ node_b = NodePath("SwatWheel")
 
 [node name="SwatWheel" parent="WheelHolder" instance=ExtResource( 1 )]
 position = Vector2( -20, 28 )
-scale = Vector2( 1.25, 1.25 )
 
 [node name="WheelHolder2" type="PinJoint2D" parent="."]
 position = Vector2( 193, 38 )
@@ -35,7 +34,6 @@ node_b = NodePath("SwatWheel")
 
 [node name="SwatWheel" parent="WheelHolder2" instance=ExtResource( 1 )]
 position = Vector2( -78, 26 )
-scale = Vector2( 1.25, 1.25 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
