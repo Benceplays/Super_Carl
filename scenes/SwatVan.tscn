@@ -8,7 +8,9 @@
 radius = 154.0
 height = 356.0
 
-[node name="Car" type="KinematicBody2D"]
+[node name="SwatVan" type="RigidBody2D"]
+mass = 2.34694
+gravity_scale = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -26,6 +28,7 @@ node_b = NodePath("SwatWheel")
 
 [node name="SwatWheel" parent="WheelHolder" instance=ExtResource( 1 )]
 position = Vector2( -20, 28 )
+gravity_scale = 5.0
 
 [node name="WheelHolder2" type="PinJoint2D" parent="."]
 position = Vector2( 193, 38 )
@@ -34,6 +37,7 @@ node_b = NodePath("SwatWheel")
 
 [node name="SwatWheel" parent="WheelHolder2" instance=ExtResource( 1 )]
 position = Vector2( -78, 26 )
+gravity_scale = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
