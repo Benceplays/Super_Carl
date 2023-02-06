@@ -160,8 +160,6 @@ margin_top = 296.0
 margin_right = 582.0
 margin_bottom = 314.0
 custom_fonts/font = SubResource( 5 )
-text = "Locked.
-$2000"
 align = 1
 
 [node name="select" type="TextureButton" parent="."]
