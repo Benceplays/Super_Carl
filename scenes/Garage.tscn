@@ -173,7 +173,6 @@ texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
 
 [node name="selected" type="TextureButton" parent="."]
-visible = false
 margin_left = 434.0
 margin_top = 220.0
 margin_right = 1202.0

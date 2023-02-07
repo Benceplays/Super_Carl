@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/SwatWheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/weapon.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/Swat-Van-body.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Car.cs" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 154.0
@@ -11,6 +12,7 @@ height = 356.0
 [node name="Car" type="RigidBody2D"]
 mass = 2.34694
 gravity_scale = 5.0
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -22,21 +24,19 @@ scale = Vector2( 0.157591, 0.340909 )
 polygon = PoolVector2Array( -1079.16, -232.4, -1098.2, -220.667, -1098.2, 184.133, -1117.23, 184.133, -1117.23, 210.533, -1085.5, 210.533, -1060.12, 219.333, -882.448, 219.333, -844.375, 154.8, -768.228, 119.6, -603.244, 119.6, -514.407, 157.733, -476.334, 213.467, 545.297, 216.4, 583.37, 154.8, 665.862, 116.667, 830.846, 119.6, 919.683, 160.667, 957.757, 207.6, 1148.12, 213.467, 1154.47, 184.133, 1154.47, 143.067, 1154.47, 58, 1103.7, 25.7333, 970.448, 11.0667, 932.375, -3.59999, 811.809, -18.2667, 811.809, -56.4, 780.082, -56.4, 767.391, -21.2, 722.972, -15.3333, 608.752, -30, 615.098, -94.5333, 589.716, -97.4667, 570.679, -138.533, 513.569, -141.467, 513.569, -170.8, 564.334, -203.067, 545.297, -235.333, 437.423, -235.333, 437.423, -252.933, 272.439, -252.933, 266.094, -232.4, 215.329, -232.4, 177.256, -250, -1003.01, -247.067, -1028.4, -235.333 )
 
 [node name="WheelHolder" type="PinJoint2D" parent="."]
-position = Vector2( -91, 35 )
+position = Vector2( -111, 64 )
 node_a = NodePath("..")
-node_b = NodePath("SwatWheel")
+node_b = NodePath("Wheel")
 
-[node name="SwatWheel" parent="WheelHolder" instance=ExtResource( 1 )]
-position = Vector2( -20, 28 )
+[node name="Wheel" parent="WheelHolder" instance=ExtResource( 1 )]
 gravity_scale = 5.0
 
 [node name="WheelHolder2" type="PinJoint2D" parent="."]
-position = Vector2( 193, 38 )
+position = Vector2( 115, 64 )
 node_a = NodePath("..")
-node_b = NodePath("SwatWheel")
+node_b = NodePath("Wheel")
 
-[node name="SwatWheel" parent="WheelHolder2" instance=ExtResource( 1 )]
-position = Vector2( -78, 26 )
+[node name="Wheel" parent="WheelHolder2" instance=ExtResource( 1 )]
 gravity_scale = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -46,7 +46,7 @@ offset_h = 1.0
 
 [node name="Weapon" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 2, -24 )
+position = Vector2( 3, -49 )
 
 [node name="Sprite" type="Sprite" parent="Weapon"]
 position = Vector2( 2, -60 )
