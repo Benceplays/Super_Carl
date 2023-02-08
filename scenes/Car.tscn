@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/car-body.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Car.cs" type="Script" id=3]
 [ext_resource path="res://assets/images/weapon.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/images/nitrous.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 435.996
@@ -64,5 +65,12 @@ polygon = PoolVector2Array( -10, -56, -10, -66, 77, -65, 77, -58, 29, -57, 26, -
 position = Vector2( 941, 0 )
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="Nitro" type="Sprite" parent="."]
+visible = false
+position = Vector2( -202, 31 )
+rotation = 4.71239
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
 
 [connection signal="body_entered" from="AreaWeapon" to="." method="_on_AreaWeapon_body_entered"]

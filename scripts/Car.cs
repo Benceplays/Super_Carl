@@ -42,8 +42,10 @@ public class Car : RigidBody2D
 	private int zombie_money = 50;
 	private string path;
 	private ConfigFile config;
+	private Sprite NitroImage;
 	public override void _Ready()
 	{
+		NitroImage = GetNode("Nitro") as Sprite;
 		weapon = GetNode("Weapon") as StaticBody2D;
 		kocsi = GetNode("Sprite") as Sprite;
 		wheel1 = GetNode("WheelHolder/Wheel") as RigidBody2D;
@@ -160,16 +162,18 @@ public class Car : RigidBody2D
 			End();
 		}
 
-		/*if(Input.IsActionPressed("space") && nitrosupply > 0){
+		if(Input.IsActionPressed("space") && nitrosupply > 0 && onfloor){
+			NitroImage.Visible = true;
 			nitrosupply -= 1 * delta;
 			if(AppliedForce <= new Vector2(1500, 0))
 			{
-				ApplyImpulse(new Vector2(kocsi.Texture.GetWidth()/4, kocsi.Texture.GetHeight()/4), new Vector2(50, 0));
+					wheel1.ApplyTorqueImpulse((delta * 10000 * speed) / 2);
+					wheel2.ApplyTorqueImpulse((delta * 10000 * speed) / 2);	
 			}
 		}
 		else{
-			//impulse = new Vector2(0, 0);
-		}*/
+			NitroImage.Visible = false;
+		}
 		
 		if(Input.IsActionPressed("forward")){
 			if(gas > 0){
