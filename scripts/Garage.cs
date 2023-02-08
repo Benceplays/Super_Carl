@@ -174,7 +174,8 @@ public class Garage : Node2D
             new JProperty("Money", curmoney),
             new JProperty("UnlockedCars", owned_cars),
             new JProperty("Cars", get_datas.Cars),
-            new JProperty("Days", get_datas.Days));
+            new JProperty("Days", get_datas.Days),
+		    new JProperty("Maps", get_datas.Maps));
             File.WriteAllText(@"scripts/Player.json", options.ToString());
             using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
             using (JsonTextWriter writer = new JsonTextWriter(file))
