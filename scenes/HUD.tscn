@@ -164,6 +164,7 @@ text = "Back To Menu"
 
 [node name="OutOfPetrol" type="Panel" parent="."]
 pause_mode = 2
+visible = false
 margin_left = 390.0
 margin_top = 111.0
 margin_right = 642.0
@@ -219,6 +220,7 @@ custom_styles/normal = ExtResource( 5 )
 text = "Garage"
 
 [node name="ReachDestination" type="Panel" parent="."]
+visible = false
 margin_left = 390.0
 margin_top = 111.0
 margin_right = 642.0

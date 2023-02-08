@@ -28,6 +28,7 @@ public class Garage : Node2D
     private Label lockedLabel;
     public int buy_price;
     [Export] private PackedScene tune_component;
+    [Export] public PackedScene psnotification;
     public Node2D[] tune_cards;
     public override void _Ready()
     {
@@ -162,7 +163,6 @@ public class Garage : Node2D
 
     public void _on_BuyButton_pressed()
     {
-        GD.Print("fasz");
         var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
         if (get_datas.money >= buy_price)
         {
@@ -219,6 +219,12 @@ public class Garage : Node2D
                 //GD.Print(tunings_split[i]);
             }
             //
+        }else{
+            GD.Print("nocash");
+            Node2D notification = (Node2D)psnotification.Instance();
+            notification.Set("text","Nincs elég \n pénzed a kocsi \n megvételéhez!");
+            notification.Set("color","red");
+            AddChild(notification);
         }
     }
 

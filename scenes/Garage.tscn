@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/styles/BuyButtonStyles.tres" type="StyleBox" id=1]
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/images/valley.jpg" type="Texture" id=17]
 [ext_resource path="res://assets/images/LeftArrow-RB.png" type="Texture" id=18]
 [ext_resource path="res://assets/images/RightArrow-RB.png" type="Texture" id=19]
+[ext_resource path="res://scenes/Notification.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=2]
 size = 38
@@ -43,6 +44,7 @@ font_data = ExtResource( 4 )
 [node name="Garage" type="Node2D"]
 script = ExtResource( 8 )
 tune_component = ExtResource( 16 )
+psnotification = ExtResource( 20 )
 
 [node name="mid_hud" type="PanelContainer" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
