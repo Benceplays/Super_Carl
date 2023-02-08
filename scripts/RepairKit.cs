@@ -27,7 +27,8 @@ public class Repairkit : RigidBody2D
 				new JProperty("Money", get_options.money),
 				new JProperty("UnlockedCars", get_options.UnlockedCars),
 				new JProperty("Cars", get_options.Cars),
-				new JProperty("Days", get_options.Days));
+				new JProperty("Days", get_options.Days),
+				new JProperty("Maps", get_options.Maps));
 			File.WriteAllText(@"scripts/Player.json", options.ToString());
 			using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
 			using (JsonTextWriter writer = new JsonTextWriter(file))
