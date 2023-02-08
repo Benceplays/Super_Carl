@@ -13,6 +13,18 @@ public class MapSelector : Node2D
         
     }
 
+    public void _on_Map1_pressed(){
+        var game = GetNode("../Game") as Node2D;
+        game.Set("map", 1);
+        GetTree().ChangeScene("res://scenes/Game.tscn");
+    }
+
+    public void _on_Map2_pressed(){
+        var game = GetNode("../Game") as Node2D;
+        game.Set("map", 2);
+        GetTree().ChangeScene("res://scenes/Game.tscn");
+    }
+
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
