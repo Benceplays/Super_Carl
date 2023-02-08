@@ -637,8 +637,8 @@ psRiot = ExtResource( 20 )
 psEnemy = ExtResource( 15 )
 
 [node name="Destination" parent="." instance=ExtResource( 19 )]
-position = Vector2( 105397, -18580 )
-z_index = -786
+position = Vector2( 5974, -410 )
+z_index = 488
 
 [node name="Valley" type="Sprite" parent="."]
 position = Vector2( 3918, -509 )
