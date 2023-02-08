@@ -16,6 +16,7 @@ public class ReachDestination : Panel
     public void _on_OK_pressed()
     {
         GetTree().ChangeScene("res://scenes/Garage.tscn");
+        GetTree().Paused = false;
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
