@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 public class Game : Node2D
 {
+    public int map;
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
@@ -25,6 +26,7 @@ public class Game : Node2D
     private ConfigFile configfile;
     public override void _Ready()
     {
+        GD.Print(map);
         Random rnd = new Random();
         for (int i = 0; i < 15; i++)
         {
