@@ -13,14 +13,17 @@ public class MapSelector : Node2D
     private string path;
     private ConfigFile config;
     private string textplayer;
+    private RichTextLabel Days;
     public override void _Ready()
     {
+        Days = GetNode("Days") as RichTextLabel;
         path = "res://save.cfg";
 		config = new ConfigFile();
         
         textplayer = File.ReadAllText(@"scripts/Player.json");
+        var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+        Days.Text = "Days: " + get_optionsplayer.Days;
     }
-
     public void _on_Map1_pressed(){
         var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
         if(get_optionsplayer.Maps.Contains(1)){
@@ -38,10 +41,7 @@ public class MapSelector : Node2D
             GetTree().ChangeScene("res://scenes/Game.tscn");
         }
     }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    public void _on_Garage_pressed(){
+        GetTree().ChangeScene("res://scenes/Garage.tscn");
+    }
 }

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/MapSelector.cs" type="Script" id=1]
 [ext_resource path="res://assets/images/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/LeftArrow-RB.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/ground.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 195, 123 )
 
 [node name="MapSelector" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,5 +26,19 @@ margin_right = 711.0
 margin_bottom = 366.0
 texture_normal = ExtResource( 2 )
 
+[node name="Garage" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 3 )
+
+[node name="Days" type="RichTextLabel" parent="."]
+margin_left = 2.0
+margin_top = 555.0
+margin_right = 108.0
+margin_bottom = 595.0
+custom_styles/normal = SubResource( 1 )
+text = "Days"
+
 [connection signal="pressed" from="Map1" to="." method="_on_Map1_pressed"]
 [connection signal="pressed" from="Map2" to="." method="_on_Map2_pressed"]
+[connection signal="pressed" from="Garage" to="." method="_on_Garage_pressed"]
