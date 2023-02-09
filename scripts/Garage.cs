@@ -316,7 +316,7 @@ public class Garage : Node2D
 
     public void _on_Next_pressed()
     {
-        GetTree().ChangeScene("res://scenes/Game.tscn");
+        GetTree().ChangeScene("res://scenes/MapSelector.tscn");
     }
 
     public void _on_Back_pressed()

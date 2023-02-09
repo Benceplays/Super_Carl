@@ -3,25 +3,25 @@ using System;
 
 public class MapSelector : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
+    private string path;
+    private ConfigFile config;
     public override void _Ready()
     {
-        
+        path = "res://save.cfg";
+		config = new ConfigFile();
+		config.SetValue("Default", "MapNumber", 0);
+		config.Save(path);
     }
 
     public void _on_Map1_pressed(){
-        var game = GetNode("../Game") as Node2D;
-        game.Set("map", 1);
+		config.SetValue("Default", "MapNumber", 1);
+		config.Save(path);
         GetTree().ChangeScene("res://scenes/Game.tscn");
     }
 
     public void _on_Map2_pressed(){
-        var game = GetNode("../Game") as Node2D;
-        game.Set("map", 2);
+		config.SetValue("Default", "MapNumber", 2);
+		config.Save(path);
         GetTree().ChangeScene("res://scenes/Game.tscn");
     }
 
