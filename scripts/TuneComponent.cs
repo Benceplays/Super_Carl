@@ -21,10 +21,14 @@ public class TuneComponent : Node2D
     public ProgressBar lvlProgress;
     public Label name;
     public int currentLvl;
+    [Export] public PackedScene psnotification;
+    public Node2D garage;
+
     public int maxLvl; //itt a maxlvl számolása nem nullától van, tehát ha 0;1;2-es szintek vannak akkor a maximalis szint 3
     public int upgrade_price;
     public override void _Ready()
     {
+        garage = (Node2D)GetNode("/root/Garage");
         image = (Sprite)GetNode("Panel/icon");
         lvlProgress = (ProgressBar)GetNode("Panel/lvlProgress");
         lvlProgress.Value = currentLvl;
@@ -34,7 +38,7 @@ public class TuneComponent : Node2D
             case "engine":
                 maxLvl = 2;
                 upgrade_price = 250;
-                
+
                 break;
             case "nitro":
                 maxLvl = 3;
@@ -76,7 +80,7 @@ public class TuneComponent : Node2D
                 new JProperty("UnlockedCars", get_datas.UnlockedCars),
                 new JProperty("Cars", get_datas.Cars),
                 new JProperty("Days", get_datas.Days),
-				new JProperty("Maps", get_datas.Maps));
+                new JProperty("Maps", get_datas.Maps));
                 File.WriteAllText(@"scripts/Player.json", options.ToString());
                 using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
                 using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -86,6 +90,19 @@ public class TuneComponent : Node2D
                 upgrade_price *= currentLvl + 1;
 
 
+                Node2D notification = (Node2D)psnotification.Instance();
+                notification.Set("text", "Sikeresen megvásároltad a tuning elemet!");
+                notification.Set("color", "green");
+                garage.AddChild(notification);
+
+            }
+            else
+            {
+                GD.Print("nocash");
+                Node2D notification = (Node2D)psnotification.Instance();
+                notification.Set("text", "Nincs elég pénzed a tuning elem megvételéhez!");
+                notification.Set("color", "red");
+                garage.AddChild(notification);
             }
         }
     }
@@ -162,9 +179,9 @@ public class TuneComponent : Node2D
 
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    //  public override void _Process(float delta)
+    //  {
+    //      
+    //  }
 }
