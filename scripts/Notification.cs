@@ -7,6 +7,7 @@ public class Notification : Node2D
     // private int a = 2;
     // private string b = "text";
     public Panel panel;
+    public Sprite img;
     public Panel line;
     public bool finished = false;
     public bool ended = false;
@@ -17,13 +18,24 @@ public class Notification : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        img = (Sprite)GetNode("Panel/Sprite");
         line = (Panel)GetNode("Panel/Panel2");
         panel = (Panel)GetNode("Panel");
         label = (Label)GetNode("Panel/Text");
+
         label.Text = text;
         switch(color){
             case "red":
             line.Modulate = Color.Color8((byte)255,(byte)0,(byte)0,(byte)255);
+            img.Texture = (Texture)ResourceLoader.Load("res://assets/images/error.png");
+            break;
+            case "green":
+            line.Modulate = Color.Color8((byte)0,(byte)255,(byte)0,(byte)255);
+            img.Texture = (Texture)ResourceLoader.Load("res://assets/images/tick.png");
+            break;
+            case "yellow":
+            line.Modulate = Color.Color8(240, 209, 10,255);
+            img.Texture = (Texture)ResourceLoader.Load("res://assets/images/warning.png");
             break;
         }
     }
@@ -48,7 +60,6 @@ public class Notification : Node2D
             if (finished)
             {
                 time++;
-                GD.Print(time);
                 if (time >= 120 && time != 2000)
                 {
                     time = 2000;
