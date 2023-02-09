@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 
 public class Game : Node2D
 {
+    [Export] public PackedScene psMap1;
+    [Export] public PackedScene psMap2;
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
@@ -28,7 +30,16 @@ public class Game : Node2D
         path = "res://save.cfg";
 		configfile = new ConfigFile();
         configfile.Load(path);
-        GD.Print(Convert.ToSingle(configfile.GetValue("Default", "MapNumber", 0)));
+        switch(Convert.ToSingle(configfile.GetValue("Default", "MapNumber", 0))){
+            case 1:
+                Node2D map1 = (Node2D)psMap1.Instance();
+                AddChild(map1);
+                break;
+            case 2:
+                Node2D map2 = (Node2D)psMap2.Instance();
+                AddChild(map2);
+                break;
+        }
         
         Random rnd = new Random();
         for (int i = 0; i < 15; i++)
