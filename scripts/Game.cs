@@ -60,7 +60,6 @@ public class Game : Node2D
         configfile.SetValue("Default", "Zombie", 0);
         configfile.SetValue("Default", "CarHP", 100);
         configfile.SetValue("Default", "Repairkit", 10);
-        configfile.SetValue("Default", "Is_On_Lift", Convert.ToSingle(configfile.GetValue("Default", "Is_On_Lift", false)));
         configfile.Save(path);
 
         text = File.ReadAllText(@"scripts/Player.json");

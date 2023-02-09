@@ -39,9 +39,6 @@ public class Lift : KinematicBody2D
             path = "res://save.cfg"; // res vagy user:
             config = new ConfigFile();
             config.Load(path);
-            config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)));
-            config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)));
-            config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)));
             config.SetValue("Default", "Is_On_Lift", true);
             config.Save(path);
         }
@@ -83,7 +80,7 @@ public class Lift : KinematicBody2D
         {
             if(this.Position != new Vector2(0, 1000))
             {
-                this.MoveLocalY(-(50 * delta));
+                this.MoveLocalY(-(100 * delta));
             }
         }
     }
