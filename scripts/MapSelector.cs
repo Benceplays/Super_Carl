@@ -9,8 +9,6 @@ public class MapSelector : Node2D
     {
         path = "res://save.cfg";
 		config = new ConfigFile();
-		config.SetValue("Default", "MapNumber", 0);
-		config.Save(path);
     }
 
     public void _on_Map1_pressed(){

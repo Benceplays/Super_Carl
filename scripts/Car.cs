@@ -45,6 +45,9 @@ public class Car : RigidBody2D
 	private Sprite NitroImage;
 	public override void _Ready()
 	{
+		path = "res://save.cfg"; // res vagy user:
+		config = new ConfigFile();
+		config.Load(path);
 		NitroImage = GetNode("Nitro") as Sprite;
 		weapon = GetNode("Weapon") as StaticBody2D;
 		kocsi = GetNode("Sprite") as Sprite;
@@ -86,6 +89,8 @@ public class Car : RigidBody2D
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
 		zombiemoney = zombie_money * (int)Convert.ToSingle(config.GetValue("Default", "Zombie", 0));
 		int plusmoney = money + zombiemoney;
+		config.SetValue("Default", "Money", Convert.ToSingle(config.GetValue("Default", "Money", 0)));
+		config.Save(path);
 
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
@@ -148,10 +153,8 @@ public class Car : RigidBody2D
 				{
 					options.WriteTo(writer);
 				}	
-				config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)));
 				config.SetValue("Default", "CarHP", 100);
 				config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)) - 1);
-				config.SetValue("Default", "Is_On_Lift", Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", false)));
 				config.Save(path);
 			}
 		}
