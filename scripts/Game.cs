@@ -42,10 +42,10 @@ public class Game : Node2D
         }
         
         Random rnd = new Random();
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 30; i++)
         {
             Node2D enemy = (Node2D)psEnemy.Instance();
-            enemy.Position = new Vector2(rnd.Next(10000, 100000), -rnd.Next(10000, 15000));
+            enemy.Position = new Vector2(rnd.Next(3000, 100000), -rnd.Next(10000, 15000));
             AddChild(enemy);
         }
 

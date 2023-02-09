@@ -45,6 +45,7 @@ public class Car : RigidBody2D
 	private Sprite NitroImage;
 	public override void _Ready()
 	{
+
 		path = "res://save.cfg"; // res vagy user:
 		config = new ConfigFile();
 		config.Load(path);
@@ -128,6 +129,7 @@ public class Car : RigidBody2D
 		carhp.Value = Convert.ToSingle(config.GetValue("Default", "CarHP", 0));
 		repairkitlabel.Text = $"Repairkit: {Convert.ToSingle(config.GetValue("Default", "Repairkit", 0))}";
 		car = GetNode("/root/Game/Car") as RigidBody2D;
+		GD.Print(car.Position);
 		if(money < positionx){
 			money = positionx;
        		moneylabel.Text = "Money: " + money;

@@ -27,7 +27,7 @@ public class Enemy : KinematicBody2D
 		var collision = MoveAndCollide(velocity * delta);
 		Vector2 moveVector = new Vector2(0, 0);
 		moveVector.x -= 20;
-		Position += moveVector*10*delta;
+		Position += moveVector*30*delta;
 		deltaplus = delta;
 	}
 	private void _on_ZombieHitbox_body_entered(KinematicBody2D body)
