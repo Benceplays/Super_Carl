@@ -43,18 +43,18 @@ public class Game : Node2D
         }
         
         Random rnd = new Random();
-        for (int i = 0; i < 30; i++)
-        {
-            Node2D enemy = (Node2D)psEnemy.Instance();
-            int width = rnd.Next(7000, 100000);
-            enemy.Position = new Vector2(width, -(width / 5));
-            AddChild(enemy);
-        }
-        for (int i = 0; i < 15; i++)
+        //for (int i = 0; i < 1; i++)
+        //{
+        Node2D enemy = (Node2D)psEnemy.Instance();
+        int width = rnd.Next(7000, 100000);
+        enemy.Position = new Vector2(width, -(width / 5));
+        AddChild(enemy);
+        //}
+        for (int i = 0; i < 15; i++)// itt akartál dolgozni
         {
             Node2D repairkit = (Node2D)psRepairkit.Instance();
-            int width = rnd.Next(1000, 100000);
-            repairkit.Position = new Vector2(width, -(50000));
+            int width3 = rnd.Next(1000, 100000);
+            repairkit.Position = new Vector2(width3, -(50000));
             AddChild(repairkit);
         }
 

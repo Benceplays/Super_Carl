@@ -14,7 +14,9 @@ public class Lift : KinematicBody2D
     private ConfigFile config;
     public override void _Ready()
     {
-
+        if(8000 > -8000){
+            GD.Print("asdf");
+        }
     }
     public void _on_LiftUpArea_body_entered(KinematicBody2D body)
     {
@@ -67,9 +69,6 @@ public class Lift : KinematicBody2D
             path = "res://save.cfg"; // res vagy user:
             config = new ConfigFile();
             config.Load(path);
-            config.SetValue("Default", "Zombie", Convert.ToSingle(config.GetValue("Default", "Zombie", 0)) + 1);
-            config.SetValue("Default", "CarHP", Convert.ToSingle(config.GetValue("Default", "CarHP", 0)) - 20);
-            config.SetValue("Default", "Repairkit", Convert.ToSingle(config.GetValue("Default", "Repairkit", 0)));
             config.SetValue("Default", "Is_On_Lift", false);
             config.Save(path);
         }
@@ -79,9 +78,10 @@ public class Lift : KinematicBody2D
     {
         if(lift_is_on == true)
         {
-            if(this.Position != new Vector2(0, 1000))
+            GD.Print(this.Position);
+            if(this.Position >= new Vector2(0, -2060))
             {
-                this.MoveLocalY(-(100 * delta));
+                this.MoveLocalY(-(250 * delta));
             }
         }
     }

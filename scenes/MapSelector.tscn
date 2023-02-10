@@ -30,8 +30,8 @@ texture_normal = ExtResource( 2 )
 [node name="Garage" type="TextureButton" parent="."]
 margin_left = 15.0
 margin_top = 13.0
-margin_right = 168.0
-margin_bottom = 90.0
+margin_right = 118.0
+margin_bottom = 60.0
 texture_normal = ExtResource( 3 )
 expand = true
 
