@@ -45,7 +45,8 @@ public class Game : Node2D
         for (int i = 0; i < 30; i++)
         {
             Node2D enemy = (Node2D)psEnemy.Instance();
-            enemy.Position = new Vector2(rnd.Next(3000, 100000), -rnd.Next(10000, 15000));
+            int width = rnd.Next(3000, 100000);
+            enemy.Position = new Vector2(width, -(width / 5));
             AddChild(enemy);
         }
 
