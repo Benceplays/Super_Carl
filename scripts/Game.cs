@@ -15,6 +15,7 @@ public class Game : Node2D
     [Export] public PackedScene psHUD;
     [Export] public PackedScene psRiot;
     [Export] public PackedScene psEnemy;
+    [Export] public PackedScene psRepairkit;
     private Label fpslabel;
     private ConfigBody config;
     private string text;
@@ -45,9 +46,16 @@ public class Game : Node2D
         for (int i = 0; i < 30; i++)
         {
             Node2D enemy = (Node2D)psEnemy.Instance();
-            int width = rnd.Next(3000, 100000);
+            int width = rnd.Next(7000, 100000);
             enemy.Position = new Vector2(width, -(width / 5));
             AddChild(enemy);
+        }
+        for (int i = 0; i < 15; i++)
+        {
+            Node2D repairkit = (Node2D)psRepairkit.Instance();
+            int width = rnd.Next(1000, 100000);
+            repairkit.Position = new Vector2(width, -(50000));
+            AddChild(repairkit);
         }
 
         string textplayer = File.ReadAllText(@"scripts/Player.json");
@@ -71,7 +79,7 @@ public class Game : Node2D
         configfile.Load(path);
         configfile.SetValue("Default", "Zombie", 0);
         configfile.SetValue("Default", "CarHP", 100);
-        configfile.SetValue("Default", "Repairkit", 10);
+        configfile.SetValue("Default", "Repairkit", 0);
         configfile.Save(path);
 
         text = File.ReadAllText(@"scripts/Player.json");

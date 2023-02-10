@@ -13,6 +13,7 @@ height = 1058.01
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 position = Vector2( 2, 1 )
+z_index = 100
 mass = 2.34694
 gravity_scale = 5.0
 script = ExtResource( 3 )
@@ -45,7 +46,7 @@ gravity_scale = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 10, 10 )
 
 [node name="Weapon" type="StaticBody2D" parent="."]
 visible = false

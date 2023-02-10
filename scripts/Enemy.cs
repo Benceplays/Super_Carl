@@ -14,12 +14,19 @@ public class Enemy : KinematicBody2D
 	private AnimatedSprite zombie;
 	private string path;
 	private ConfigFile config;
+	private CollisionShape2D enemyarea;
 	public override void _Ready()
 	{
 		//enemy = GetNode("Enemy") as KinematicBody2D;
 		timer = GetNode("ZombieNyek") as Timer;
 		zombie = GetNode("Zombie") as AnimatedSprite;
 		zombie.Play("Zombie-run");
+		enemyarea = GetNode("ZombieHitbox/CollisionShape2D") as CollisionShape2D;
+		string textplayer = File.ReadAllText(@"scripts/Player.json");
+		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
+		if(get_optionsplayer.currentcar == 2){
+			enemyarea.Scale = new Vector2(3, 1);
+		}
 	}
 	public override void _Process(float delta)
 	{
@@ -29,8 +36,6 @@ public class Enemy : KinematicBody2D
 		moveVector.x -= 20;
 		Position += moveVector*30*delta;
 		deltaplus = delta;
-		// ide jon h ne lokje el
-		//if()
 	}
 	private void _on_ZombieHitbox_body_entered(KinematicBody2D body)
 	{

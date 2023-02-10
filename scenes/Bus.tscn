@@ -13,6 +13,7 @@ height = 458.0
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 position = Vector2( 1, 0 )
+z_index = 100
 gravity_scale = 5.0
 script = ExtResource( 3 )
 psBullet = ExtResource( 5 )

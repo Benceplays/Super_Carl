@@ -11,6 +11,7 @@ radius = 154.0
 height = 356.0
 
 [node name="Car" type="RigidBody2D"]
+z_index = 100
 mass = 2.34694
 gravity_scale = 5.0
 script = ExtResource( 4 )
@@ -42,7 +43,7 @@ gravity_scale = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 10, 10 )
+zoom = Vector2( 2, 2 )
 offset_h = 1.0
 
 [node name="Weapon" type="StaticBody2D" parent="."]

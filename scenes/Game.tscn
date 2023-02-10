@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Repairkit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/SwatVan.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Map1.tscn" type="PackedScene" id=21]
@@ -19,3 +20,4 @@ psBus = ExtResource( 4 )
 psHUD = ExtResource( 3 )
 psRiot = ExtResource( 20 )
 psEnemy = ExtResource( 15 )
+psRepairkit = ExtResource( 5 )

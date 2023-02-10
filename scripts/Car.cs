@@ -90,8 +90,6 @@ public class Car : RigidBody2D
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
 		zombiemoney = zombie_money * (int)Convert.ToSingle(config.GetValue("Default", "Zombie", 0));
 		int plusmoney = money + zombiemoney;
-		config.SetValue("Default", "Money", Convert.ToSingle(config.GetValue("Default", "Money", 0)));
-		config.Save(path);
 
         JObject options = new JObject(
             new JProperty("CurrentCar", get_optionsplayer.currentcar),
@@ -122,6 +120,8 @@ public class Car : RigidBody2D
 		path = "res://save.cfg"; // res vagy user:
 		config = new ConfigFile();
 		config.Load(path);
+		config.SetValue("Default", "Money", money);
+		config.Save(path);
 		string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
         moneylabel = GetNode("HUD/InfoPanel/money") as Label;
