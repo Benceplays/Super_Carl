@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/images/explosive_barrel.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Explosive.cs" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Explosive" type="RigidBody2D"]
+gravity_scale = 5.0
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+speed_scale = 2.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 2, 3 )
+scale = Vector2( 0.65, 0.65 )
+polygon = PoolVector2Array( -63.0769, -103.077, 55.3846, -103.077, 53.8462, -98.4615, 50.7692, -96.9231, 55.3846, -63.0769, 55.3846, 52.3077, 56.9231, 92.3077, -63.0769, 92.3077, -61.5385, 52.3077, -61.5385, -61.5385 )
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2( 0.65, 0.65 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -61.5385, -100, 60, -100, 60, -93.8462, 55.3846, -92.3077, 60, -53.8462, 60, 60, 61.5385, 98.4615, -61.5385, 98.4615, -60, 38.4615, -60, -50.7692 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
