@@ -30,7 +30,7 @@ public class Enemy : KinematicBody2D
 		Position += moveVector*30*delta;
 		deltaplus = delta;
 		// ide jon h ne lokje el
-		if()
+		//if()
 	}
 	private void _on_ZombieHitbox_body_entered(KinematicBody2D body)
 	{
