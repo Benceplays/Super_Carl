@@ -10,31 +10,9 @@ public class Repairkit : RigidBody2D
 {
     private string path;
 	private ConfigFile config;
-    public override void _Ready()
-    {
-        
-    }
-
-
     public void _on_RepairkitArea_body_entered(KinematicBody2D body)
     {
         if (body.IsInGroup("car")){
-			string text = File.ReadAllText(@"scripts/Player.json");
-			var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-
-			JObject options = new JObject(
-				new JProperty("CurrentCar", get_options.currentcar),
-				new JProperty("Money", get_options.money),
-				new JProperty("UnlockedCars", get_options.UnlockedCars),
-				new JProperty("Cars", get_options.Cars),
-				new JProperty("Days", get_options.Days),
-				new JProperty("Maps", get_options.Maps));
-			File.WriteAllText(@"scripts/Player.json", options.ToString());
-			using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
-			using (JsonTextWriter writer = new JsonTextWriter(file))
-			{
-				options.WriteTo(writer);
-			}
 			QueueFree();
 			path = "res://save.cfg"; // res vagy user:
 			config = new ConfigFile();
@@ -46,11 +24,4 @@ public class Repairkit : RigidBody2D
 			config.Save(path);
         }
     }
-
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
