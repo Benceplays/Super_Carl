@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/music/music.mp3" type="AudioStream" id=1]
 [ext_resource path="res://scripts/SoundController.cs" type="Script" id=2]
+[ext_resource path="res://assets/music/Phonk Killer - TENEBRIS.mp3" type="AudioStream" id=3]
 
 [node name="SoundController" type="Node2D"]
+pause_mode = 2
+position = Vector2( 512, 300 )
 script = ExtResource( 2 )
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 497, 298 )
-stream = ExtResource( 1 )
+pause_mode = 2
+stream = ExtResource( 3 )
 autoplay = true

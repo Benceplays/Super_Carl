@@ -15,6 +15,7 @@ public class Enemy : KinematicBody2D
 	private string path;
 	private ConfigFile config;
 	private CollisionShape2D enemyarea;
+	private int stopzombie = 1;
 	public override void _Ready()
 	{
 		//enemy = GetNode("Enemy") as KinematicBody2D;
@@ -34,7 +35,7 @@ public class Enemy : KinematicBody2D
 		var collision = MoveAndCollide(velocity * delta);
 		Vector2 moveVector = new Vector2(0, 0);
 		moveVector.x -= 20;
-		Position += moveVector*30*delta;
+		Position += moveVector*30*delta * stopzombie;
 		deltaplus = delta;
 	}
 	private void _on_ZombieHitbox_body_entered(KinematicBody2D body)
@@ -46,6 +47,11 @@ public class Enemy : KinematicBody2D
 			MoveAndSlide(velocity * force * deltaplus);
 			zombie.Stop();
 			File_write();
+		}
+		
+		if (body.IsInGroup("box") || body.IsInGroup("plank") || body.IsInGroup("explosive")){
+			stopzombie = 0;
+			zombie.Stop();
 		}
 	}
 	public void File_write()

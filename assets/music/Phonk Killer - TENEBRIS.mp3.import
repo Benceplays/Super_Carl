@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Phonk Killer - TENEBRIS.mp3-c95699926fa7e381549b565e8513686b.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Phonk Killer - TENEBRIS.mp3"
+dest_files=[ "res://.import/Phonk Killer - TENEBRIS.mp3-c95699926fa7e381549b565e8513686b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

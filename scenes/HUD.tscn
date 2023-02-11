@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/images/nitrousa.png" type="Texture" id=10]
 [ext_resource path="res://assets/images/money.png" type="Texture" id=11]
 [ext_resource path="res://assets/images/repairkit.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/flag.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/grabber.png" type="Texture" id=14]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.721569 )
@@ -92,6 +94,15 @@ bg_color = Color( 0.00784314, 0.580392, 1, 1 )
 
 [sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxLine" id=23]
+color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -270,10 +281,10 @@ custom_styles/normal = ExtResource( 5 )
 text = "Ok"
 
 [node name="fps" type="Label" parent="."]
-margin_left = 929.0
-margin_top = 7.0
-margin_right = 964.0
-margin_bottom = 42.0
+margin_left = 925.0
+margin_top = 20.0
+margin_right = 960.0
+margin_bottom = 55.0
 custom_fonts/font = SubResource( 4 )
 
 [node name="CarHP" type="ProgressBar" parent="."]
@@ -288,7 +299,7 @@ percent_visible = false
 [node name="Petrol" type="ProgressBar" parent="."]
 margin_left = 50.0
 margin_top = 21.0
-margin_right = 305.0
+margin_right = 250.0
 margin_bottom = 41.0
 custom_styles/fg = SubResource( 20 )
 custom_styles/bg = SubResource( 21 )
@@ -299,7 +310,7 @@ percent_visible = false
 [node name="Nitro" type="ProgressBar" parent="."]
 margin_left = 50.0
 margin_top = 71.0
-margin_right = 305.0
+margin_right = 250.0
 margin_bottom = 91.0
 custom_styles/fg = SubResource( 22 )
 custom_styles/bg = SubResource( 21 )
@@ -342,6 +353,34 @@ margin_right = 138.0
 margin_bottom = 191.0
 custom_fonts/font = SubResource( 16 )
 text = "Repairkit"
+
+[node name="Flag" type="Sprite" parent="."]
+position = Vector2( 770, 30 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 13 )
+
+[node name="DestinationLabel" type="Label" parent="."]
+margin_left = 787.0
+margin_top = 21.0
+margin_right = 860.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 16 )
+text = "500M"
+
+[node name="DestinationSlider" type="HSlider" parent="."]
+margin_left = 287.0
+margin_top = 20.0
+margin_right = 737.0
+margin_bottom = 36.0
+custom_icons/grabber_disabled = ExtResource( 14 )
+custom_icons/grabber_highlight = ExtResource( 14 )
+custom_icons/grabber = ExtResource( 14 )
+custom_styles/slider = SubResource( 23 )
+custom_styles/grabber_area_highlight = SubResource( 24 )
+custom_styles/grabber_area = SubResource( 25 )
+max_value = 0.0
+editable = false
+scrollable = false
 
 [connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]

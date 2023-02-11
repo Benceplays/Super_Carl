@@ -1,3 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="Map2" type="Node2D"]
+[ext_resource path="res://scenes/Destination.tscn" type="PackedScene" id=1]
+
+[node name="Map" type="Node2D"]
+
+[node name="Destination" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32677, 896 )

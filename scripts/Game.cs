@@ -26,6 +26,10 @@ public class Game : Node2D
     public bool fps_is_on = false;
     private string path;
     private ConfigFile configfile;
+    private Node2D destination;
+    private Label destinationlabel;
+    private HSlider destinationslider;
+    private AudioStreamPlayer2D Music;
     public override void _Ready()
     {
         path = "res://save.cfg";
@@ -41,6 +45,7 @@ public class Game : Node2D
                 AddChild(map2);
                 break;
         }
+        destination = GetNode("Map/Destination") as Node2D;
         
         Random rnd = new Random();
         //for (int i = 0; i < 1; i++)
@@ -115,6 +120,10 @@ public class Game : Node2D
             GD.Print(item);
         }*/
         car = GetNode("Car") as RigidBody2D;
+        destinationlabel = GetNode("Car/HUD/DestinationLabel") as Label;
+        destinationslider = GetNode("Car/HUD/DestinationSlider") as HSlider;
+        destinationslider.MaxValue = (int) destination.Position.x / 100;
+        Music = GetNode("/root/SoundController/Music") as AudioStreamPlayer2D;
         //vsync trun
         if (OptionsOption.vsync == true) OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
         //fpstarget set
@@ -160,6 +169,8 @@ public class Game : Node2D
 
     public override void _Process(float delta)
     {
+        
+        Music.Position = car.Position - new Vector2(512, 300);
         text = File.ReadAllText(@"scripts/Player.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
         //fps to screen
@@ -167,5 +178,7 @@ public class Game : Node2D
         {
             fpslabel.Text = $"{Convert.ToInt32(1 / delta)} FPS";
         }
+        destinationlabel.Text = (int)destination.Position.x / 100 - (int)car.Position.x / 100 + "m";
+        destinationslider.Value = (int)car.Position.x / 100;
     }
 }
