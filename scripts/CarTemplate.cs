@@ -12,7 +12,7 @@ public class CarTemplate : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print(type);
+        //GD.Print(type);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -220,7 +220,7 @@ public class Garage : Node2D
             }
             //
         }else{
-            GD.Print("nocash");
+            //GD.Print("nocash");
             Node2D notification = (Node2D)psnotification.Instance();
             notification.Set("text","Nincs elég \n pénzed a kocsi \n megvételéhez!");
             notification.Set("color","red");

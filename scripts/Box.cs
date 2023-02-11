@@ -13,8 +13,7 @@ public class Box : RigidBody2D
     }
     private void _on_Area2D_body_entered(RigidBody2D car){
         if(car.IsInGroup("car")){
-            GD.Print(car.LinearVelocity.x);
-            if(car.LinearVelocity.x > 600){
+            if(car.LinearVelocity.x > 400){
                 anim.Play("default");
             }
 

@@ -11,10 +11,10 @@
 [ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=9]
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=10]
 [ext_resource path="res://scenes/Repairkit.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/Lift.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Destination.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Plank.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Explosive.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Resource" id=117]
 script = ExtResource( 9 )
@@ -698,6 +698,7 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
 modulate = Color( 1, 1, 1, 0.3 )
+position = Vector2( -296, 0 )
 z_index = 1
 polygon = PoolVector2Array( -3068.09, 955.518, -3043.56, 783.753, -3000.44, 597.465, -2925.65, 369.498, -2810.87, 118.806, -2735.88, -9.14014, -2647.78, -135.67, -2545.52, -258.409, -2428.07, -374.991, -2294.38, -483.045, -2144.12, -580.742, -1698.3, -1920.24, -1647.67, -2034.54, -1615.27, -2094.92, -1599.49, -2116.92, -1080.68, -2241.57, 181.49, -2130.26, 356.447, -2017.58, 432.871, -1959.39, 819.616, -1829.05, 1226.64, -1741.92, 1461.23, -1714.88, 1708.04, -1707.27, 1960.7, -1725.38, 2212.81, -1775.49, 2336.68, -1814.51, 2458.02, -1863.91, 2576.04, -1924.46, 2689.94, -1996.95, 2798.92, -2082.17, 2902.19, -2180.9, 2998.95, -2293.94, 3088.4, -2422.06, 3169.75, -2566.06, 3242.19, -2726.72, 3304.94, -2904.84, 3355.38, -3103.31, 5073.9, -3292.73, 5202.58, -3292.68, 5265.87, -3284.28, 5285.07, -3273.55, 6301.8, -2725.42, 7483.6, -2641.9, 7958.78, -2558.42, 8414.79, -2432.29, 8621.4, -2350.46, 8806.15, -2254.67, 8888.54, -2201.19, 8963.35, -2143.81, 9029.84, -2082.39, 9087.3, -2016.77, 9116.93, -1984.79, 9152.83, -1956.4, 9194.84, -1931.54, 9242.74, -1910.12, 9296.3, -1892.04, 9355.33, -1877.2, 9488.85, -1856.82, 9641.58, -1848.16, 9811.76, -1850.45, 10197.6, -1884.63, 12091.8, -2298.31, 14674.6, -3121.72, 20504.9, -4733.1, 24715.7, -5699.19, 26247.6, -5916.62, 26527.4, -5928.51, 26758, -5920.71, 26853.5, -5908.98, 26935.2, -5891.83, 27002.6, -5869.09, 27055.2, -5840.49, 27102.1, -5810.81, 27152.6, -5784.68, 27206.7, -5762.02, 27264.2, -5742.73, 27388.8, -5713.84, 27525.3, -5697.2, 27672.5, -5692.05, 27829.3, -5697.58, 28167.3, -5737.54, 28908.9, -5910.76, 29677.8, -6166.2, 31582.8, -7000.8, 33517.1, -344.011, 33498.2, -326.763, 33438.6, -307.186, 33198.6, -260.149, 3983.36, 2387.31, 3705.4, 2435.89, 3626.14, 2456.67, 3588.53, 2475, 3524.93, 2535.12, 3463.47, 2581.89, 3400.37, 2617.77, 3331.95, 2645.37, 3164.43, 2686.14, 2931.45, 2725.13, 2151.25, 2881.31, 755.621, 3280.89, -92.3555, 3487.47, -849.771, 3572.14, -1509.68, 3564.01, -2065.16, 3492.16, -2509.26, 3385.66, -2835.07, 3273.6, -3106.21, 3150.42 )
 
@@ -730,9 +731,6 @@ polygon = PoolVector2Array( -3099.06, 990.52, -3089.97, -1254.89, -3114.79, -224
 [node name="Repairkit" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1855, 1084 )
 
-[node name="Lift" parent="." instance=ExtResource( 12 )]
-position = Vector2( 32136, -3840 )
-
 [node name="Destination" parent="." instance=ExtResource( 13 )]
 position = Vector2( 102822, -18535 )
 z_index = 1
@@ -741,14 +739,17 @@ z_index = 1
 position = Vector2( 1628, 1235 )
 
 [node name="Box" parent="." instance=ExtResource( 14 )]
-position = Vector2( 4032, -368 )
+position = Vector2( 5261, -265 )
 
 [node name="Box2" parent="." instance=ExtResource( 14 )]
-position = Vector2( 4561, -372 )
-
-[node name="Plank" parent="." instance=ExtResource( 15 )]
-position = Vector2( 4405, -511 )
-rotation = -0.193553
+position = Vector2( 4814, -200 )
 
 [node name="Plank2" parent="." instance=ExtResource( 15 )]
-position = Vector2( 3923, -256 )
+position = Vector2( 5042, -323 )
+rotation = -0.146948
+
+[node name="Explosive2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 4991, -402 )
+
+[node name="Explosive" parent="." instance=ExtResource( 16 )]
+position = Vector2( 4663, -240 )

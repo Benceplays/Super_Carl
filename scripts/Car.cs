@@ -130,7 +130,6 @@ public class Car : RigidBody2D
 		carhp.Value = Convert.ToSingle(config.GetValue("Default", "CarHP", 0));
 		repairkitlabel.Text = $"Repairkit: {Convert.ToSingle(config.GetValue("Default", "Repairkit", 0))}";
 		car = GetNode("/root/Game/Car") as RigidBody2D;
-		//GD.Print(car.Position);
 		if(money < positionx){
 			money = positionx;
        		moneylabel.Text = "Money: " + money;
@@ -201,7 +200,6 @@ public class Car : RigidBody2D
 		}
 		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
         petrolprogress.Value = gas;
-		//GD.Print(riptimer);
 		bool is_on_lift_variable = Convert.ToBoolean(Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", 0)));
 		if(!is_on_lift_variable){
 			if (this.LinearVelocity.x < 25)

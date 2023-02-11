@@ -50,13 +50,6 @@ public class Game : Node2D
         enemy.Position = new Vector2(width, -(width / 5));
         AddChild(enemy);
         //}
-        for (int i = 0; i < 15; i++)// itt akartál dolgozni
-        {
-            Node2D repairkit = (Node2D)psRepairkit.Instance();
-            int width3 = rnd.Next(1000, 100000);
-            repairkit.Position = new Vector2(width3, -(50000));
-            AddChild(repairkit);
-        }
 
         string textplayer = File.ReadAllText(@"scripts/Player.json");
         var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
@@ -89,7 +82,7 @@ public class Game : Node2D
         var OptionsOption = JsonConvert.DeserializeObject<ConfigBody>(OptionsText);
         // Tunings json beolvasása és annak használata
 
-        GD.Print(OptionsOption.fpsison);
+        //GD.Print(OptionsOption.fpsison);
 
 
         CanvasLayer hud = (CanvasLayer)psHUD.Instance();

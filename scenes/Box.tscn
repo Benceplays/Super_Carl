@@ -19,14 +19,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Box" type="RigidBody2D"]
+[node name="Box" type="RigidBody2D" groups=["box"]]
 gravity_scale = 5.0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
-speed_scale = 2.0
+frame = 4
+speed_scale = 2.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 2, 3 )

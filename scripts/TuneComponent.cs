@@ -98,7 +98,7 @@ public class TuneComponent : Node2D
             }
             else
             {
-                GD.Print("nocash");
+                //GD.Print("nocash");
                 Node2D notification = (Node2D)psnotification.Instance();
                 notification.Set("text", "Nincs elég pénzed a tuning elem megvételéhez!");
                 notification.Set("color", "red");

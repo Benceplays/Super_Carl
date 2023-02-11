@@ -12,7 +12,7 @@ height = 356.0
 
 [node name="Car" type="RigidBody2D"]
 z_index = 100
-mass = 2.34694
+mass = 4.59184
 gravity_scale = 5.0
 script = ExtResource( 4 )
 
