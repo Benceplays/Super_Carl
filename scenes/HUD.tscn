@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/fonts/Super-Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Kusanagi.otf" type="DynamicFontData" id=2]
@@ -8,13 +8,10 @@
 [ext_resource path="res://scripts/OutOfPetrol.cs" type="Script" id=6]
 [ext_resource path="res://assets/styles/normalfont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scripts/ReachDestination.cs" type="Script" id=8]
-[ext_resource path="res://assets/images/Petrol.png" type="Texture" id=9]
-
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0, 0, 0, 0.380392 )
-
-[sub_resource type="DynamicFont" id=16]
-font_data = ExtResource( 1 )
+[ext_resource path="res://assets/images/petrolcan.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/nitrousa.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/money.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/repairkit.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.721569 )
@@ -84,30 +81,19 @@ bg_color = Color( 1, 0, 0, 1 )
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0, 0, 0, 0.513726 )
 
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.188235, 0.14902, 0.14902, 1 )
+
+[sub_resource type="StyleBoxLine" id=21]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.00784314, 0.580392, 1, 1 )
+
+[sub_resource type="DynamicFont" id=16]
+font_data = ExtResource( 1 )
+
 [node name="HUD" type="CanvasLayer"]
-
-[node name="InfoPanel" type="Panel" parent="."]
-margin_left = 871.0
-margin_top = 5.0
-margin_right = 1020.0
-margin_bottom = 72.0
-custom_styles/panel = SubResource( 19 )
-
-[node name="money" type="Label" parent="InfoPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 62.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 7 )
-text = "Money"
-
-[node name="RepairkitLabel" type="Label" parent="InfoPanel"]
-margin_left = 7.0
-margin_top = 34.0
-margin_right = 47.0
-margin_bottom = 48.0
-custom_fonts/font = SubResource( 16 )
-text = "Repairkit"
 
 [node name="PausePanel" type="Panel" parent="."]
 pause_mode = 2
@@ -283,28 +269,79 @@ custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 5 )
 text = "Ok"
 
-[node name="Petrol" type="TextureProgress" parent="."]
-margin_left = 17.0
-margin_top = 283.0
-margin_right = 64.0
-margin_bottom = 581.0
-value = 20.0
-texture_progress = ExtResource( 9 )
-fill_mode = 3
-
 [node name="fps" type="Label" parent="."]
-margin_right = 90.0
-margin_bottom = 35.0
+margin_left = 929.0
+margin_top = 7.0
+margin_right = 964.0
+margin_bottom = 42.0
 custom_fonts/font = SubResource( 4 )
 
 [node name="CarHP" type="ProgressBar" parent="."]
 margin_left = 388.0
-margin_top = 576.0
+margin_top = 571.0
 margin_right = 643.0
 margin_bottom = 590.0
 custom_styles/fg = SubResource( 17 )
 custom_styles/bg = SubResource( 18 )
 percent_visible = false
+
+[node name="Petrol" type="ProgressBar" parent="."]
+margin_left = 50.0
+margin_top = 21.0
+margin_right = 305.0
+margin_bottom = 41.0
+custom_styles/fg = SubResource( 20 )
+custom_styles/bg = SubResource( 21 )
+step = 1.0
+value = 100.0
+percent_visible = false
+
+[node name="Nitro" type="ProgressBar" parent="."]
+margin_left = 50.0
+margin_top = 71.0
+margin_right = 305.0
+margin_bottom = 91.0
+custom_styles/fg = SubResource( 22 )
+custom_styles/bg = SubResource( 21 )
+step = 1.0
+value = 100.0
+percent_visible = false
+
+[node name="Petrolcan" type="Sprite" parent="."]
+position = Vector2( 25, 30 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 9 )
+
+[node name="Nitrousa" type="Sprite" parent="."]
+position = Vector2( 25, 80 )
+scale = Vector2( 0.075, 0.075 )
+texture = ExtResource( 10 )
+
+[node name="Money" type="Sprite" parent="."]
+position = Vector2( 28, 130 )
+scale = Vector2( 0.075, 0.075 )
+texture = ExtResource( 11 )
+
+[node name="money" type="Label" parent="."]
+margin_left = 55.0
+margin_top = 124.0
+margin_right = 110.0
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 7 )
+text = "Money"
+
+[node name="Repairkit" type="Sprite" parent="."]
+position = Vector2( 28, 180 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 12 )
+
+[node name="RepairkitLabel" type="Label" parent="."]
+margin_left = 55.0
+margin_top = 173.0
+margin_right = 138.0
+margin_bottom = 191.0
+custom_fonts/font = SubResource( 16 )
+text = "Repairkit"
 
 [connection signal="pressed" from="PausePanel/ReturnButton" to="PausePanel" method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="PausePanel/BackToMenuButton" to="PausePanel" method="_on_BackToMenuButton_pressed"]

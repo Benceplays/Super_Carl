@@ -28,7 +28,8 @@ public class Car : RigidBody2D
 	private float rotationcar;
 	private bool onfloor;
 	private RigidBody2D car;
-    private TextureProgress petrolprogress;
+    private ProgressBar petrolprogress;
+	private ProgressBar nitroprogress;
     private Label moneylabel;
 	private int money;
 	private int zombiemoney;
@@ -124,19 +125,12 @@ public class Car : RigidBody2D
 		config.Save(path);
 		string textplayer = File.ReadAllText(@"scripts/Player.json");
 		var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
-        moneylabel = GetNode("HUD/InfoPanel/money") as Label;
-		repairkitlabel = GetNode("HUD/InfoPanel/RepairkitLabel") as Label;
+        moneylabel = GetNode("HUD/money") as Label;
+		repairkitlabel = GetNode("HUD/RepairkitLabel") as Label;
 		carhp = GetNode("HUD/CarHP") as ProgressBar;
 		carhp.Value = Convert.ToSingle(config.GetValue("Default", "CarHP", 0));
-		repairkitlabel.Text = $"Repairkit: {Convert.ToSingle(config.GetValue("Default", "Repairkit", 0))}";
+		repairkitlabel.Text = $"{Convert.ToSingle(config.GetValue("Default", "Repairkit", 0))}";
 		car = GetNode("/root/Game/Car") as RigidBody2D;
-		if(money < positionx){
-			money = positionx;
-       		moneylabel.Text = "Money: " + money;
-		}else{
-			money = (int) car.Position.x / 100;
-        	moneylabel.Text = "Money: " + money;
-		}
 
 		if(Input.IsActionJustPressed("Repairkit"))
 		{
@@ -198,21 +192,29 @@ public class Car : RigidBody2D
 				}	
 			}
 		}
-		petrolprogress = GetNode("HUD/Petrol") as TextureProgress;
+		petrolprogress = GetNode("HUD/Petrol") as ProgressBar;
+		nitroprogress = GetNode("HUD/Nitro") as ProgressBar;
+		nitroprogress.Value = nitrosupply;
         petrolprogress.Value = gas;
 		bool is_on_lift_variable = Convert.ToBoolean(Convert.ToSingle(config.GetValue("Default", "Is_On_Lift", 0)));
 		if(!is_on_lift_variable){
 			if (this.LinearVelocity.x < 25)
 			{
 				riptimer -= delta;
-				if(positionx <= (int) car.Position.x / 100){
-					positionx = (int) car.Position.x / 100;
+				if(positionx < (int) car.Position.x / 100){
+					positionx = money;
 				}
 			}
 			else{
 				riptimer = 5;
 			}
 		}
+		if(money > (int) car.Position.x / 100){
+			money = positionx;
+		}else{
+			money = (int) car.Position.x / 100;
+		}
+    	moneylabel.Text = Convert.ToString(money);
 		if(riptimer <= 0){
 			Panel endmenu = GetNode("HUD/OutOfPetrol") as Panel;
 			endmenu.Visible = true;

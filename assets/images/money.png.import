@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nitrous.jpg-543d568e6874e18600e2e1cd050bb357.stex"
+path="res://.import/money.png-1a60928685840871605d255c62a4b095.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/nitrous.jpg"
-dest_files=[ "res://.import/nitrous.jpg-543d568e6874e18600e2e1cd050bb357.stex" ]
+source_file="res://assets/images/money.png"
+dest_files=[ "res://.import/money.png-1a60928685840871605d255c62a4b095.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
