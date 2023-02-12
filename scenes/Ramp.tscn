@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Plank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Explosive.tscn" type="PackedScene" id=3]
+
+[node name="Ramp" type="Node2D"]
+
+[node name="Box" parent="." instance=ExtResource( 1 )]
+position = Vector2( -213, -329 )
+
+[node name="Box2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 176, 31 )
+
+[node name="Box3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -62, -216 )
+
+[node name="Explosive" parent="." instance=ExtResource( 3 )]
+position = Vector2( -353, -5 )
+
+[node name="Plank" parent="." instance=ExtResource( 2 )]
+position = Vector2( -12, -62 )

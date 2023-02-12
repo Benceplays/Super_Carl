@@ -33,13 +33,13 @@ public class Game : Node2D
         destination = GetNode("Map/Destination") as Node2D;
         
         Random rnd = new Random();
-        //for (int i = 0; i < 1; i++)
-        //{
+        for (int i = 0; i < 20; i++)
+        {
         Node2D enemy = (Node2D)psEnemy.Instance();
         int width = rnd.Next(7000, 100000);
-        enemy.Position = new Vector2(width, -(width / 5));
+        enemy.Position = new Vector2(width, 0);
         AddChild(enemy);
-        //}
+        }
 
         string textplayer = File.ReadAllText(@"scripts/Player.json");
         var get_optionsplayer = JsonConvert.DeserializeObject<ConfigBody>(textplayer);
@@ -153,7 +153,7 @@ public class Game : Node2D
 
     public override void _Process(float delta)
     {
-        
+        GD.Print(car.Position);
         Music.Position = car.Position - new Vector2(512, 300);
         text = File.ReadAllText(@"scripts/Player.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
