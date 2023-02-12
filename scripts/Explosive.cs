@@ -18,7 +18,7 @@ public class Explosive : RigidBody2D
     }
     private void _on_Area2D_body_entered(RigidBody2D car){
         if(car.IsInGroup("car")){
-            if(car.LinearVelocity.x > 150){
+            if(car.LinearVelocity.x > 75){
                 spritekep.Visible = false;
                 anim.Visible = true;
                 anim.Play("default");

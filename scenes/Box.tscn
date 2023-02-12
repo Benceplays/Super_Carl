@@ -20,7 +20,8 @@ animations = [ {
 } ]
 
 [node name="Box" type="RigidBody2D" groups=["box"]]
-gravity_scale = 5.0
+mass = 0.408163
+gravity_scale = 9.0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

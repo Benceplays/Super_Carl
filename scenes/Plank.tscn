@@ -3,7 +3,8 @@
 [ext_resource path="res://assets/images/plank.png" type="Texture" id=1]
 
 [node name="Plank" type="RigidBody2D" groups=["plank"]]
-gravity_scale = 5.0
+mass = 0.408163
+gravity_scale = 9.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.5, 1 )
