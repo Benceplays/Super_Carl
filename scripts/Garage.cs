@@ -175,7 +175,7 @@ public class Garage : Node2D
             new JProperty("UnlockedCars", owned_cars),
             new JProperty("Cars", get_datas.Cars),
             new JProperty("Days", get_datas.Days),
-		    new JProperty("Maps", get_datas.Maps));
+            new JProperty("Maps", get_datas.Maps));
             File.WriteAllText(@"scripts/Player.json", options.ToString());
             using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
             using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -184,12 +184,19 @@ public class Garage : Node2D
             }
 
 
+            Node2D notification = (Node2D)psnotification.Instance();
+            notification.Set("text", "Sikeresen megvásároltad a kiválaszott járművet!");
+            notification.Set("color", "green");
+            AddChild(notification);
+
+
 
             //FRISSITES//
 
             locked.Visible = false;
             lockedLabel.Visible = false;
             buyButton.Visible = false;
+            select.Visible = true;
 
 
             string tunings = File.ReadAllText(@"scripts/Tunings.json");
@@ -208,7 +215,7 @@ public class Garage : Node2D
                         int index = j - 1;
                         if (currentDic.ElementAt(j).Key != "id")
                         {
-                           tune_cards[index].Visible = true;
+                            tune_cards[index].Visible = true;
                             tune_cards[index].Set("car_id", currentDic["id"]);
                             tune_cards[index].Set("component", currentDic.ElementAt(j).Key);
                             tune_cards[index].Set("currentLvl", currentDic.ElementAt(j).Value);
@@ -219,11 +226,13 @@ public class Garage : Node2D
                 //GD.Print(tunings_split[i]);
             }
             //
-        }else{
+        }
+        else
+        {
             //GD.Print("nocash");
             Node2D notification = (Node2D)psnotification.Instance();
-            notification.Set("text","Nincs elég \n pénzed a kocsi \n megvételéhez!");
-            notification.Set("color","red");
+            notification.Set("text", "Nincs elég \n pénzed a kocsi \n megvételéhez!");
+            notification.Set("color", "red");
             AddChild(notification);
         }
     }
@@ -268,6 +277,9 @@ public class Garage : Node2D
                 }
                 else
                 {
+                    locked.Visible = false;
+                    lockedLabel.Visible = false;
+                    buyButton.Visible = false;
                     for (int j = 0; j < currentDic.Count; j++)
                     {
                         int index = j - 1;
