@@ -12,8 +12,8 @@ height = 356.0
 
 [node name="Car" type="RigidBody2D" groups=["car"]]
 z_index = 100
-mass = 4.59184
-gravity_scale = 5.0
+mass = 2.34694
+gravity_scale = 9.0
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -31,7 +31,7 @@ node_a = NodePath("..")
 node_b = NodePath("Wheel")
 
 [node name="Wheel" parent="WheelHolder" instance=ExtResource( 1 )]
-gravity_scale = 5.0
+gravity_scale = 9.0
 
 [node name="WheelHolder2" type="PinJoint2D" parent="."]
 position = Vector2( 115, 64 )
@@ -39,7 +39,7 @@ node_a = NodePath("..")
 node_b = NodePath("Wheel")
 
 [node name="Wheel" parent="WheelHolder2" instance=ExtResource( 1 )]
-gravity_scale = 5.0
+gravity_scale = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

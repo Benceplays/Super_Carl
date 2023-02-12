@@ -81,14 +81,29 @@ public class Car : RigidBody2D
 		}
 		switch(id){
 			case 0:
-				gas = petrol * 5;
-				nitrosupply = nitro * 5;
+				gas = petrol * 8;
+				nitrosupply = nitro * 8;
 				speed = engine + 1;
 				break;
 			case 1:
-				gas = 20 + petrol;
-				nitrosupply = 15 + nitro;
+				gas = 32 + petrol;
+				if(nitro != 0){
+					nitrosupply = 24 + nitro;
+				}
+				else{
+					nitrosupply = 0;
+				}
 				speed = 3 + engine;
+				break;
+			case 2:
+				gas = 36 + petrol;
+				if(nitro != 0){
+					nitrosupply = 27 + nitro;
+				}
+				else{
+					nitrosupply = 0;
+				}
+				speed = 5 + engine;
 				break;
 		}
 		if(gun == 1){
