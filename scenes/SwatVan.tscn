@@ -10,7 +10,7 @@
 radius = 154.0
 height = 356.0
 
-[node name="Car" type="RigidBody2D"]
+[node name="Car" type="RigidBody2D" groups=["car"]]
 z_index = 100
 mass = 4.59184
 gravity_scale = 5.0
