@@ -79,9 +79,18 @@ public class Car : RigidBody2D
 				petrol = currentDic["petrol"]; // 0, 1, 2, 3, 4
 			}
 		}
-		gas += (petrol * 5) * (id + 1);
-		nitrosupply = (nitro * 5) * (id + 1);
-		speed = (engine + 1) * (id + 1);
+		switch(id){
+			case 0:
+				gas = petrol * 5;
+				nitrosupply = nitro * 5;
+				speed = engine + 1;
+				break;
+			case 1:
+				gas = 20 + petrol;
+				nitrosupply = 15 + nitro;
+				speed = 3 + engine;
+				break;
+		}
 		if(gun == 1){
 			weapon.Visible = true;
 		}
