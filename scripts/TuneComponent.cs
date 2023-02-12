@@ -68,10 +68,13 @@ public class TuneComponent : Node2D
             var get_datas = JsonConvert.DeserializeObject<ConfigBody>(player_json);
             if (get_datas.money >= upgrade_price)
             {
+
                 currentLvl++;
+
+
                 refreshProgressBar();
                 writeToJSON();
-                name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
+
 
                 //Elmentése
                 JObject options = new JObject(
@@ -105,6 +108,13 @@ public class TuneComponent : Node2D
                 garage.AddChild(notification);
             }
         }
+        else
+        {
+            Node2D notification = (Node2D)psnotification.Instance();
+            notification.Set("text", "A kiválasztott tuning komponens már maximális szinten van!");
+            notification.Set("color", "red");
+            garage.AddChild(notification);
+        }
     }
 
     public void refreshStats()
@@ -129,7 +139,17 @@ public class TuneComponent : Node2D
                 break;
         }
         upgrade_price *= currentLvl + 1;
-        name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
+        if (currentLvl == maxLvl)
+        {
+            name.Text = "";
+            name.Text = component.ToUpper() + " (MAX)";
+
+        }
+        else
+        {
+            name.Text = component.ToUpper() + " (" + upgrade_price + "$)";
+
+        }
     }
 
     public void refreshProgressBar()
