@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 
 public class Game : Node2D
 {
-    [Export] public PackedScene psMap1;
-    [Export] public PackedScene psMap2;
     [Export] public PackedScene psCar;
     [Export] public PackedScene psBus;
     [Export] public PackedScene psHUD;
@@ -32,19 +30,6 @@ public class Game : Node2D
     private AudioStreamPlayer2D Music;
     public override void _Ready()
     {
-        path = "res://save.cfg";
-		configfile = new ConfigFile();
-        configfile.Load(path);
-        switch(Convert.ToSingle(configfile.GetValue("Default", "MapNumber", 0))){
-            case 1:
-                Node2D map1 = (Node2D)psMap1.Instance();
-                AddChild(map1);
-                break;
-            case 2:
-                Node2D map2 = (Node2D)psMap2.Instance();
-                AddChild(map2);
-                break;
-        }
         destination = GetNode("Map/Destination") as Node2D;
         
         Random rnd = new Random();
@@ -63,8 +48,7 @@ public class Game : Node2D
             new JProperty("Money", get_optionsplayer.money),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
-            new JProperty("Days", get_optionsplayer.Days),
-			new JProperty("Maps", get_optionsplayer.Maps));
+            new JProperty("Days", get_optionsplayer.Days));
         File.WriteAllText(@"scripts/Player.json", options.ToString());
         using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
         using (JsonTextWriter writer = new JsonTextWriter(file))

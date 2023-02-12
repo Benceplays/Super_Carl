@@ -82,8 +82,7 @@ public class TuneComponent : Node2D
                 new JProperty("Money", get_datas.money - upgrade_price),
                 new JProperty("UnlockedCars", get_datas.UnlockedCars),
                 new JProperty("Cars", get_datas.Cars),
-                new JProperty("Days", get_datas.Days),
-                new JProperty("Maps", get_datas.Maps));
+                new JProperty("Days", get_datas.Days));
                 File.WriteAllText(@"scripts/Player.json", options.ToString());
                 using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
                 using (JsonTextWriter writer = new JsonTextWriter(file))

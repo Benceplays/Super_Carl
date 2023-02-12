@@ -46,8 +46,7 @@ public class Bullet : KinematicBody2D
 			new JProperty("Money", get_optionsplayer.money),
 			new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
 			new JProperty("Cars", get_optionsplayer.Cars),
-			new JProperty("Days", get_optionsplayer.Days),
-			new JProperty("Maps", get_optionsplayer.Maps));
+			new JProperty("Days", get_optionsplayer.Days));
 		File.WriteAllText(@"scripts/Player.json", options.ToString());
 		using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
 		using (JsonTextWriter writer = new JsonTextWriter(file))

@@ -121,8 +121,7 @@ public class Car : RigidBody2D
             new JProperty("Money", get_optionsplayer.money + plusmoney),
             new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
             new JProperty("Cars", get_optionsplayer.Cars),
-            new JProperty("Days", get_optionsplayer.Days),
-			new JProperty("Maps", get_optionsplayer.Maps));
+            new JProperty("Days", get_optionsplayer.Days));
         File.WriteAllText(@"scripts/Player.json", options.ToString());
         using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
         using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -165,8 +164,7 @@ public class Car : RigidBody2D
 				new JProperty("Money", get_optionsplayer.money),
 				new JProperty("UnlockedCars", get_optionsplayer.UnlockedCars),
 				new JProperty("Cars", get_optionsplayer.Cars),
-				new JProperty("Days", get_optionsplayer.Days),
-				new JProperty("Maps", get_optionsplayer.Maps));
+				new JProperty("Days", get_optionsplayer.Days));
 				File.WriteAllText(@"scripts/Player.json", options.ToString());
 				using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
 				using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -225,7 +223,7 @@ public class Car : RigidBody2D
 			if (this.LinearVelocity.x < 25)
 			{
 				riptimer -= delta;
-				if(positionx < (int) car.Position.x / 100){
+				if(positionx < (int) car.Position.x / 50){
 					positionx = money;
 				}
 			}
@@ -233,10 +231,10 @@ public class Car : RigidBody2D
 				riptimer = 5;
 			}
 		}
-		if(money > (int) car.Position.x / 100){
+		if(money > (int) car.Position.x / 50){
 			money = positionx;
 		}else{
-			money = (int) car.Position.x / 100;
+			money = (int) car.Position.x / 50;
 		}
     	moneylabel.Text = Convert.ToString(money);
 		if(riptimer <= 0){

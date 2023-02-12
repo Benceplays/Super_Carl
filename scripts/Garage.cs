@@ -174,8 +174,7 @@ public class Garage : Node2D
             new JProperty("Money", curmoney),
             new JProperty("UnlockedCars", owned_cars),
             new JProperty("Cars", get_datas.Cars),
-            new JProperty("Days", get_datas.Days),
-            new JProperty("Maps", get_datas.Maps));
+            new JProperty("Days", get_datas.Days));
             File.WriteAllText(@"scripts/Player.json", options.ToString());
             using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
             using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -328,7 +327,7 @@ public class Garage : Node2D
 
     public void _on_Next_pressed()
     {
-        GetTree().ChangeScene("res://scenes/MapSelector.tscn");
+        GetTree().ChangeScene("res://scenes/Game.tscn");
     }
 
     public void _on_Back_pressed()
@@ -349,8 +348,7 @@ public class Garage : Node2D
                 new JProperty("Money", get_datas.money),
                 new JProperty("UnlockedCars", get_datas.UnlockedCars),
                 new JProperty("Cars", get_datas.Cars),
-                new JProperty("Days", get_datas.Days),
-                new JProperty("Maps", get_datas.Maps));
+                new JProperty("Days", get_datas.Days));
             File.WriteAllText(@"scripts/Player.json", options.ToString());
             using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
             using (JsonTextWriter writer = new JsonTextWriter(file))

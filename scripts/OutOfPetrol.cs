@@ -22,8 +22,7 @@ public class OutOfPetrol : Panel
                 new JProperty("Money", get_options.money),
                 new JProperty("UnlockedCars", get_options.UnlockedCars),
                 new JProperty("Cars", get_options.Cars),
-                new JProperty("Days", (get_options.Days + 1)),
-				new JProperty("Maps", get_options.Maps));
+                new JProperty("Days", (get_options.Days + 1)));
             File.WriteAllText(@"scripts/Player.json", options.ToString());
             using (StreamWriter file = File.CreateText(@"scripts/Player.json"))
             using (JsonTextWriter writer = new JsonTextWriter(file))
