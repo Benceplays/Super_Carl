@@ -33,7 +33,7 @@ public class Game : Node2D
         destination = GetNode("Map/Destination") as Node2D;
         
         Random rnd = new Random();
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 12; i++)
         {
         Node2D enemy = (Node2D)psEnemy.Instance();
         int width = rnd.Next(7000, 100000);
